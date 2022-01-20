@@ -5,14 +5,26 @@
 * HW 0 Temperature.cpp for CS 202
 */
 
+#include <string>
 #include <iostream>
-#include <iomanip>
 using std::cout;
 using std::cin;
 using std::endl;
-using std::setprecision;
+using std::stod;
+using std::strtod;
 
-int main()
+double cpp_ftoc(const char* str)
 {
-	return 0;
+    return 0.0;
+}
+
+int main(int argc, char** argv)
+{
+    cout << "You have entered " << argc
+        << " arguments:" << "\n";
+
+    for (int i = 0; i < argc; ++i)
+        cout << argv[i] << "\n";
+
+    return 0;
 }
