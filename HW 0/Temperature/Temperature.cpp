@@ -53,9 +53,13 @@ int main(int argc, char** argv)
     string inputCommand(argv[1]);
     string inputTemp(argv[2]);
 
-    if (argc > 0)
+    if (argc > 1)
     {
-        if (isNumber(inputTemp))
+        if (argc >= 4)
+        {
+            cout << "Please don't input more than two parameters at a time." << endl;
+        }
+        else if (isNumber(inputTemp))
         {
             if (inputCommand == "--ftoc")
             {
@@ -76,10 +80,7 @@ int main(int argc, char** argv)
                 cout << "Your first parameter, 'argv[1]', wasn't understood." << endl;
             }
         }
-        else
-        {
-            cout << "Your second parameter, 'argv[2]', wasn't understood." << endl;
-        }
+        else cout << "Your second parameter, 'argv[2]', wasn't understood." << endl;
     }
 
     return 0;
