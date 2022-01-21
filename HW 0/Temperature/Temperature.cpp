@@ -1,8 +1,8 @@
 /*
-* Temperature.cpp
+* temperature.cpp
 * David Misyura
 * 20 Jan 2021
-* HW 0 Temperature.cpp for CS 202
+* HW 0 temperature.cpp for CS 202
 */
 
 #include <string>
@@ -12,19 +12,35 @@ using std::cin;
 using std::endl;
 using std::stod;
 using std::strtod;
+using std::string;
 
 double cpp_ftoc(const char* str)
 {
-    return 0.0;
+    double inputF = stod(str);
+    double outputC = (inputF - 32) * (5 / 9);
+    return outputC;
 }
 
 int main(int argc, char** argv)
 {
-    cout << "You have entered " << argc
-        << " arguments:" << "\n";
+    string inputString(argv[1]);
 
-    for (int i = 0; i < argc; ++i)
-        cout << argv[i] << "\n";
+    if (argc > 0)
+    {
+        if (inputString == "ftoc")
+        {
+            const char* inputF = argv[2];
+            cout << "argv 1 found!" << endl;
+            cout << cpp_ftoc(inputF) << endl;
+            for (int i = 0; i < argc; ++i)
+            {
+                cout << argv[i] << endl;
+            }
+        }
+    }
+
+
+
 
     return 0;
 }

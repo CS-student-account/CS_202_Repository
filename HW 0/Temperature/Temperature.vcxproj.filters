@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Temperature.cpp">
+    <ClCompile Include="temperature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
