@@ -10,6 +10,9 @@
 #include <fstream>
 #include <sstream>
 #include <random>
+#include <vector>
+#include <time.h>
+#include <stdlib.h>
 using std::endl;
 using std::string;
 using std::cin;
@@ -23,6 +26,7 @@ using std::getline;
 using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
+using std::vector;
 
 bool readFile(const string &filename)
 {
@@ -60,7 +64,37 @@ bool readFile(const string &filename)
 
 string excerpt(const string &filename)
 {
+	ifstream fin(filename);
 
+	random_device rd;
+	mt19937 gen(rd());  // PRNG, randomly seeded
+	uniform_int_distribution<int> dist(1, 1000);
+	int numlines = dist(gen);
+
+	int total_lines = 0; //total number of lines in book
+	vector<string> lines; //vector of strings to place words
+
+	while (true)
+	{
+		string line;
+		getline(fin, line);
+		total_lines++;
+		lines.push_back(line);
+
+		if (!fin)
+		{
+			if (fin.eof())
+			{
+				cout << "excerptinator has completed." << endl << endl;
+				return lines[dist(gen)]; //return a random line of text
+			}
+			else
+			{
+				return "Error during transmit.";
+			}
+			break;
+		}
+	}
 }
 
 int main()
@@ -69,8 +103,9 @@ int main()
 
 	if (readFile(fname))
 	{
-		excerpt(fname);
+		cout << excerpt(fname) << endl;
 	}
+
 	// Wait for user
 	cout << "Press ENTER to quit ";
 	string dummyline;
