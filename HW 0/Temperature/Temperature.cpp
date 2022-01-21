@@ -22,6 +22,11 @@ double cpp_ftoc(const char* str)
     return outputC;
 }
 
+double c_ctof(const char* str)
+{
+
+}
+
 int main(int argc, char** argv)
 {
     string inputString(argv[1]);
@@ -35,6 +40,14 @@ int main(int argc, char** argv)
             cout << argv[2] << " degrees Fahrenheit is " << cpp_ftoc(inputF) 
                 << " degrees Celsius!" << endl;
             
+        }
+        else if (inputString == "--ctof")
+        {
+
+        }
+        else
+        {
+            cout << "Your input wasn't understood." << endl;
         }
     }
 
