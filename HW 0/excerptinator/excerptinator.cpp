@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <random>
 using std::endl;
 using std::string;
 using std::cin;
@@ -19,6 +20,9 @@ using std::ofstream;
 using std::ifstream;
 using std::istringstream;
 using std::getline;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
 bool readFile(const string &filename)
 {
@@ -35,6 +39,7 @@ bool readFile(const string &filename)
 		{
 			string line;
 			getline(fin, line);
+
 			if (!fin)
 			{
 				if (fin.eof())
@@ -53,11 +58,19 @@ bool readFile(const string &filename)
 	}
 }
 
+string excerpt(const string &filename)
+{
+
+}
+
 int main()
 {
 	const string fname = "A Tale of Two Cities by Charles Dickens.txt";  // File to write & read
 
-	readFile(fname);
+	if (readFile(fname))
+	{
+		excerpt(fname);
+	}
 	// Wait for user
 	cout << "Press ENTER to quit ";
 	string dummyline;
