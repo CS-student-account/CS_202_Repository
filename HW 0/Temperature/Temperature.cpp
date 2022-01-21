@@ -31,34 +31,56 @@ double c_ctof(const char* str)
     return outputF;
 }
 
-int main(int argc, char** argv)
+bool isNumber(string &s)
 {
-    string inputString(argv[1]);
-
-    if (argc > 0)
+    for (int i = 0; i < s.length(); i++)
     {
-        if (inputString == "--ftoc")
+        if (isdigit(s[i]) == false)
         {
-            const char* inputF = argv[2];
-
-            cout << argv[2] << " degrees Fahrenheit is " << cpp_ftoc(inputF) 
-                << " degrees Celsius!" << endl;
-        }
-        else if (inputString == "--ctof")
-        {
-            const char* inputC = argv[2];
-
-            cout << argv[2] << " degrees Celsius is " << c_ctof(inputC)
-                << " degrees Fahrenheit!" << endl;
-        }
-        else
-        {
-            cout << "Your input wasn't understood." << endl;
+            if (s.find('.') != string::npos)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 
+    return true;
+}
 
+int main(int argc, char** argv)
+{
+    string inputCommand(argv[1]);
+    string inputTemp(argv[2]);
 
+    if (argc > 0)
+    {
+        if (isNumber(inputTemp))
+        {
+            if (inputCommand == "--ftoc")
+            {
+                const char* inputF = argv[2];
+
+                cout << argv[2] << " degrees Fahrenheit is " << cpp_ftoc(inputF)
+                    << " degrees Celsius!" << endl;
+            }
+            else if (inputCommand == "--ctof")
+            {
+                const char* inputC = argv[2];
+
+                cout << argv[2] << " degrees Celsius is " << c_ctof(inputC)
+                    << " degrees Fahrenheit!" << endl;
+            }
+            else
+            {
+                cout << "Your first parameter, 'argv[1]', wasn't understood." << endl;
+            }
+        }
+        else
+        {
+            cout << "Your second parameter, 'argv[2]', wasn't understood." << endl;
+        }
+    }
 
     return 0;
 }
