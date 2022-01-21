@@ -16,8 +16,9 @@ using std::string;
 
 double cpp_ftoc(const char* str)
 {
-    double inputF = stod(str);
-    double outputC = (inputF - 32) * (5 / 9);
+    string inputF = str;
+    double inputFDouble = stod(inputF);
+    double outputC = (((inputFDouble - 32) * 5) / 9);
     return outputC;
 }
 
@@ -27,15 +28,13 @@ int main(int argc, char** argv)
 
     if (argc > 0)
     {
-        if (inputString == "ftoc")
+        if (inputString == "--ftoc")
         {
             const char* inputF = argv[2];
-            cout << "argv 1 found!" << endl;
-            cout << cpp_ftoc(inputF) << endl;
-            for (int i = 0; i < argc; ++i)
-            {
-                cout << argv[i] << endl;
-            }
+
+            cout << argv[2] << " degrees Fahrenheit is " << cpp_ftoc(inputF) 
+                << " degrees Celsius!" << endl;
+            
         }
     }
 
