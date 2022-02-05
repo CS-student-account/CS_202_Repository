@@ -63,25 +63,26 @@ int main(int argc, char** argv)
         {
             cout << "Please don't input more than two arguments at a time." << endl;
         }
-        else if (isNumber(inputTemp)) //if everything is normal, check what conversion-function the user wants
+        else if (isNumber(inputTemp)) //check what conversion-function the user wants
         {
             if (inputCommand == "--ftoc") //the user wants to convert F to C
             {
                 const char* inputF = argv[2]; //store the user's temp input as a const char*
 
                 cout << argv[2] << " degrees Fahrenheit is " << cpp_ftoc(inputF)
-                    << " degrees Celsius!" << endl; //print out the user's temp value and the conversion
+                    << " degrees Celsius!" << endl; //print out temp value and conversion
             }
             else if (inputCommand == "--ctof") //the user wants to convert C to F
             {
                 const char* inputC = argv[2]; //store the user's temp input as a const char*
 
                 cout << argv[2] << " degrees Celsius is " << c_ctof(inputC)
-                    << " degrees Fahrenheit!" << endl; //print out the user's temp value and the conversion
+                    << " degrees Fahrenheit!" << endl; //print out the temp value and conversion
             }
             else
             {
-                //the user's first argument is likely to be incorrect, if the program gets to this point
+                //the user's first argument is likely to be incorrect, if the program
+                //gets to this point
                 cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
             }
         }
