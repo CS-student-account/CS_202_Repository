@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="StopWatch.cpp" />
     <ClCompile Include="Time It 1.cpp" />
   </ItemGroup>
   <ItemGroup>
