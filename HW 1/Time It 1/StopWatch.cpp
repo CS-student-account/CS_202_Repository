@@ -58,5 +58,5 @@ double StopWatch::elapsedMilliseconds()
 
 double StopWatch::elapsedSeconds()
 {
-    return elapsedMilliseconds() / 1000.0;
+    return elapsedMilliseconds() / 1000;
 }
