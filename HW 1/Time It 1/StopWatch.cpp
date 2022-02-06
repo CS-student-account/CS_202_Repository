@@ -28,20 +28,13 @@ StopWatch::~StopWatch()
 	cout << "Destructor!" << endl;
 }
 
-void StopWatch::timerStart()
-{
-    startTime = high_resolution_clock::now();
-    timerRunning = true;
-}
-
 void StopWatch::Start()
 {
-    startTime
     startTime = high_resolution_clock::now();
     timerRunning = true;
 }
 
-void StopWatch::timerStop()
+void StopWatch::Stop()
 {
     endTime = high_resolution_clock::now();
     timerRunning = false;

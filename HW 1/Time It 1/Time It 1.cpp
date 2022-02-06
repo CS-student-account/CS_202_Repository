@@ -22,12 +22,16 @@ using namespace std::chrono;
 int main()
 {
     StopWatch timer;
-    //timer.timerStart();
     sleep_for(1s);
-    timer.timerStop();
+    timer.Stop();
+    cout << "Milliseconds: " << timer.elapsedMilliseconds() << "seconds: " << timer.elapsedSeconds() << endl;
+    timer.Start();
+    sleep_for(2s);
+    timer.Stop();
+    cout << "Milliseconds: " << timer.elapsedMilliseconds() << "seconds: " << timer.elapsedSeconds() << endl;
 
     //cout << counter << endl;
-    cout << "Milliseconds: "  << timer.elapsedMilliseconds() << "seconds: " << timer.elapsedSeconds() << endl;
+    //cout << "Milliseconds: "  << timer.elapsedMilliseconds() << "seconds: " << timer.elapsedSeconds() << endl;
 
 	return 0;
 }

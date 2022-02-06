@@ -19,9 +19,8 @@ public:
 	StopWatch(const StopWatch& watch); //copy constructor
 	~StopWatch(); //destructor
 
-	void timerStart();
 	void Start();
-	void timerStop();
+	void Stop();
 	double elapsedMilliseconds();
 	double elapsedSeconds();
 };
