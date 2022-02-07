@@ -13,19 +13,19 @@ using namespace std::chrono;
 
 StopWatch::StopWatch() 
 {
-	cout << "Default constructor!" << endl << endl;
+	//cout << "Default constructor!" << endl << endl;
     startTime = high_resolution_clock::now();
     timerRunning = true;
 }
 
 StopWatch::StopWatch(const StopWatch& watch)
 {
-	cout << "Copy constructor!" << endl << endl;
+	//cout << "Copy constructor!" << endl << endl;
 }
 
 StopWatch::~StopWatch()
 {
-	cout << "Destructor!" << endl;
+	//cout << "Destructor!" << endl;
 }
 
 void StopWatch::Start()
