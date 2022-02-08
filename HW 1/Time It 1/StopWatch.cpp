@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <iterator>
+#include <cstdlib>
 using std::endl;
 using std::string;
 using std::cin;
@@ -72,13 +73,12 @@ double StopWatch::elapsedSeconds()
     return elapsedMilliseconds() / 1000;
 }
 
-int randomTarget()
+int randomTarget(vector<int> &temp)
 {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dist(1, 10);
-    int random = dist(gen);
-    return random;
+    srand(time(NULL));
+    int random = rand() % 7 + 2;
+    double randomSub = 0.1 * random;
+    return (temp.size() * randomSub);
 }
 
 void lookForTen()
@@ -96,7 +96,7 @@ void lookForTen()
     cout << endl << "{find algorithm}";
     vector<int> vectorTenFind(10);
     generate(begin(vectorTenFind), end(vectorTenFind), random);
-    int targetTen = vectorTenFind[vectorTenFind.size() / randomTarget()];
+    int targetTen = vectorTenFind[randomTarget(vectorTenFind)];
     StopWatch timerTenFind;
     for (int i = 0; i < 5; i++)
     {
@@ -109,9 +109,9 @@ void lookForTen()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorTenBinarySearch(10);
     generate(begin(vectorTenBinarySearch), end(vectorTenBinarySearch), random);
-    targetTen = vectorTenBinarySearch[vectorTenBinarySearch.size() / randomTarget()];
-    StopWatch timerTenBinarySearch;
+    targetTen = vectorTenBinarySearch[randomTarget(vectorTenBinarySearch)];
     sort(vectorTenBinarySearch.begin(), vectorTenBinarySearch.end());
+    StopWatch timerTenBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchTen = binary_search(vectorTenBinarySearch.begin(), vectorTenBinarySearch.end(), targetTen);
@@ -123,9 +123,9 @@ void lookForTen()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorTenUpperBound(10);
     generate(begin(vectorTenUpperBound), end(vectorTenUpperBound), random);
-    targetTen = vectorTenUpperBound[vectorTenUpperBound.size() / randomTarget()];
-    StopWatch timerTenUpperBound;
+    targetTen = vectorTenUpperBound[randomTarget(vectorTenUpperBound)];
     sort(vectorTenUpperBound.begin(), vectorTenUpperBound.end());
+    StopWatch timerTenUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundTen = upper_bound(vectorTenUpperBound.begin(), vectorTenUpperBound.end(), targetTen) - vectorTenUpperBound.begin();
@@ -137,7 +137,7 @@ void lookForTen()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorTenSearchN(10);
     generate(begin(vectorTenSearchN), end(vectorTenSearchN), random);
-    targetTen = vectorTenSearchN[vectorTenSearchN.size() / randomTarget()];
+    targetTen = vectorTenSearchN[randomTarget(vectorTenSearchN)];
     StopWatch timerTenSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -165,7 +165,7 @@ void lookForHundred()
     cout << endl << "{find algorithm}";
     vector<int> vectorHundredFind(100);
     generate(begin(vectorHundredFind), end(vectorHundredFind), random);
-    int targetHundred = vectorHundredFind[vectorHundredFind.size() / randomTarget()];
+    int targetHundred = vectorHundredFind[randomTarget(vectorHundredFind)];
     StopWatch timerHundredFind;
     for (int i = 0; i < 5; i++)
     {
@@ -178,9 +178,9 @@ void lookForHundred()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorHundredBinarySearch(100);
     generate(begin(vectorHundredBinarySearch), end(vectorHundredBinarySearch), random);
-    targetHundred = vectorHundredBinarySearch[vectorHundredBinarySearch.size() / randomTarget()];
-    StopWatch timerHundredBinarySearch;
+    targetHundred = vectorHundredBinarySearch[randomTarget(vectorHundredBinarySearch)];
     sort(vectorHundredBinarySearch.begin(), vectorHundredBinarySearch.end());
+    StopWatch timerHundredBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchHundred = binary_search(vectorHundredBinarySearch.begin(), vectorHundredBinarySearch.end(), targetHundred);
@@ -192,9 +192,9 @@ void lookForHundred()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorHundredUpperBound(100);
     generate(begin(vectorHundredUpperBound), end(vectorHundredUpperBound), random);
-    targetHundred = vectorHundredUpperBound[vectorHundredUpperBound.size() / randomTarget()];
-    StopWatch timerHundredUpperBound;
+    targetHundred = vectorHundredUpperBound[randomTarget(vectorHundredUpperBound)];
     sort(vectorHundredUpperBound.begin(), vectorHundredUpperBound.end());
+    StopWatch timerHundredUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundHundred = upper_bound(vectorHundredUpperBound.begin(), vectorHundredUpperBound.end(), targetHundred) - vectorHundredUpperBound.begin();
@@ -206,7 +206,7 @@ void lookForHundred()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorHundredSearchN(100);
     generate(begin(vectorHundredSearchN), end(vectorHundredSearchN), random);
-    targetHundred = vectorHundredSearchN[vectorHundredSearchN.size() / randomTarget()];
+    targetHundred = vectorHundredSearchN[randomTarget(vectorHundredSearchN)];
     StopWatch timerHundredSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -234,7 +234,7 @@ void lookForThousand()
     cout << endl << "{find algorithm}";
     vector<int> vectorThousandFind(1'000);
     generate(begin(vectorThousandFind), end(vectorThousandFind), random);
-    int targetThousand = vectorThousandFind[vectorThousandFind.size() / randomTarget()];
+    int targetThousand = vectorThousandFind[randomTarget(vectorThousandFind)];
     StopWatch timerThousandFind;
     for (int i = 0; i < 5; i++)
     {
@@ -247,9 +247,9 @@ void lookForThousand()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorThousandBinarySearch(1'000);
     generate(begin(vectorThousandBinarySearch), end(vectorThousandBinarySearch), random);
-    targetThousand = vectorThousandBinarySearch[vectorThousandBinarySearch.size() / randomTarget()];
-    StopWatch timerThousandBinarySearch;
+    targetThousand = vectorThousandBinarySearch[randomTarget(vectorThousandBinarySearch)];
     sort(vectorThousandBinarySearch.begin(), vectorThousandBinarySearch.end());
+    StopWatch timerThousandBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchThousand = binary_search(vectorThousandBinarySearch.begin(), vectorThousandBinarySearch.end(), targetThousand);
@@ -261,9 +261,9 @@ void lookForThousand()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorThousandUpperBound(1'000);
     generate(begin(vectorThousandUpperBound), end(vectorThousandUpperBound), random);
-    targetThousand = vectorThousandUpperBound[vectorThousandUpperBound.size() / randomTarget()];
-    StopWatch timerThousandUpperBound;
+    targetThousand = vectorThousandUpperBound[randomTarget(vectorThousandUpperBound)];
     sort(vectorThousandUpperBound.begin(), vectorThousandUpperBound.end());
+    StopWatch timerThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundThousand = upper_bound(vectorThousandUpperBound.begin(), vectorThousandUpperBound.end(), targetThousand) - vectorThousandUpperBound.begin();
@@ -275,7 +275,7 @@ void lookForThousand()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorThousandSearchN(1'000);
     generate(begin(vectorThousandSearchN), end(vectorThousandSearchN), random);
-    targetThousand = vectorThousandSearchN[vectorThousandSearchN.size() / randomTarget()];
+    targetThousand = vectorThousandSearchN[randomTarget(vectorThousandSearchN)];
     StopWatch timerThousandSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -303,7 +303,7 @@ void lookForTenThousand()
     cout << endl << "{find algorithm}";
     vector<int> vectorTenThousandFind(10'000);
     generate(begin(vectorTenThousandFind), end(vectorTenThousandFind), random);
-    int targetTenThousand = vectorTenThousandFind[vectorTenThousandFind.size() / randomTarget()];
+    int targetTenThousand = vectorTenThousandFind[randomTarget(vectorTenThousandFind)];
     StopWatch timerTenThousandFind;
     for (int i = 0; i < 5; i++)
     {
@@ -316,9 +316,9 @@ void lookForTenThousand()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorTenThousandBinarySearch(10'000);
     generate(begin(vectorTenThousandBinarySearch), end(vectorTenThousandBinarySearch), random);
-    targetTenThousand = vectorTenThousandBinarySearch[vectorTenThousandBinarySearch.size() / randomTarget()];
-    StopWatch timerTenThousandBinarySearch;
+    targetTenThousand = vectorTenThousandBinarySearch[randomTarget(vectorTenThousandBinarySearch)];
     sort(vectorTenThousandBinarySearch.begin(), vectorTenThousandBinarySearch.end());
+    StopWatch timerTenThousandBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchTenThousand = binary_search(vectorTenThousandBinarySearch.begin(), vectorTenThousandBinarySearch.end(), targetTenThousand);
@@ -330,9 +330,9 @@ void lookForTenThousand()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorTenThousandUpperBound(10'000);
     generate(begin(vectorTenThousandUpperBound), end(vectorTenThousandUpperBound), random);
-    targetTenThousand = vectorTenThousandUpperBound[vectorTenThousandUpperBound.size() / randomTarget()];
-    StopWatch timerTenThousandUpperBound;
+    targetTenThousand = vectorTenThousandUpperBound[randomTarget(vectorTenThousandUpperBound)];
     sort(vectorTenThousandUpperBound.begin(), vectorTenThousandUpperBound.end());
+    StopWatch timerTenThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundTenThousand = upper_bound(vectorTenThousandUpperBound.begin(), vectorTenThousandUpperBound.end(), targetTenThousand) - vectorTenThousandUpperBound.begin();
@@ -344,7 +344,7 @@ void lookForTenThousand()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorTenThousandSearchN(10'000);
     generate(begin(vectorTenThousandSearchN), end(vectorTenThousandSearchN), random);
-    targetTenThousand = vectorTenThousandSearchN[vectorTenThousandSearchN.size() / randomTarget()];
+    targetTenThousand = vectorTenThousandSearchN[randomTarget(vectorTenThousandSearchN)];
     StopWatch timerTenThousandSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -372,7 +372,7 @@ void lookForHundredThousand()
     cout << endl << "{find algorithm}";
     vector<int> vectorHundredThousandFind(100'000);
     generate(begin(vectorHundredThousandFind), end(vectorHundredThousandFind), random);
-    int targetHundredThousand = vectorHundredThousandFind[vectorHundredThousandFind.size() / randomTarget()];
+    int targetHundredThousand = vectorHundredThousandFind[randomTarget(vectorHundredThousandFind)];
     StopWatch timerHundredThousandFind;
     for (int i = 0; i < 5; i++)
     {
@@ -385,9 +385,9 @@ void lookForHundredThousand()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorHundredThousandBinarySearch(100'000);
     generate(begin(vectorHundredThousandBinarySearch), end(vectorHundredThousandBinarySearch), random);
-    targetHundredThousand = vectorHundredThousandBinarySearch[vectorHundredThousandBinarySearch.size() / randomTarget()];
-    StopWatch timerHundredThousandBinarySearch;
+    targetHundredThousand = vectorHundredThousandBinarySearch[randomTarget(vectorHundredThousandBinarySearch)];
     sort(vectorHundredThousandBinarySearch.begin(), vectorHundredThousandBinarySearch.end());
+    StopWatch timerHundredThousandBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchHundredThousand = binary_search(vectorHundredThousandBinarySearch.begin(), vectorHundredThousandBinarySearch.end(), targetHundredThousand);
@@ -399,9 +399,9 @@ void lookForHundredThousand()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorHundredThousandUpperBound(100'000);
     generate(begin(vectorHundredThousandUpperBound), end(vectorHundredThousandUpperBound), random);
-    targetHundredThousand = vectorHundredThousandUpperBound[vectorHundredThousandUpperBound.size() / randomTarget()];
-    StopWatch timerHundredThousandUpperBound;
+    targetHundredThousand = vectorHundredThousandUpperBound[randomTarget(vectorHundredThousandUpperBound)];
     sort(vectorHundredThousandUpperBound.begin(), vectorHundredThousandUpperBound.end());
+    StopWatch timerHundredThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundHundredThousand = upper_bound(vectorHundredThousandUpperBound.begin(), vectorHundredThousandUpperBound.end(), targetHundredThousand) - vectorHundredThousandUpperBound.begin();
@@ -413,7 +413,7 @@ void lookForHundredThousand()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorHundredThousandSearchN(100'000);
     generate(begin(vectorHundredThousandSearchN), end(vectorHundredThousandSearchN), random);
-    targetHundredThousand = vectorHundredThousandSearchN[vectorHundredThousandSearchN.size() / randomTarget()];
+    targetHundredThousand = vectorHundredThousandSearchN[randomTarget(vectorHundredThousandSearchN)];
     StopWatch timerHundredThousandSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -441,7 +441,7 @@ void lookForMillion()
     cout << endl << "{find algorithm}";
     vector<int> vectorMillionFind(1'000'000);
     generate(begin(vectorMillionFind), end(vectorMillionFind), random);
-    int targetMillion = vectorMillionFind[vectorMillionFind.size() / randomTarget()];
+    int targetMillion = vectorMillionFind[randomTarget(vectorMillionFind)];
     StopWatch timerMillionFind;
     for (int i = 0; i < 5; i++)
     {
@@ -454,9 +454,9 @@ void lookForMillion()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorMillionBinarySearch(1'000'000);
     generate(begin(vectorMillionBinarySearch), end(vectorMillionBinarySearch), random);
-    targetMillion = vectorMillionBinarySearch[vectorMillionBinarySearch.size() / randomTarget()];
-    StopWatch timerMillionBinarySearch;
+    targetMillion = vectorMillionBinarySearch[randomTarget(vectorMillionBinarySearch)];
     sort(vectorMillionBinarySearch.begin(), vectorMillionBinarySearch.end());
+    StopWatch timerMillionBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchMillion = binary_search(vectorMillionBinarySearch.begin(), vectorMillionBinarySearch.end(), targetMillion);
@@ -468,9 +468,9 @@ void lookForMillion()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorMillionUpperBound(1'000'000);
     generate(begin(vectorMillionUpperBound), end(vectorMillionUpperBound), random);
-    targetMillion = vectorMillionUpperBound[vectorMillionUpperBound.size() / randomTarget()];
-    StopWatch timerMillionUpperBound;
+    targetMillion = vectorMillionUpperBound[randomTarget(vectorMillionUpperBound)];
     sort(vectorMillionUpperBound.begin(), vectorMillionUpperBound.end());
+    StopWatch timerMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundMillion = upper_bound(vectorMillionUpperBound.begin(), vectorMillionUpperBound.end(), targetMillion) - vectorMillionUpperBound.begin();
@@ -482,7 +482,7 @@ void lookForMillion()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorMillionSearchN(1'000'000);
     generate(begin(vectorMillionSearchN), end(vectorMillionSearchN), random);
-    targetMillion = vectorMillionSearchN[vectorMillionSearchN.size() / randomTarget()];
+    targetMillion = vectorMillionSearchN[randomTarget(vectorMillionSearchN)];
     StopWatch timerMillionSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -510,7 +510,7 @@ void lookForTenMillion()
     cout << endl << "{find algorithm}";
     vector<int> vectorTenMillionFind(10'000'000);
     generate(begin(vectorTenMillionFind), end(vectorTenMillionFind), random);
-    int targetTenMillion = vectorTenMillionFind[vectorTenMillionFind.size() / randomTarget()];
+    int targetTenMillion = vectorTenMillionFind[randomTarget(vectorTenMillionFind)];
     StopWatch timerTenMillionFind;
     for (int i = 0; i < 5; i++)
     {
@@ -523,9 +523,9 @@ void lookForTenMillion()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorTenMillionBinarySearch(10'000'000);
     generate(begin(vectorTenMillionBinarySearch), end(vectorTenMillionBinarySearch), random);
-    targetTenMillion = vectorTenMillionBinarySearch[vectorTenMillionBinarySearch.size() / randomTarget()];
-    StopWatch timerTenMillionBinarySearch;
+    targetTenMillion = vectorTenMillionBinarySearch[randomTarget(vectorTenMillionBinarySearch)];
     sort(vectorTenMillionBinarySearch.begin(), vectorTenMillionBinarySearch.end());
+    StopWatch timerTenMillionBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchTenMillion = binary_search(vectorTenMillionBinarySearch.begin(), vectorTenMillionBinarySearch.end(), targetTenMillion);
@@ -537,9 +537,9 @@ void lookForTenMillion()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorTenMillionUpperBound(10'000'000);
     generate(begin(vectorTenMillionUpperBound), end(vectorTenMillionUpperBound), random);
-    targetTenMillion = vectorTenMillionUpperBound[vectorTenMillionUpperBound.size() / randomTarget()];
-    StopWatch timerTenMillionUpperBound;
+    targetTenMillion = vectorTenMillionUpperBound[randomTarget(vectorTenMillionUpperBound)];
     sort(vectorTenMillionUpperBound.begin(), vectorTenMillionUpperBound.end());
+    StopWatch timerTenMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundTenMillion = upper_bound(vectorTenMillionUpperBound.begin(), vectorTenMillionUpperBound.end(), targetTenMillion) - vectorTenMillionUpperBound.begin();
@@ -551,7 +551,7 @@ void lookForTenMillion()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorTenMillionSearchN(10'000'000);
     generate(begin(vectorTenMillionSearchN), end(vectorTenMillionSearchN), random);
-    targetTenMillion = vectorTenMillionSearchN[vectorTenMillionSearchN.size() / randomTarget()];
+    targetTenMillion = vectorTenMillionSearchN[randomTarget(vectorTenMillionSearchN)];
     StopWatch timerTenMillionSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -579,7 +579,7 @@ void lookForHundredMillion()
     cout << endl << "{find algorithm}";
     vector<int> vectorHundredMillionFind(100'000'000);
     generate(begin(vectorHundredMillionFind), end(vectorHundredMillionFind), random);
-    int targetHundredMillion = vectorHundredMillionFind[vectorHundredMillionFind.size() / randomTarget()];
+    int targetHundredMillion = vectorHundredMillionFind[randomTarget(vectorHundredMillionFind)];
     StopWatch timerHundredMillionFind;
     for (int i = 0; i < 5; i++)
     {
@@ -592,9 +592,9 @@ void lookForHundredMillion()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorHundredMillionBinarySearch(100'000'000);
     generate(begin(vectorHundredMillionBinarySearch), end(vectorHundredMillionBinarySearch), random);
-    targetHundredMillion = vectorHundredMillionBinarySearch[vectorHundredMillionBinarySearch.size() / randomTarget()];
-    StopWatch timerHundredMillionBinarySearch;
+    targetHundredMillion = vectorHundredMillionBinarySearch[randomTarget(vectorHundredMillionBinarySearch)];
     sort(vectorHundredMillionBinarySearch.begin(), vectorHundredMillionBinarySearch.end());
+    StopWatch timerHundredMillionBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchHundredMillion = binary_search(vectorHundredMillionBinarySearch.begin(), vectorHundredMillionBinarySearch.end(), targetHundredMillion);
@@ -606,9 +606,9 @@ void lookForHundredMillion()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorHundredMillionUpperBound(100'000'000);
     generate(begin(vectorHundredMillionUpperBound), end(vectorHundredMillionUpperBound), random);
-    targetHundredMillion = vectorHundredMillionUpperBound[vectorHundredMillionUpperBound.size() / randomTarget()];
-    StopWatch timerHundredMillionUpperBound;
+    targetHundredMillion = vectorHundredMillionUpperBound[randomTarget(vectorHundredMillionUpperBound)];
     sort(vectorHundredMillionUpperBound.begin(), vectorHundredMillionUpperBound.end());
+    StopWatch timerHundredMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundHundredMillion = upper_bound(vectorHundredMillionUpperBound.begin(), vectorHundredMillionUpperBound.end(), targetHundredMillion) - vectorHundredMillionUpperBound.begin();
@@ -620,7 +620,7 @@ void lookForHundredMillion()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorHundredMillionSearchN(100'000'000);
     generate(begin(vectorHundredMillionSearchN), end(vectorHundredMillionSearchN), random);
-    targetHundredMillion = vectorHundredMillionSearchN[vectorHundredMillionSearchN.size() / randomTarget()];
+    targetHundredMillion = vectorHundredMillionSearchN[randomTarget(vectorHundredMillionSearchN)];
     StopWatch timerHundredMillionSearchN;
     for (int i = 0; i < 5; i++)
     {
@@ -648,7 +648,7 @@ void lookForBillion()
     cout << endl << "{find algorithm}";
     vector<int> vectorBillionFind(1'000'000'000);
     generate(begin(vectorBillionFind), end(vectorBillionFind), random);
-    int targetBillion = vectorBillionFind[vectorBillionFind.size() / randomTarget()];
+    int targetBillion = vectorBillionFind[randomTarget(vectorBillionFind)];
     StopWatch timerBillionFind;
     for (int i = 0; i < 5; i++)
     {
@@ -661,9 +661,9 @@ void lookForBillion()
     cout << endl << "{binary_search algorithm}";
     vector<int> vectorBillionBinarySearch(1'000'000'000);
     generate(begin(vectorBillionBinarySearch), end(vectorBillionBinarySearch), random);
-    targetBillion = vectorBillionBinarySearch[vectorBillionBinarySearch.size() / randomTarget()];
-    StopWatch timerBillionBinarySearch;
+    targetBillion = vectorBillionBinarySearch[randomTarget(vectorBillionBinarySearch)];
     sort(vectorBillionBinarySearch.begin(), vectorBillionBinarySearch.end());
+    StopWatch timerBillionBinarySearch;
     for (int i = 0; i < 5; i++)
     {
         auto binarySearchBillion = binary_search(vectorBillionBinarySearch.begin(), vectorBillionBinarySearch.end(), targetBillion);
@@ -675,9 +675,9 @@ void lookForBillion()
     cout << endl << "{upper_bound algorithm}";
     vector<int> vectorBillionUpperBound(1'000'000'000);
     generate(begin(vectorBillionUpperBound), end(vectorBillionUpperBound), random);
-    targetBillion = vectorBillionUpperBound[vectorBillionUpperBound.size() / randomTarget()];
-    StopWatch timerBillionUpperBound;
+    targetBillion = vectorBillionUpperBound[randomTarget(vectorBillionUpperBound)];
     sort(vectorBillionUpperBound.begin(), vectorBillionUpperBound.end());
+    StopWatch timerBillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
         auto upperBoundBillion = upper_bound(vectorBillionUpperBound.begin(), vectorBillionUpperBound.end(), targetBillion) - vectorBillionUpperBound.begin();
@@ -689,7 +689,7 @@ void lookForBillion()
     cout << endl << "{search_n algorithm}";
     vector<int> vectorBillionSearchN(1'000'000'000);
     generate(begin(vectorBillionSearchN), end(vectorBillionSearchN), random);
-    targetBillion = vectorBillionSearchN[vectorBillionSearchN.size() / randomTarget()];
+    targetBillion = vectorBillionSearchN[randomTarget(vectorBillionSearchN)];
     StopWatch timerBillionSearchN;
     for (int i = 0; i < 5; i++)
     {
