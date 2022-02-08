@@ -121,14 +121,14 @@ void lookForTen()
         << endl << "Seconds: " << timerTenBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorTenUpperBound(10);
-    generate(begin(vectorTenUpperBound), end(vectorTenUpperBound), random);
-    targetTen = vectorTenUpperBound[randomTarget(vectorTenUpperBound)];
-    sort(vectorTenUpperBound.begin(), vectorTenUpperBound.end());
+    //vector<int> vectorTenUpperBound(10);
+    //generate(begin(vectorTenUpperBound), end(vectorTenUpperBound), random);
+    //targetTen = vectorTenUpperBound[randomTarget(vectorTenUpperBound)];
+    //sort(vectorTenUpperBound.begin(), vectorTenUpperBound.end());
     StopWatch timerTenUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundTen = upper_bound(vectorTenUpperBound.begin(), vectorTenUpperBound.end(), targetTen) - vectorTenUpperBound.begin();
+        auto upperBoundTen = upper_bound(vectorTenBinarySearch.begin(), vectorTenBinarySearch.end(), targetTen) - vectorTenBinarySearch.begin();
     }
     timerTenUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerTenUpperBound.elapsedMilliseconds()
@@ -190,14 +190,14 @@ void lookForHundred()
         << endl << "Seconds: " << timerHundredBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorHundredUpperBound(100);
-    generate(begin(vectorHundredUpperBound), end(vectorHundredUpperBound), random);
-    targetHundred = vectorHundredUpperBound[randomTarget(vectorHundredUpperBound)];
-    sort(vectorHundredUpperBound.begin(), vectorHundredUpperBound.end());
+    //vector<int> vectorHundredUpperBound(100);
+    //generate(begin(vectorHundredUpperBound), end(vectorHundredUpperBound), random);
+    //targetHundred = vectorHundredUpperBound[randomTarget(vectorHundredUpperBound)];
+    //sort(vectorHundredUpperBound.begin(), vectorHundredUpperBound.end());
     StopWatch timerHundredUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundHundred = upper_bound(vectorHundredUpperBound.begin(), vectorHundredUpperBound.end(), targetHundred) - vectorHundredUpperBound.begin();
+        auto upperBoundHundred = upper_bound(vectorHundredBinarySearch.begin(), vectorHundredBinarySearch.end(), targetHundred) - vectorHundredBinarySearch.begin();
     }
     timerHundredUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerHundredUpperBound.elapsedMilliseconds()
@@ -259,14 +259,14 @@ void lookForThousand()
         << endl << "Seconds: " << timerThousandBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorThousandUpperBound(1'000);
-    generate(begin(vectorThousandUpperBound), end(vectorThousandUpperBound), random);
-    targetThousand = vectorThousandUpperBound[randomTarget(vectorThousandUpperBound)];
-    sort(vectorThousandUpperBound.begin(), vectorThousandUpperBound.end());
+    //vector<int> vectorThousandUpperBound(1'000);
+    //generate(begin(vectorThousandUpperBound), end(vectorThousandUpperBound), random);
+    //targetThousand = vectorThousandUpperBound[randomTarget(vectorThousandUpperBound)];
+    //sort(vectorThousandUpperBound.begin(), vectorThousandUpperBound.end());
     StopWatch timerThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundThousand = upper_bound(vectorThousandUpperBound.begin(), vectorThousandUpperBound.end(), targetThousand) - vectorThousandUpperBound.begin();
+        auto upperBoundThousand = upper_bound(vectorThousandBinarySearch.begin(), vectorThousandBinarySearch.end(), targetThousand) - vectorThousandBinarySearch.begin();
     }
     timerThousandUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerThousandUpperBound.elapsedMilliseconds()
@@ -328,14 +328,14 @@ void lookForTenThousand()
         << endl << "Seconds: " << timerTenThousandBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorTenThousandUpperBound(10'000);
-    generate(begin(vectorTenThousandUpperBound), end(vectorTenThousandUpperBound), random);
-    targetTenThousand = vectorTenThousandUpperBound[randomTarget(vectorTenThousandUpperBound)];
-    sort(vectorTenThousandUpperBound.begin(), vectorTenThousandUpperBound.end());
+    //vector<int> vectorTenThousandUpperBound(10'000);
+    //generate(begin(vectorTenThousandUpperBound), end(vectorTenThousandUpperBound), random);
+    //targetTenThousand = vectorTenThousandUpperBound[randomTarget(vectorTenThousandUpperBound)];
+    //sort(vectorTenThousandUpperBound.begin(), vectorTenThousandUpperBound.end());
     StopWatch timerTenThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundTenThousand = upper_bound(vectorTenThousandUpperBound.begin(), vectorTenThousandUpperBound.end(), targetTenThousand) - vectorTenThousandUpperBound.begin();
+        auto upperBoundTenThousand = upper_bound(vectorTenThousandBinarySearch.begin(), vectorTenThousandBinarySearch.end(), targetTenThousand) - vectorTenThousandBinarySearch.begin();
     }
     timerTenThousandUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerTenThousandUpperBound.elapsedMilliseconds()
@@ -397,14 +397,14 @@ void lookForHundredThousand()
         << endl << "Seconds: " << timerHundredThousandBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorHundredThousandUpperBound(100'000);
-    generate(begin(vectorHundredThousandUpperBound), end(vectorHundredThousandUpperBound), random);
-    targetHundredThousand = vectorHundredThousandUpperBound[randomTarget(vectorHundredThousandUpperBound)];
-    sort(vectorHundredThousandUpperBound.begin(), vectorHundredThousandUpperBound.end());
+    //vector<int> vectorHundredThousandUpperBound(100'000);
+    //generate(begin(vectorHundredThousandUpperBound), end(vectorHundredThousandUpperBound), random);
+    //targetHundredThousand = vectorHundredThousandUpperBound[randomTarget(vectorHundredThousandUpperBound)];
+    //sort(vectorHundredThousandUpperBound.begin(), vectorHundredThousandUpperBound.end());
     StopWatch timerHundredThousandUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundHundredThousand = upper_bound(vectorHundredThousandUpperBound.begin(), vectorHundredThousandUpperBound.end(), targetHundredThousand) - vectorHundredThousandUpperBound.begin();
+        auto upperBoundHundredThousand = upper_bound(vectorHundredThousandBinarySearch.begin(), vectorHundredThousandBinarySearch.end(), targetHundredThousand) - vectorHundredThousandBinarySearch.begin();
     }
     timerHundredThousandUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerHundredThousandUpperBound.elapsedMilliseconds()
@@ -466,14 +466,14 @@ void lookForMillion()
         << endl << "Seconds: " << timerMillionBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorMillionUpperBound(1'000'000);
-    generate(begin(vectorMillionUpperBound), end(vectorMillionUpperBound), random);
-    targetMillion = vectorMillionUpperBound[randomTarget(vectorMillionUpperBound)];
-    sort(vectorMillionUpperBound.begin(), vectorMillionUpperBound.end());
+    //vector<int> vectorMillionUpperBound(1'000'000);
+    //generate(begin(vectorMillionUpperBound), end(vectorMillionUpperBound), random);
+    //targetMillion = vectorMillionUpperBound[randomTarget(vectorMillionUpperBound)];
+    //sort(vectorMillionUpperBound.begin(), vectorMillionUpperBound.end());
     StopWatch timerMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundMillion = upper_bound(vectorMillionUpperBound.begin(), vectorMillionUpperBound.end(), targetMillion) - vectorMillionUpperBound.begin();
+        auto upperBoundMillion = upper_bound(vectorMillionBinarySearch.begin(), vectorMillionBinarySearch.end(), targetMillion) - vectorMillionBinarySearch.begin();
     }
     timerMillionUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerMillionUpperBound.elapsedMilliseconds()
@@ -535,14 +535,14 @@ void lookForTenMillion()
         << endl << "Seconds: " << timerTenMillionBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorTenMillionUpperBound(10'000'000);
-    generate(begin(vectorTenMillionUpperBound), end(vectorTenMillionUpperBound), random);
-    targetTenMillion = vectorTenMillionUpperBound[randomTarget(vectorTenMillionUpperBound)];
-    sort(vectorTenMillionUpperBound.begin(), vectorTenMillionUpperBound.end());
+    //vector<int> vectorTenMillionUpperBound(10'000'000);
+    //generate(begin(vectorTenMillionUpperBound), end(vectorTenMillionUpperBound), random);
+    //targetTenMillion = vectorTenMillionUpperBound[randomTarget(vectorTenMillionUpperBound)];
+    //sort(vectorTenMillionUpperBound.begin(), vectorTenMillionUpperBound.end());
     StopWatch timerTenMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundTenMillion = upper_bound(vectorTenMillionUpperBound.begin(), vectorTenMillionUpperBound.end(), targetTenMillion) - vectorTenMillionUpperBound.begin();
+        auto upperBoundTenMillion = upper_bound(vectorTenMillionBinarySearch.begin(), vectorTenMillionBinarySearch.end(), targetTenMillion) - vectorTenMillionBinarySearch.begin();
     }
     timerTenMillionUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerTenMillionUpperBound.elapsedMilliseconds()
@@ -604,14 +604,14 @@ void lookForHundredMillion()
         << endl << "Seconds: " << timerHundredMillionBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorHundredMillionUpperBound(100'000'000);
-    generate(begin(vectorHundredMillionUpperBound), end(vectorHundredMillionUpperBound), random);
-    targetHundredMillion = vectorHundredMillionUpperBound[randomTarget(vectorHundredMillionUpperBound)];
-    sort(vectorHundredMillionUpperBound.begin(), vectorHundredMillionUpperBound.end());
+    //vector<int> vectorHundredMillionUpperBound(100'000'000);
+    //generate(begin(vectorHundredMillionUpperBound), end(vectorHundredMillionUpperBound), random);
+    //targetHundredMillion = vectorHundredMillionUpperBound[randomTarget(vectorHundredMillionUpperBound)];
+    //sort(vectorHundredMillionUpperBound.begin(), vectorHundredMillionUpperBound.end());
     StopWatch timerHundredMillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundHundredMillion = upper_bound(vectorHundredMillionUpperBound.begin(), vectorHundredMillionUpperBound.end(), targetHundredMillion) - vectorHundredMillionUpperBound.begin();
+        auto upperBoundHundredMillion = upper_bound(vectorHundredMillionBinarySearch.begin(), vectorHundredMillionBinarySearch.end(), targetHundredMillion) - vectorHundredMillionBinarySearch.begin();
     }
     timerHundredMillionUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerHundredMillionUpperBound.elapsedMilliseconds()
@@ -673,14 +673,14 @@ void lookForBillion()
         << endl << "Seconds: " << timerBillionBinarySearch.elapsedSeconds() << endl;
 
     cout << endl << "{upper_bound algorithm}";
-    vector<int> vectorBillionUpperBound(1'000'000'000);
-    generate(begin(vectorBillionUpperBound), end(vectorBillionUpperBound), random);
-    targetBillion = vectorBillionUpperBound[randomTarget(vectorBillionUpperBound)];
-    sort(vectorBillionUpperBound.begin(), vectorBillionUpperBound.end());
+    //vector<int> vectorBillionUpperBound(1'000'000'000);
+    //generate(begin(vectorBillionUpperBound), end(vectorBillionUpperBound), random);
+    //targetBillion = vectorBillionUpperBound[randomTarget(vectorBillionUpperBound)];
+    //sort(vectorBillionUpperBound.begin(), vectorBillionUpperBound.end());
     StopWatch timerBillionUpperBound;
     for (int i = 0; i < 5; i++)
     {
-        auto upperBoundBillion = upper_bound(vectorBillionUpperBound.begin(), vectorBillionUpperBound.end(), targetBillion) - vectorBillionUpperBound.begin();
+        auto upperBoundBillion = upper_bound(vectorBillionBinarySearch.begin(), vectorBillionBinarySearch.end(), targetBillion) - vectorBillionBinarySearch.begin();
     }
     timerBillionUpperBound.Stop();
     cout << endl << "Milliseconds: " << timerBillionUpperBound.elapsedMilliseconds()
