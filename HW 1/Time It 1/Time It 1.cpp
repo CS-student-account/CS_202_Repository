@@ -6,15 +6,10 @@
 */
 
 #include "StopWatch.h"
-#include <string>
-#include <iostream>
-using std::endl;
-using std::string;
-using std::cin;
-using std::cout;
 
 int main()
 {
+    //test various vectors with 4 searching algorithms
     lookForTen();
     lookForHundred();
     lookForThousand();
