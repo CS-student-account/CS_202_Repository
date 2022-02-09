@@ -23,6 +23,6 @@ public:
 };
 
 void lookForInt(int& temp);
-void timeIt1(string& book);
+void timeIt2(string& book);
 
 #endif

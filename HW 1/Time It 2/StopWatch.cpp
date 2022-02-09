@@ -59,7 +59,7 @@ void StopWatch::Stop(const StopWatch &temp) //stop timer and print duration
         << (elapsedMilliseconds / 1000) << " s" << endl;
 }
 
-// vary location of target int for each search
+// vary location of target string for each search
 int randomTarget(vector<int> &temp)
 {
     random_device rd;
@@ -193,40 +193,41 @@ struct Line
     }
 };
 
-void timeIt1(string &book)
+void timeIt2(string &book)
 {
+    if (checkFile(book))
+    {
+        cout << endl << "--------------------------------------------------" << endl
+            << "[Time to copy " << book << " to various containers]" << endl;
 
-    cout << endl << "--------------------------------------------------" << endl
-        << "[Time to copy " << book << " to various containers]" << endl;
+        cout << endl << "{vector container}";
+        StopWatch timerVector;
+        ifstream bookVector(book);
 
+        // Read the lines of a file into a container.
+        vector<string> stringVector(istream_iterator<Line>{bookVector}, istream_iterator<Line>{});
 
-    cout << endl << "{vector container}";
-    StopWatch timerVector;
-    ifstream bookVector(book);
-
-    // Read the lines of a file into a container.
-    vector<string> stringVector(istream_iterator<Line>{bookVector}, istream_iterator<Line>{});
-
-    timerVector.Stop(timerVector);
-
-
-    cout << endl << "{list container}";
-    StopWatch timerList;
-    ifstream bookList(book);
-    // Read the lines of a file into a container.
-    list<string> stringList(istream_iterator<Line>{bookList}, istream_iterator<Line>{});
-
-    timerList.Stop(timerList);
+        timerVector.Stop(timerVector);
 
 
-    cout << endl << "{deque container}";
-    StopWatch timerDeque;
-    ifstream bookDeque(book);
-    // Read the lines of a file into a container.
-    deque<string> stringDeque(istream_iterator<Line>{bookDeque}, istream_iterator<Line>{});
+        cout << endl << "{list container}";
+        StopWatch timerList;
+        ifstream bookList(book);
+        // Read the lines of a file into a container.
+        list<string> stringList(istream_iterator<Line>{bookList}, istream_iterator<Line>{});
 
-    timerDeque.Stop(timerDeque);
+        timerList.Stop(timerList);
 
 
-    cout << endl << "--------------------------------------------------" << endl;
+        cout << endl << "{deque container}";
+        StopWatch timerDeque;
+        ifstream bookDeque(book);
+        // Read the lines of a file into a container.
+        deque<string> stringDeque(istream_iterator<Line>{bookDeque}, istream_iterator<Line>{});
+
+        timerDeque.Stop(timerDeque);
+
+
+        cout << endl << "--------------------------------------------------" << endl;
+    }
 }
