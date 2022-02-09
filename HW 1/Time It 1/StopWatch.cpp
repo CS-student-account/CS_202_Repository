@@ -15,11 +15,11 @@ using std::vector;
 using std::binary_search;
 using std::find;
 using std::search_n;
+using std::to_string;
 
 StopWatch::StopWatch() //default constructor
 {
     startTime = high_resolution_clock::now();
-    timerRunning = true;
 }
 
 StopWatch::StopWatch(const StopWatch& watch) //copy constructor
@@ -33,13 +33,11 @@ StopWatch::~StopWatch() //destructor
 void StopWatch::Start() //restart timer
 {
     startTime = high_resolution_clock::now();
-    timerRunning = true;
 }
 
 void StopWatch::Stop() //stop timer
 {
     endTime = high_resolution_clock::now();
-    timerRunning = false;
 }
 
 double StopWatch::elapsedMilliseconds() //get elapsed ms
@@ -53,13 +51,48 @@ double StopWatch::elapsedSeconds() //get elapsed sec
     return elapsedMilliseconds() / 1000;
 }
 
-int randomTarget(vector<int> &temp) //vary location of target int for each search
+// vary location of target int for each search
+int randomTarget(vector<int> &temp)
 {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> dist(0, temp.size());
+    uniform_int_distribution<int> dist(1, temp.size()-1);
     int random = dist(gen);
     return (random);
+}
+
+//better readability of vector size printouts
+string vectorSize(int &tempInt)
+{
+    switch (tempInt) 
+    {
+    case (1'000):
+        return "1,000";
+        break;
+    case (10'000):
+        return "10,000";
+        break;
+    case (100'000):
+        return "100,000";
+        break;
+    case (1'000'000):
+        return "1,000,000";
+        break;
+    case (10'000'000):
+        return "10,000,000";
+        break;
+    case (100'000'000):
+        return "100,000,000";
+        break;
+    case (1'000'000'000):
+        return "1,000,000,000";
+        break;
+
+    default:
+        string tempString = to_string(tempInt);
+        return tempString;
+        break;
+    }
 }
 
 void lookForInt(int &temp)
@@ -73,7 +106,7 @@ void lookForInt(int &temp)
     };
 
     cout << endl << "--------------------------------------------------" << endl
-        << "[Vector of size " << temp << " elements]" << endl;
+        << "[Vector of size " << vectorSize(temp) << " elements]" << endl;
 
 
     cout << endl << "{find algorithm}";
@@ -81,9 +114,9 @@ void lookForInt(int &temp)
     generate(begin(vectorFind), end(vectorFind), random); //fill vector
     int target = vectorFind[randomTarget(vectorFind)]; //random int target
     StopWatch timerFind; //start timer
-    for (int i = 0; i < 50; i++) //search for target int 5 times
+    for (int i = 0; i < 100; i++) //search for target int 100 times
     {
-        auto findTen = find(vectorFind.begin(), vectorFind.end(), target);
+        auto findTarget = find(vectorFind.begin(), vectorFind.end(), target);
     }
     timerFind.Stop(); //stop timer
     cout << endl << "Milliseconds: " << timerFind.elapsedMilliseconds()
@@ -96,9 +129,9 @@ void lookForInt(int &temp)
     target = vectorBinarySearch[randomTarget(vectorBinarySearch)];
     sort(vectorBinarySearch.begin(), vectorBinarySearch.end());
     StopWatch timerBinarySearch;
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 100; i++)
     {
-        auto binarySearch = binary_search(vectorBinarySearch.begin(),
+        auto binarySearchTarget = binary_search(vectorBinarySearch.begin(),
             vectorBinarySearch.end(), target);
     }
     timerBinarySearch.Stop();
@@ -108,9 +141,9 @@ void lookForInt(int &temp)
 
     cout << endl << "{upper_bound algorithm}"; //same as above, but different algorithm
     StopWatch timerUpperBound;
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 100; i++)
     {
-        auto upperBound = upper_bound(vectorBinarySearch.begin(),
+        auto upperBoundTarget = upper_bound(vectorBinarySearch.begin(),
             vectorBinarySearch.end(), target) - vectorBinarySearch.begin();
     }
     timerUpperBound.Stop();
@@ -123,9 +156,9 @@ void lookForInt(int &temp)
     generate(begin(vectorSearchN), end(vectorSearchN), random);
     target = vectorSearchN[randomTarget(vectorSearchN)];
     StopWatch timerSearchN;
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 100; i++)
     {
-        auto searchN = search_n(vectorSearchN.begin(), vectorSearchN.end(),
+        auto searchNTarget = search_n(vectorSearchN.begin(), vectorSearchN.end(),
             1, target);
     }
     timerSearchN.Stop();

@@ -12,7 +12,6 @@ class StopWatch
 private:
 	time_point<high_resolution_clock> startTime;
 	time_point<high_resolution_clock> endTime;
-	bool timerRunning;
 
 public:
 	StopWatch(); //default constructor
