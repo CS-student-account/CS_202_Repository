@@ -25,14 +25,6 @@ public:
 	double elapsedSeconds();
 };
 
-void lookForTen();
-void lookForHundred();
-void lookForThousand();
-void lookForTenThousand();
-void lookForHundredThousand();
-void lookForMillion();
-void lookForTenMillion();
-void lookForHundredMillion();
-void lookForBillion();
+void lookForInt(int& temp);
 
 #endif
