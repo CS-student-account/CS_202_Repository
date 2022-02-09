@@ -19,7 +19,7 @@ public:
 	~StopWatch(); //destructor
 
 	void Start();
-	void Stop(const StopWatch& temp);
+	void Stop();
 };
 
 void lookForInt(int& temp);

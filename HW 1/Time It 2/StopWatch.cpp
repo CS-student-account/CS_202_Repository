@@ -47,7 +47,7 @@ void StopWatch::Start() //restart timer
     startTime = high_resolution_clock::now();
 }
 
-void StopWatch::Stop(const StopWatch &temp) //stop timer and print duration
+void StopWatch::Stop() //stop timer and print duration
 {
     endTime = high_resolution_clock::now();
 
@@ -129,14 +129,14 @@ void timeIt2(string &book)
         StopWatch timerVectorRead;
         ifstream bookVectorRead(book);
         vector<string> stringVectorRead(istream_iterator<Line>{bookVectorRead}, istream_iterator<Line>{});
-        timerVectorRead.Stop(timerVectorRead);
+        timerVectorRead.Stop();
 
         cout << endl << "[Time to find a random string within " << book << " within that vector]" << endl;
         cout << "{vector container}";
         StopWatch timerVectorFind;
         ifstream bookVectorFind(book);
-        vector<string> stringVectorFind(istream_iterator<Line>{bookVectorFind}, istream_iterator<Line>{});
-        timerVectorFind.Stop(timerVectorFind);
+        
+        timerVectorFind.Stop();
 
         /* ----------------------------------------------------------------------------------------- */
 
@@ -145,30 +145,30 @@ void timeIt2(string &book)
         StopWatch timerListRead;
         ifstream bookListRead(book);
         list<string> stringListRead(istream_iterator<Line>{bookListRead}, istream_iterator<Line>{});
-        timerListRead.Stop(timerListRead);
+        timerListRead.Stop();
 
         cout << endl << "[Time to find a random string within " << book << " within that list]" << endl;
         cout << "{list container}";
         StopWatch timerListFind;
         ifstream bookListFind(book);
         list<string> stringListFind(istream_iterator<Line>{bookListFind}, istream_iterator<Line>{});
-        timerListFind.Stop(timerListFind);
+        timerListFind.Stop();
 
         /* ----------------------------------------------------------------------------------------- */
 
-        cout << endl << "[Time to copy " << book << " into a deque container]" << endl;
+        cout << endl << "[Time to copy " << book << " into a deque deque]" << endl;
         cout << "{deque container}";
         StopWatch timerDequeRead;
         ifstream bookDequeRead(book);
         deque<string> stringDequeRead(istream_iterator<Line>{bookDequeRead}, istream_iterator<Line>{});
-        timerDequeRead.Stop(timerDequeRead);
+        timerDequeRead.Stop();
 
-        cout << endl << "[Time to find a random string within " << book << " within that vector]" << endl;
+        cout << endl << "[Time to find a random string within " << book << " within that deque]" << endl;
         cout << "{deque container}";
         StopWatch timerDequeFind;
         ifstream bookDequeFind(book);
         deque<string> stringDequeFind(istream_iterator<Line>{bookDequeFind}, istream_iterator<Line>{});
-        timerDequeFind.Stop(timerDequeFind);
+        timerDequeFind.Stop();
 
         cout << endl << "--------------------------------------------------" << endl << endl;
     }
