@@ -33,6 +33,10 @@ int main()
 		book3("book3.txt"), book4("book4.txt"), book5("book5.txt");
 
 	timeIt2(book1);
+	timeIt2(book2);
+	timeIt2(book3);
+	timeIt2(book4);
+	timeIt2(book5);
 
     return 0;
 }

@@ -163,7 +163,7 @@ bool checkFile(const string& filename)
             {
                 if (fin.eof())
                 {
-                    cout << "Successfully read the whole file." << endl;
+                    cout << "Successfully read the whole file of " << filename << endl;
                     return true;
                 }
                 else
@@ -197,8 +197,8 @@ void timeIt2(string &book)
 {
     if (checkFile(book))
     {
-        cout << endl << "--------------------------------------------------" << endl
-            << "[Time to copy " << book << " to various containers]" << endl;
+        cout << "--------------------------------------------------" << endl
+            << "[Time to copy " << book << " into various containers]" << endl;
 
         cout << endl << "{vector container}";
         StopWatch timerVector;
@@ -228,6 +228,6 @@ void timeIt2(string &book)
         timerDeque.Stop(timerDeque);
 
 
-        cout << endl << "--------------------------------------------------" << endl;
+        cout << endl << "--------------------------------------------------" << endl << endl;
     }
 }
