@@ -31,7 +31,8 @@ int main()
 {
 	string book1("book1.txt"), book2("book2.txt"), 
 		book3("book3.txt"), book4("book4.txt"), book5("book5.txt");
-	lookForString(book1);
+
+	timeIt1(book1);
 
     return 0;
 }

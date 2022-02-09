@@ -69,40 +69,6 @@ int randomTarget(vector<int> &temp)
     return (random);
 }
 
-//better readability of vector size printouts
-string vectorSize(int &tempInt)
-{
-    switch (tempInt) 
-    {
-    case (1'000):
-        return "1,000";
-        break;
-    case (10'000):
-        return "10,000";
-        break;
-    case (100'000):
-        return "100,000";
-        break;
-    case (1'000'000):
-        return "1,000,000";
-        break;
-    case (10'000'000):
-        return "10,000,000";
-        break;
-    case (100'000'000):
-        return "100,000,000";
-        break;
-    case (1'000'000'000):
-        return "1,000,000,000";
-        break;
-
-    default:
-        string tempString = to_string(tempInt);
-        return tempString;
-        break;
-    }
-}
-
 /*void lookForInt(int& temp)
 {
     random_device rd;
@@ -227,7 +193,7 @@ struct Line
     }
 };
 
-void lookForString(string &book)
+void timeIt1(string &book)
 {
 
     cout << endl << "--------------------------------------------------" << endl
