@@ -11,14 +11,14 @@ int main()
 {
     //test various vectors with 4 searching algorithms
     lookForTen();
-    lookForHundred();
-    lookForThousand();
-    lookForTenThousand();
+    //lookForHundred();
+    //lookForThousand();
+    //lookForTenThousand();
     lookForHundredThousand();
-    lookForMillion();
-    lookForTenMillion();
-    lookForHundredMillion();
-    lookForBillion();
+    //lookForMillion();
+    //lookForTenMillion();
+    //lookForHundredMillion();
+    //lookForBillion();
 
 	return 0;
 }

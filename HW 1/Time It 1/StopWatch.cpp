@@ -55,10 +55,8 @@ double StopWatch::elapsedSeconds() //get elapsed sec
 
 int randomTarget(vector<int> &temp) //vary location of target int for each search
 {
-    srand(time(NULL));
-    int random = rand() % 7 + 2;
-    double randomSub = 0.1 * random;
-    return (temp.size() * randomSub);
+    int random = rand() % temp.size();
+    return (random);
 }
 
 void lookForTen() 
