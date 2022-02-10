@@ -59,16 +59,18 @@ void StopWatch::Stop() //stop timer and print duration
         << (elapsedMilliseconds / 1000) << " s" << endl;
 }
 
-// vary location of target string for each search
-int randomTarget(vector<string> &temp)
+//vary location of target string for each search
+template <typename T>
+int randomTarget(T &temp)
 {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> dist(1, temp.size()-1);
+    uniform_int_distribution<int> dist(1, temp.size() - 1);
     int random = dist(gen);
     return (random);
 }
 
+// ensure the text file doesn't have problems
 bool checkFile(const string& filename)
 {
     ifstream fin(filename);
@@ -103,74 +105,82 @@ bool checkFile(const string& filename)
     }
 }
 
-struct Line
-{
-    // Store data here
-    string data;
-    // Convert object to string
-    operator string const& () const 
-    { 
-        return data; 
-    }
-    // Read a line from a stream.
-    friend istream& operator>>(istream& stream, Line& line)
-    {
-        return getline(stream, line.data);
-    }
-};
-
 void timeIt2(string &book)
 {
-    if (checkFile(book))
+    cout << "===========================================================" << endl;
+    if (checkFile(book)) //check text file first
     {
-        cout << "--------------------------------------------------" << endl
-            << "[Time to copy " << book << " into a vector container]" << endl;
-        cout << "{vector container}";
+        cout << "===========================================================" << endl;
+
+
+        //vector container operations
+        cout << "[Time to copy " << book << " into a vector container]";
         StopWatch timerVectorRead;
         ifstream bookVectorRead(book);
-        vector<string> stringVectorRead(istream_iterator<Line>{bookVectorRead}, istream_iterator<Line>{});
+        vector<string> stringVectorRead(istream_iterator<string>{bookVectorRead}, istream_iterator<string>{});
         timerVectorRead.Stop();
 
-        cout << endl << "[Time to find a random string within " << book << " within that vector]" << endl;
-        cout << "{vector container}";
-        StopWatch timerVectorFind;
-        ifstream bookVectorFind(book);
+
+        cout << endl << "[Time to find a random string within " << book << "'s vector container]" 
+            << endl;
+        string target = stringVectorRead[randomTarget(stringVectorRead)]; //random int target
+        StopWatch timerFind; //start timer
+        auto findTarget = find(stringVectorRead.begin(), stringVectorRead.end(), target);
+        if (findTarget != stringVectorRead.end())
+        {
+            cout << "String '" << target << "' found at position: ";
+            cout << findTarget - stringVectorRead.begin();
+        }
+        timerFind.Stop(); //stop timer
         
-        timerVectorFind.Stop();
 
-        /* ----------------------------------------------------------------------------------------- */
+        cout << endl << "[Time to sort " << book << "'s vector container]";
+        StopWatch timerVectorSort;
+        sort(stringVectorRead.begin(), stringVectorRead.end());
+        timerVectorSort.Stop();
 
-        cout << endl << "[Time to copy " << book << " into a list container]" << endl;
-        cout << "{list container}";
+
+        cout << "__________________________________________________________" << endl;
+
+
+        //list container operations
+        cout << endl << "[Time to copy " << book << " into a list container]" 
+            << endl;
         StopWatch timerListRead;
         ifstream bookListRead(book);
-        list<string> stringListRead(istream_iterator<Line>{bookListRead}, istream_iterator<Line>{});
+        //list<string> stringListRead(istream_iterator<Line>{bookListRead}, istream_iterator<Line>{});
+        list<string> stringListRead(istream_iterator<string>{bookVectorRead}, istream_iterator<string>{});
         timerListRead.Stop();
 
-        cout << endl << "[Time to find a random string within " << book << " within that list]" << endl;
-        cout << "{list container}";
+
+        cout << endl << "[Time to find a random string within " << book << "'s list container]" 
+            << endl;
         StopWatch timerListFind;
-        ifstream bookListFind(book);
-        list<string> stringListFind(istream_iterator<Line>{bookListFind}, istream_iterator<Line>{});
         timerListFind.Stop();
 
-        /* ----------------------------------------------------------------------------------------- */
 
-        cout << endl << "[Time to copy " << book << " into a deque deque]" << endl;
-        cout << "{deque container}";
+        cout << "__________________________________________________________" << endl;
+
+
+        //deque container operations
+        cout << endl << "[Time to copy " << book << " into a deque container]" 
+            << endl;
         StopWatch timerDequeRead;
         ifstream bookDequeRead(book);
-        deque<string> stringDequeRead(istream_iterator<Line>{bookDequeRead}, istream_iterator<Line>{});
+        //deque<string> stringDequeRead(istream_iterator<Line>{bookDequeRead}, istream_iterator<Line>{});
+        deque<string> stringDequeRead(istream_iterator<string>{bookDequeRead}, istream_iterator<string>{});
         timerDequeRead.Stop();
 
-        cout << endl << "[Time to find a random string within " << book << " within that deque]" << endl;
-        cout << "{deque container}";
+
+        cout << endl << "[Time to find a random string within " << book << "'s deque container]"
+            << endl;
         StopWatch timerDequeFind;
-        ifstream bookDequeFind(book);
-        deque<string> stringDequeFind(istream_iterator<Line>{bookDequeFind}, istream_iterator<Line>{});
         timerDequeFind.Stop();
 
-        cout << endl << "--------------------------------------------------" << endl << endl;
+
+        cout << "===========================================================" << endl
+            << "===========================================================" 
+            << endl << endl << endl;
     }
 }
 
@@ -184,7 +194,7 @@ void timeIt2(string &book)
         return dist(gen);
     };
 
-    cout << endl << "--------------------------------------------------" << endl
+    cout << endl << "-------------------------------------------------" << endl
         << "[Vector of size " << vectorSize(temp) << " elements]" << endl;
 
 
@@ -245,5 +255,5 @@ void timeIt2(string &book)
         << endl << "Seconds: " << timerSearchN.elapsedSeconds() << endl;
 
 
-    cout << "--------------------------------------------------" << endl;
+    cout << "-------------------------------------------------" << endl;
 }*/
