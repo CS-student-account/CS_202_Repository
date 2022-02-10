@@ -22,7 +22,6 @@ public:
 	void Stop();
 };
 
-void lookForInt(int& temp);
 void timeIt2(string& book);
 
 #endif

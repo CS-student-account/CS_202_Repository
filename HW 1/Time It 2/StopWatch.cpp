@@ -3,9 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
-#include <algorithm>
 #include <fstream>
-#include <sstream>
 #include <list>
 #include <deque>
 using std::endl;
@@ -16,14 +14,9 @@ using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
 using std::vector;
-using std::binary_search;
 using std::find;
-using std::search_n;
-using std::to_string;
 using std::getline;
-using std::ofstream;
 using std::ifstream;
-using std::istringstream;
 using std::istream;
 using std::istream_iterator;
 using std::list;
@@ -53,8 +46,10 @@ void StopWatch::Stop() //stop timer and print duration
 
     double time_taken = duration_cast<nanoseconds>(endTime - startTime).count();
 
+    //elapsed time in milliseconds
     double elapsedMilliseconds = (endTime - startTime).count() / 1'000'000;
 
+    //printing out elapsed time in both ms and s
     cout << endl << "That took " << elapsedMilliseconds << " ms / "
         << (elapsedMilliseconds / 1000) << " s" << endl;
 }
@@ -108,98 +103,107 @@ bool checkFile(const string& filename)
 void timeIt2(string &book)
 {
     cout << "===========================================================" << endl;
-    if (checkFile(book)) //check text file first
+    if (checkFile(book)) //check text file first for any problems
     {
         cout << "===========================================================" << endl;
 
 
-        //vector container operations
+        /* vector container operations */
         cout << "[Time to copy " << book << " into a vector container]";
-        StopWatch timerVectorRead;
-        ifstream bookVectorRead(book);
-        vector<string> stringVectorRead(istream_iterator<string>{bookVectorRead}, istream_iterator<string>{});
-        timerVectorRead.Stop();
+        StopWatch timerVectorRead; //start timer
+        ifstream bookVectorRead(book); //pass text file into filestream
+        //pass strings from filestream to vector
+        vector<string> stringVectorRead(istream_iterator<string>{bookVectorRead}, 
+            istream_iterator<string>{});
+        timerVectorRead.Stop();//stop timer and print results
 
 
-        cout << endl << "[Time to find a random string within " << book << "'s vector container]" 
-            << endl;
-        string targetVector = stringVectorRead[randomTarget(stringVectorRead)]; //random int target
+        cout << endl << "[Time to find a random string within " 
+            << book << "'s vector container]" << endl;
+        int targetStringSeed = randomTarget(stringVectorRead); //random int
+        string targetString = stringVectorRead[targetStringSeed]; //random string target
         StopWatch timerFind; //start timer
-        auto findTargetVector = find(stringVectorRead.begin(), stringVectorRead.end(), targetVector);
-        if (findTargetVector != stringVectorRead.end())
+        auto findTargetVector = find(stringVectorRead.begin(), stringVectorRead.end(), 
+            targetString); //iterator for finding the target string
+        if (findTargetVector != stringVectorRead.end()) //if target string found
         {
-            cout << "String '" << targetVector << "' found at position: ";
-            cout << findTargetVector - stringVectorRead.begin();
+            cout << "String '" << targetString << "' found at position: " 
+                << targetStringSeed; //give value and position of target string
         }
-        timerFind.Stop(); //stop timer
+        timerFind.Stop(); //stop timer and print results
         
 
         cout << endl << "[Time to sort " << book << "'s vector container]";
-        StopWatch timerVectorSort;
+        StopWatch timerVectorSort; //start timer
         sort(stringVectorRead.begin(), stringVectorRead.end());
-        timerVectorSort.Stop();
+        timerVectorSort.Stop(); //stop timer and print results
 
 
         cout << "__________________________________________________________" << endl;
 
 
-        //list container operations
+        /* list container operations */
         cout << endl << "[Time to copy " << book << " into a list container]";
-        StopWatch timerListRead;
+        StopWatch timerListRead; //start timer
         ifstream bookListRead(book);
-        list<string> stringListRead(istream_iterator<string>{bookListRead}, istream_iterator<string>{});
-        timerListRead.Stop();
+        list<string> stringListRead(istream_iterator<string>{bookListRead}, 
+            istream_iterator<string>{});
+        timerListRead.Stop(); //stop timer and print results
 
 
-        cout << endl << "[Time to find a random string within " << book << "'s list container]" 
-            << endl;
+        cout << endl << "[Time to find a random string within " 
+            << book << "'s list container]" << endl;
         auto listFront = stringListRead.begin();
-        int randomListTarget = randomTarget(stringListRead);
-        advance(listFront, randomListTarget);
-        string targetList = *listFront; //random int target
-        StopWatch timerListFind;
-        auto findTargetList = find(stringListRead.begin(), stringListRead.end(), targetList);
+        advance(listFront, targetStringSeed);
+        string targetListString = *listFront;
+        StopWatch timerListFind; //start timer
+        auto findTargetList = find(stringListRead.begin(), stringListRead.end(), 
+            targetString);
         if (findTargetList != stringListRead.end())
         {
-            cout << "String '" << targetList << "' found at position: " << randomListTarget;
+            //location of a string in a list is just how many steps we advanced forward
+            cout << "String '" << targetListString << "' found at position: " 
+                << targetStringSeed;
         }
-        timerListFind.Stop();
+        timerListFind.Stop(); //stop timer and print results
 
 
         cout << endl << "[Time to sort " << book << "'s list container]";
-        StopWatch timerListSort;
+        StopWatch timerListSort; //start timer
         stringListRead.sort();
-        timerListSort.Stop();
+        timerListSort.Stop(); //stop timer and print results
 
 
         cout << "__________________________________________________________" << endl;
 
 
-        //deque container operations
+        /* deque container operations */
         cout << endl << "[Time to copy " << book << " into a deque container]";
-        StopWatch timerDequeRead;
+        StopWatch timerDequeRead; //start timer
         ifstream bookDequeRead(book);
-        deque<string> stringDequeRead(istream_iterator<string>{bookDequeRead}, istream_iterator<string>{});
-        timerDequeRead.Stop();
+        deque<string> stringDequeRead(istream_iterator<string>{bookDequeRead}, 
+            istream_iterator<string>{});
+        timerDequeRead.Stop(); //stop timer and print results
 
 
-        cout << endl << "[Time to find a random string within " << book << "'s deque container]"
-            << endl;
-        string targetDeque = stringDequeRead[randomTarget(stringDequeRead)]; //random int target
-        StopWatch timerDequeFind;
-        auto findTargetDeque = find(stringDequeRead.begin(), stringDequeRead.end(), targetDeque);
+        cout << endl << "[Time to find a random string within " 
+            << book << "'s deque container]" << endl;
+        StopWatch timerDequeFind; //start timer
+        auto findTargetDeque = find(stringDequeRead.begin(), stringDequeRead.end(), 
+            targetString);
         if (findTargetDeque != stringDequeRead.end())
         {
-            cout << "String '" << targetDeque << "' found at position: ";
-            cout << findTargetDeque - stringDequeRead.begin();
+            int targetStringIndex = findTargetDeque - stringDequeRead.begin();
+            cout << "String '" << targetString << "' found at position: " << 
+                targetStringSeed;
         }
-        timerDequeFind.Stop();
+        timerDequeFind.Stop(); //stop timer and print results
 
 
         cout << endl << "[Time to sort " << book << "'s deque container]";
-        StopWatch timerDequeSort;
+        StopWatch timerDequeSort; //start timer
         sort(stringDequeRead.begin(), stringDequeRead.end());
-        timerDequeSort.Stop();
+        timerDequeSort.Stop(); //stop timer and print results
 
 
         cout << "===========================================================" << endl
@@ -207,77 +211,3 @@ void timeIt2(string &book)
             << endl << endl << endl;
     }
 }
-
-/*void lookForInt(int& temp)
-{
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<int> dist(1, temp*10);
-    auto random = [&dist, &gen]()
-    {
-        return dist(gen);
-    };
-
-    cout << endl << "-------------------------------------------------" << endl
-        << "[Vector of size " << vectorSize(temp) << " elements]" << endl;
-
-
-    cout << endl << "{find algorithm}";
-    vector<int> vectorFind(temp); //initialize vector
-    generate(begin(vectorFind), end(vectorFind), random); //fill vector
-    int target = vectorFind[randomTarget(vectorFind)]; //random int target
-    StopWatch timerFind; //start timer
-    for (int i = 0; i < 100; i++) //search for target int 100 times
-    {
-        auto findTarget = find(vectorFind.begin(), vectorFind.end(), target);
-    }
-    timerFind.Stop(); //stop timer
-    cout << endl << "Milliseconds: " << timerFind.elapsedMilliseconds()
-        << endl << "Seconds: " << timerFind.elapsedSeconds() << endl;
-
-
-    cout << endl << "{binary_search algorithm}"; //same as above, different algorithm
-    vector<int> vectorBinarySearch(temp);
-    generate(begin(vectorBinarySearch), end(vectorBinarySearch), random);
-    target = vectorBinarySearch[randomTarget(vectorBinarySearch)];
-    sort(vectorBinarySearch.begin(), vectorBinarySearch.end());
-    StopWatch timerBinarySearch;
-    for (int i = 0; i < 100; i++)
-    {
-        auto binarySearchTarget = binary_search(vectorBinarySearch.begin(),
-            vectorBinarySearch.end(), target);
-    }
-    timerBinarySearch.Stop();
-    cout << endl << "Milliseconds: " << timerBinarySearch.elapsedMilliseconds()
-        << endl << "Seconds: " << timerBinarySearch.elapsedSeconds() << endl;
-
-
-    cout << endl << "{upper_bound algorithm}"; //same as above, but different algorithm
-    StopWatch timerUpperBound;
-    for (int i = 0; i < 100; i++)
-    {
-        auto upperBoundTarget = upper_bound(vectorBinarySearch.begin(),
-            vectorBinarySearch.end(), target) - vectorBinarySearch.begin();
-    }
-    timerUpperBound.Stop();
-    cout << endl << "Milliseconds: " << timerUpperBound.elapsedMilliseconds()
-        << endl << "Seconds: " << timerUpperBound.elapsedSeconds() << endl;
-
-
-    cout << endl << "{search_n algorithm}"; //same as above, but different algorithm
-    vector<int> vectorSearchN(temp);
-    generate(begin(vectorSearchN), end(vectorSearchN), random);
-    target = vectorSearchN[randomTarget(vectorSearchN)];
-    StopWatch timerSearchN;
-    for (int i = 0; i < 100; i++)
-    {
-        auto searchNTarget = search_n(vectorSearchN.begin(), vectorSearchN.end(),
-            1, target);
-    }
-    timerSearchN.Stop();
-    cout << endl << "Milliseconds: " << timerSearchN.elapsedMilliseconds()
-        << endl << "Seconds: " << timerSearchN.elapsedSeconds() << endl;
-
-
-    cout << "-------------------------------------------------" << endl;
-}*/
