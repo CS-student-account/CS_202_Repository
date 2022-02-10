@@ -176,19 +176,30 @@ void timeIt2(string &book)
 
 
         //deque container operations
-        cout << endl << "[Time to copy " << book << " into a deque container]" 
-            << endl;
+        cout << endl << "[Time to copy " << book << " into a deque container]";
         StopWatch timerDequeRead;
         ifstream bookDequeRead(book);
-        //deque<string> stringDequeRead(istream_iterator<Line>{bookDequeRead}, istream_iterator<Line>{});
         deque<string> stringDequeRead(istream_iterator<string>{bookDequeRead}, istream_iterator<string>{});
         timerDequeRead.Stop();
 
 
         cout << endl << "[Time to find a random string within " << book << "'s deque container]"
             << endl;
+        string targetDeque = stringDequeRead[randomTarget(stringDequeRead)]; //random int target
         StopWatch timerDequeFind;
+        auto findTargetDeque = find(stringDequeRead.begin(), stringDequeRead.end(), targetDeque);
+        if (findTargetDeque != stringDequeRead.end())
+        {
+            cout << "String '" << targetDeque << "' found at position: ";
+            cout << findTargetDeque - stringDequeRead.begin();
+        }
         timerDequeFind.Stop();
+
+
+        cout << endl << "[Time to sort " << book << "'s deque container]";
+        StopWatch timerDequeSort;
+        sort(stringDequeRead.begin(), stringDequeRead.end());
+        timerDequeSort.Stop();
 
 
         cout << "===========================================================" << endl
