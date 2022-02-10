@@ -123,13 +123,13 @@ void timeIt2(string &book)
 
         cout << endl << "[Time to find a random string within " << book << "'s vector container]" 
             << endl;
-        string target = stringVectorRead[randomTarget(stringVectorRead)]; //random int target
+        string targetVector = stringVectorRead[randomTarget(stringVectorRead)]; //random int target
         StopWatch timerFind; //start timer
-        auto findTarget = find(stringVectorRead.begin(), stringVectorRead.end(), target);
-        if (findTarget != stringVectorRead.end())
+        auto findTargetVector = find(stringVectorRead.begin(), stringVectorRead.end(), targetVector);
+        if (findTargetVector != stringVectorRead.end())
         {
-            cout << "String '" << target << "' found at position: ";
-            cout << findTarget - stringVectorRead.begin();
+            cout << "String '" << targetVector << "' found at position: ";
+            cout << findTargetVector - stringVectorRead.begin();
         }
         timerFind.Stop(); //stop timer
         
@@ -144,19 +144,33 @@ void timeIt2(string &book)
 
 
         //list container operations
-        cout << endl << "[Time to copy " << book << " into a list container]" 
-            << endl;
+        cout << endl << "[Time to copy " << book << " into a list container]";
         StopWatch timerListRead;
         ifstream bookListRead(book);
-        //list<string> stringListRead(istream_iterator<Line>{bookListRead}, istream_iterator<Line>{});
-        list<string> stringListRead(istream_iterator<string>{bookVectorRead}, istream_iterator<string>{});
+        list<string> stringListRead(istream_iterator<string>{bookListRead}, istream_iterator<string>{});
         timerListRead.Stop();
 
 
         cout << endl << "[Time to find a random string within " << book << "'s list container]" 
             << endl;
+        auto listFront = stringListRead.begin();
+        int randomListTarget = randomTarget(stringListRead);
+        advance(listFront, randomListTarget);
+        string targetList = *listFront; //random int target
         StopWatch timerListFind;
+        auto findTargetList = find(stringListRead.begin(), stringListRead.end(), targetList);
+        if (findTargetList != stringListRead.end())
+        {
+            cout << "String '" << targetList << "' found at position: " << randomListTarget;
+        }
         timerListFind.Stop();
+
+
+        cout << endl << "[Time to sort " << book << "'s list container]";
+        StopWatch timerListSort;
+        //sort(stringListRead.begin(), stringListRead.end());
+        timerListSort.Stop();
+
 
 
         cout << "__________________________________________________________" << endl;
