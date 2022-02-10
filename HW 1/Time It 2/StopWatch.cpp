@@ -168,9 +168,8 @@ void timeIt2(string &book)
 
         cout << endl << "[Time to sort " << book << "'s list container]";
         StopWatch timerListSort;
-        //sort(stringListRead.begin(), stringListRead.end());
+        stringListRead.sort();
         timerListSort.Stop();
-
 
 
         cout << "__________________________________________________________" << endl;
