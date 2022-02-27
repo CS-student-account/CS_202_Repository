@@ -27,6 +27,7 @@ class Node
 };
 
 Node *head, *tail = nullptr;
+int size = 0;
 
 void pushBack() 
 {
@@ -100,6 +101,7 @@ void sort(Node* &head, Node* p1, Node* p2)
 {
 	if (p2 == nullptr)
 	{
+		cout << "Linked list sorted!" << endl;
 		return;
 	}
 	Node* p3 = p1->next;
@@ -112,6 +114,86 @@ void sort(Node* &head, Node* p1, Node* p2)
 		p3 = p3->next;
 	}
 	sort(head, p2, p2->next);
+}
+
+void find(int key)
+{
+	Node* current = head;
+	cout << "Searching for " << key;
+
+	while (current != nullptr)
+	{
+		if (current->data == key)
+		{
+			cout << ", and found it!" << endl;
+			return;
+		}
+
+		current = current->next;
+	}
+
+	cout << ", but didn't find it." << endl;
+}
+
+Node* getNode(int data)
+{
+	// allocating space
+	Node* newNode = new Node();
+
+	// inserting the required data
+	newNode->data = data;
+	newNode->next = NULL;
+	return newNode;
+}
+
+int getSize(Node* head)
+{
+	Node* current = head; // Initialize current
+	while (current != NULL)
+	{
+		size++;
+		current = current->next;
+	}
+	return size;
+}
+
+void insert(Node** current, int position, int data)
+{
+	// This condition to check whether the
+	// position given is valid or not.
+	getSize(head);
+	if (position < 1 || position > size + 1)
+	{
+		cout << "Invalid position!" << endl;
+	}
+	else 
+	{
+
+		// Keep looping until the pos is zero
+		while (position--)
+		{
+
+			if (position == 0)
+			{
+
+				// adding Node at required position
+				Node* temp = getNode(data);
+
+				// Making the new Node to point to
+				// the old Node at the same position
+				temp->next = *current;
+
+				// Changing the pointer of the Node previous
+				// to the old Node to point to the new Node
+				*current = temp;
+			}
+			else
+				// Assign double pointer variable to point to the
+				// pointer pointing to the address of next Node
+				current = &(*current)->next;
+		}
+		size++;
+	}
 }
 
 void display()
@@ -143,14 +225,14 @@ int main()
 	tail->data = 2;
 	tail->next = nullptr;
 
-	cout << "[Queue]" << endl;
+	cout << "[Queue: First-In First-Out]" << endl;
 	display();
 	pushBack();
 	display();
 	popFront();
 	display();
 
-	cout << endl << "[Stack]" << endl;
+	cout << endl << "[Stack: Last-In First-Out]" << endl;
 	display();
 	pushBack();
 	display();
@@ -163,7 +245,9 @@ int main()
 	pushBack();
 	pushBack();
 	sort(head, head, head->next);
-	cout << "Linked list sorted!" << endl;
+	display();
+	find(5);
+	insert(&head, 3, 777);
 	display();
 
 	return 0;
