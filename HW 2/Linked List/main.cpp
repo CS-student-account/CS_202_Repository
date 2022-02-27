@@ -10,6 +10,7 @@
 #include <iostream>
 using std::string;
 using std::cout;
+using std::cin;
 using std::endl;
 
 class Structure
@@ -24,6 +25,33 @@ public:
 	Structure* next;
 };
 
+Structure* first = nullptr;
+Structure* second = nullptr;
+Structure* third = nullptr;
+Structure* fourth = nullptr;
+Structure* fifth = nullptr;
+Structure* sixth = nullptr;
+Structure* temp;
+
+void Insert() {
+	int val = 25;
+	cout << "Insert the element in queue: " << val << endl;
+	if (sixth == nullptr) 
+	{
+		sixth = (class Structure*)malloc(sizeof(class Structure));
+		sixth->next = nullptr;
+		sixth->test1 = val;
+		first = sixth;
+	}
+	else {
+		temp = (class Structure*)malloc(sizeof(class Structure));
+		sixth->next = temp;
+		temp->test1 = val;
+		temp->next = nullptr;
+		sixth = temp;
+	}
+}
+
 void printList(Structure* n) 
 {
 	while (n != nullptr) 
@@ -36,13 +64,6 @@ void printList(Structure* n)
 
 int main()
 {
-	Structure* first = nullptr;
-	Structure* second = nullptr;
-	Structure* third = nullptr;
-	Structure* fourth = nullptr;
-	Structure* fifth = nullptr;
-	Structure* sixth = nullptr;
-
 	first = new Structure();
 	second = new Structure();
 	third = new Structure();
@@ -68,6 +89,8 @@ int main()
 	sixth->test1 = 6;
 	sixth->next = nullptr;
 
+
+	Insert();
 	printList(first);
 
 	return 0;
