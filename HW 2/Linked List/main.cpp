@@ -9,16 +9,27 @@
 #include <list>
 using std::string;
 
+class Structure
+{
+public:
+	int test1;
+	string test2;
+	double test3;
+	char test4;
+	float test5;
+
+	Structure* next;
+};
+
 int main()
 {
-	struct Structure
-	{
-		int test1;
-		string test2;
-		double test3;
-		char test4;
-		float test5;
-	};
+	Structure* first = nullptr;
+	Structure* second = nullptr;
+	Structure* third = nullptr;
+
+	first = new Structure();
+	second = new Structure();
+	third = new Structure();
 
 	return 0;
 }
