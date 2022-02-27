@@ -5,7 +5,7 @@
 * HW 2 for CS 202
 */
 
-#include <string>
+/*#include <string>
 #include <list>
 #include <iostream>
 using std::string;
@@ -16,11 +16,7 @@ using std::endl;
 class Structure
 {
 public:
-	int test1;
-	string test2;
-	double test3;
-	char test4;
-	float test5;
+	int data1;
 
 	Structure* next;
 };
@@ -33,31 +29,91 @@ Structure* fifth = nullptr;
 Structure* sixth = nullptr;
 Structure* temp;
 
-void Insert() {
+void insert() 
+{
 	int val = 25;
-	cout << "Insert the element in queue: " << val << endl;
+	cout << "Inserting into queue: " << val << endl;
 	if (sixth == nullptr) 
 	{
 		sixth = (class Structure*)malloc(sizeof(class Structure));
 		sixth->next = nullptr;
-		sixth->test1 = val;
+		sixth->data1 = val;
 		first = sixth;
 	}
-	else {
+	else 
+	{
 		temp = (class Structure*)malloc(sizeof(class Structure));
 		sixth->next = temp;
-		temp->test1 = val;
+		temp->data1 = val;
 		temp->next = nullptr;
 		sixth = temp;
 	}
 }
 
-void printList(Structure* n) 
+void Delete() 
 {
-	while (n != nullptr) 
+	temp = sixth;
+	if (first == nullptr) 
 	{
-		cout << n->test1 << " ";
-		n = n->next;
+		cout << "Underflow" << endl;
+	}
+	else
+	{
+		if (temp->next != nullptr)
+		{
+			temp = temp->next;
+			cout << "Element deleted from queue is : " << first->data1 << endl;
+			free(first);
+			first = temp;
+		}
+		else
+		{
+			cout << "Element deleted from queue is : " << first->data1 << endl;
+			free(first);
+			first = nullptr;
+			sixth = nullptr;
+		}
+	}
+}
+
+void deleteFront()  // for deletion from front
+{
+	if (first == nullptr)
+		cout << "Queue is Empty";
+	else
+	{
+		temp = first;
+		first = first->next;
+		delete temp;
+		sixth = nullptr;
+	}
+}
+
+void deleteRear()  // for deletion from front
+{
+	if (first == nullptr)
+		cout << "Queue is Empty";
+	else
+	{
+		temp = sixth;
+		delete temp;
+	}
+}
+
+void display() 
+{
+	temp = first;
+	if ((first == nullptr) && (sixth == nullptr)) 
+	{
+		cout << "Queue is empty" << endl;
+		return;
+	}
+
+	cout << "Queue elements are: ";
+	while (temp != nullptr) 
+	{
+		cout << temp->data1 << " ";
+		temp = temp->next;
 	}
 	cout << endl;
 }
@@ -71,27 +127,31 @@ int main()
 	fifth = new Structure();
 	sixth = new Structure();
 
-	first->test1 = 1;
+	first->data1 = 1;
 	first->next = second;
 
-	second->test1 = 2;
+	second->data1 = 2;
 	second->next = third;
 
-	third->test1 = 3;
+	third->data1 = 3;
 	third->next = fourth;
 
-	fourth->test1 = 4;
+	fourth->data1 = 4;
 	fourth->next = fifth;
 
-	fifth->test1 = 5;
+	fifth->data1 = 5;
 	fifth->next = sixth;
 
-	sixth->test1 = 6;
+	sixth->data1 = 6;
 	sixth->next = nullptr;
 
-
-	Insert();
-	printList(first);
+	display();
+	insert();
+	display();
+	deleteFront();
+	display();
+	deleteRear();
+	display();
 
 	return 0;
-}
+}*/
