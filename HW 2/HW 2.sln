@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linked List", "Linked List\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Memory Layout", "Memory Layout\Memory Layout.vcxproj", "{AC887E99-B468-49F1-B818-E1D81F69915B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "to_lower", "to_lower\to_lower.vcxproj", "{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x64.Build.0 = Release|x64
 		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x86.ActiveCfg = Release|Win32
 		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x86.Build.0 = Release|Win32
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Debug|x64.ActiveCfg = Debug|x64
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Debug|x64.Build.0 = Debug|x64
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Debug|x86.ActiveCfg = Debug|Win32
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Debug|x86.Build.0 = Debug|Win32
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Release|x64.ActiveCfg = Release|x64
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Release|x64.Build.0 = Release|x64
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Release|x86.ActiveCfg = Release|Win32
+		{CEDC5D7F-78B5-4756-ACAC-22AD12789C26}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

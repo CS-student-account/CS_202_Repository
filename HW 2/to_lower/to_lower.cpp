@@ -11,7 +11,14 @@ using std::string;
 using std::cout;
 using std::endl;
 
+void to_lower(char* s)
+{
+
+}
+
 int main()
 {
+    char string[] = "Hello, World!0";
+
     return 0;
 }
