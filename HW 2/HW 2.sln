@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Linked List", "Linked List\Linked List.vcxproj", "{2AB1C25A-37F5-4798-8EF4-F58BB142A14F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Memory Layout", "Memory Layout\Memory Layout.vcxproj", "{AC887E99-B468-49F1-B818-E1D81F69915B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2AB1C25A-37F5-4798-8EF4-F58BB142A14F}.Release|x64.Build.0 = Release|x64
 		{2AB1C25A-37F5-4798-8EF4-F58BB142A14F}.Release|x86.ActiveCfg = Release|Win32
 		{2AB1C25A-37F5-4798-8EF4-F58BB142A14F}.Release|x86.Build.0 = Release|Win32
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Debug|x64.ActiveCfg = Debug|x64
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Debug|x64.Build.0 = Debug|x64
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Debug|x86.ActiveCfg = Debug|Win32
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Debug|x86.Build.0 = Debug|Win32
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x64.ActiveCfg = Release|x64
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x64.Build.0 = Release|x64
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x86.ActiveCfg = Release|Win32
+		{AC887E99-B468-49F1-B818-E1D81F69915B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
