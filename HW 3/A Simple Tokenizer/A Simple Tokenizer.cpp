@@ -5,6 +5,7 @@
 * HW 3 for CS 202
 */
 
+#include "tokenizer.h"
 #include <iostream>
 using std::cout;
 using std::endl;
