@@ -5,6 +5,7 @@
 * tokenizer.cpp for CS201
 */
 
+#include "tokenizer.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,6 +19,8 @@ using std::vector;
 using std::getline;
 using std::istringstream;
 using std::ifstream;
+using std::ostream;
+using std::istream;
 
 bool readLine(string &str)
 {
@@ -29,7 +32,7 @@ bool readLine(string &str)
 	else return false; //if no string is accepted, return false
 }
 
-size_t stringToTokenWS(const string &input, vector<string> &tokens)
+unsigned stringToTokenWS(const string &input, vector<string> &tokens)
 {
 	istringstream instream(input); //reads the string passed in through istringstream
 	string token;
@@ -163,3 +166,27 @@ string excerpt(const string &filename)
 		}
 	}
 }
+
+
+vector<string> lineToTokens(const string &line)
+{
+	ifstream inputStream(line);
+	string outputString;
+	getline(inputStream, outputString);
+
+	string token;
+	vector<string> tokens;
+
+	while (inputStream >> token) //pushes each of the tokens from the string separated by a space into the vector of strings
+	{
+		tokens.push_back(token);
+	}
+
+	tokens.push_back(" "); //at the end of each line, push a whitespace
+	return tokens; //returns how many tokens there are
+
+}
+
+vector<TokenAndPosition> readLines(istream &is);
+
+void printTokens(ostream &os, const vector<TokenAndPosition> &tokens);

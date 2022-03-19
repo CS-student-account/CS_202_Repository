@@ -20,10 +20,12 @@ using std::istringstream;
 
 int main()
 {
-	cout << "Enter the name of the book you want to tokenize: " << endl;
-	string book;
-	cin >> book;
-	readFile(book);
+	//cout << "Enter the name of the book you want to tokenize: " << endl;
+	string book = "book1.txt";
+	//cin >> book;
+	//readFile(book);
+
+
 
 	return 0;
 }
