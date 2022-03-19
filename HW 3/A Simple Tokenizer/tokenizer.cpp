@@ -21,6 +21,8 @@ using std::istringstream;
 using std::ifstream;
 using std::ostream;
 using std::istream;
+using std::find;
+using std::stringstream;
 
 bool readLine(string &str)
 {
@@ -101,13 +103,13 @@ void analyzeTokens(const vector<string> &tokens)
 	}
 }
 
-bool readFile(const string& filename)
+bool checkFile(const string& filename)
 {
 	ifstream fin(filename);
 
 	if (!fin)
 	{
-		cout << "Cannot open file." << endl;
+		cout << "[Cannot open file.]" << endl << endl;
 		return false;
 	}
 	else
@@ -121,12 +123,12 @@ bool readFile(const string& filename)
 			{
 				if (fin.eof())
 				{
-					cout << "Successfully read the whole file." << endl;
+					cout << "[Successfully read the whole file.]" << endl << endl;
 					return true;
 				}
 				else
 				{
-					cout << "Error during transmit." << endl;
+					cout << "[Error during transmit.]" << endl << endl;
 					return false;
 				}
 				break;
@@ -138,8 +140,6 @@ bool readFile(const string& filename)
 string excerpt(const string &filename)
 {
 	ifstream fin(filename);
-
-	int numlines = 25;
 
 	int total_lines = 0; //total number of lines in book
 	vector<string> lines; //vector of strings to place words
@@ -156,7 +156,7 @@ string excerpt(const string &filename)
 			if (fin.eof())
 			{
 				cout << "excerptinator has completed." << endl << endl;
-				return lines[55]; //return a random line of text
+				return lines[150]; //return a random line of text
 			}
 			else
 			{
@@ -170,23 +170,20 @@ string excerpt(const string &filename)
 
 vector<string> lineToTokens(const string &line)
 {
-	ifstream inputStream(line);
-	string outputString;
-	getline(inputStream, outputString);
+	vector<string> tokens; //Vector of string to save tokens
 
-	string token;
-	vector<string> tokens;
+	stringstream check1(line); //stringstream class check1
 
-	while (inputStream >> token) //pushes each of the tokens from the string separated by a space into the vector of strings
+	string intermediate;
+
+	while (getline(check1, intermediate, ' ')) //Tokenizing w.r.t. space ' '
 	{
-		tokens.push_back(token);
+		tokens.push_back(intermediate);
 	}
-
-	tokens.push_back(" "); //at the end of each line, push a whitespace
-	return tokens; //returns how many tokens there are
+	return tokens; 
 
 }
 
-vector<TokenAndPosition> readLines(istream &is);
+vector<TokenAndPosition> readLines(istream& is);
 
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens);

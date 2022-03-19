@@ -11,7 +11,7 @@ using std::istream;
 bool readLine(string &str);
 unsigned stringToTokenWS(const string &input, vector<string> &tokens);
 void analyzeTokens(const vector<string> &tokens);
-bool readFile(const string& filename);
+bool checkFile(const string& filename);
 string excerpt(const string& filename);
 
 

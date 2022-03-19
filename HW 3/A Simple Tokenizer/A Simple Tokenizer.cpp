@@ -23,32 +23,25 @@ using std::getline;
 
 int main()
 {
-	//cout << "Enter the name of the book you want to tokenize: " << endl;
 	string bookName = "book1.txt";
-	//cin >> book;
-	//readFile(book);
 
-	ifstream inputStream(bookName);
-
-	while (true)
+	if (checkFile(bookName))
 	{
+		ifstream bookStream(bookName);
 		string line;
-		getline(inputStream, line);
-		lineToTokens(line);
 
-		if (!inputStream)
+		while (getline(bookStream, line))
 		{
-			if (inputStream.eof())
+			vector<string> lineToken = lineToTokens(line);
+			for (int i = 0; i < lineToken.size(); i++)
 			{
-				cout << "Successfully read the whole file." << endl;
+				cout << lineToken[i] << endl;
 			}
-			else
-			{
-				cout << "Error during transmit." << endl;
-			}
-			break;
 		}
 	}
+
+
+	
 
 	return 0;
 }
