@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -16,8 +17,9 @@ using std::string;
 using std::vector;
 using std::getline;
 using std::istringstream;
+using std::ifstream;
 
-bool ReadLine(std::string &str)
+bool readLine(string &str)
 {
 	cout << "Please type in some text: ";
 	if (getline(cin, str)) //accept a string input from the user and save it as the string str
@@ -27,7 +29,7 @@ bool ReadLine(std::string &str)
 	else return false; //if no string is accepted, return false
 }
 
-unsigned StringToTokenWS(const std::string &input, std::vector<std::string> &tokens)
+size_t stringToTokenWS(const string &input, vector<string> &tokens)
 {
 	istringstream instream(input); //reads the string passed in through istringstream
 	string token;
@@ -41,7 +43,7 @@ unsigned StringToTokenWS(const std::string &input, std::vector<std::string> &tok
 	return tokens.size(); //returns how many tokens there are
 }
 
-void AnalyzeTokens(const std::vector<std::string> &tokens)
+void analyzeTokens(const vector<string> &tokens)
 {
 	vector<string> final; //a tempoorary vector for pushing in final printouts
 
@@ -92,6 +94,72 @@ void AnalyzeTokens(const std::vector<std::string> &tokens)
 		for (int j = 0; j < final.size() - 2; j++)
 		{
 			cout << endl << final[j] << endl;
+		}
+	}
+}
+
+bool readFile(const string& filename)
+{
+	ifstream fin(filename);
+
+	if (!fin)
+	{
+		cout << "Cannot open file." << endl;
+		return false;
+	}
+	else
+	{
+		while (true)
+		{
+			string line;
+			getline(fin, line);
+
+			if (!fin)
+			{
+				if (fin.eof())
+				{
+					cout << "Successfully read the whole file." << endl;
+					return true;
+				}
+				else
+				{
+					cout << "Error during transmit." << endl;
+					return false;
+				}
+				break;
+			}
+		}
+	}
+}
+
+string excerpt(const string &filename)
+{
+	ifstream fin(filename);
+
+	int numlines = 25;
+
+	int total_lines = 0; //total number of lines in book
+	vector<string> lines; //vector of strings to place words
+
+	while (true)
+	{
+		string line;
+		getline(fin, line);
+		total_lines++;
+		lines.push_back(line);
+
+		if (!fin)
+		{
+			if (fin.eof())
+			{
+				cout << "excerptinator has completed." << endl << endl;
+				return lines[55]; //return a random line of text
+			}
+			else
+			{
+				return "Error during transmit.";
+			}
+			break;
 		}
 	}
 }

@@ -7,10 +7,23 @@
 
 #include "tokenizer.h"
 #include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+using std::cin;
 using std::cout;
 using std::endl;
+using std::string;
+using std::vector;
+using std::getline;
+using std::istringstream;
 
 int main()
 {
-    return 0;
+	cout << "Enter the name of the book you want to tokenize: " << endl;
+	string book;
+	cin >> book;
+	readFile(book);
+
+	return 0;
 }

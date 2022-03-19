@@ -1,11 +1,15 @@
-#ifndef FILE_TOKENIZER_HPP_INCLUDED
-#define FILE_TOKENIZER_HPP_INCLUDED
+#ifndef TOKENIZER_H
+#define TOKENIZER_HP
 
 #include <string>
 #include <vector>
+using std::string;
+using std::vector;
 
-bool ReadLine(std::string &str);
-unsigned StringToTokenWS(const std::string &input, std::vector<std::string> &tokens);
-void AnalyzeTokens(const std::vector<std::string> &tokens);
+bool readLine(string &str);
+unsigned stringToTokenWS(const string &input, vector<string> &tokens);
+void analyzeTokens(const vector<string> &tokens);
+bool readFile(const string& filename);
+string excerpt(const string& filename);
 
 #endif 
