@@ -17,9 +17,10 @@ using std::endl;
 using std::string;
 using std::vector;
 using std::getline;
-using std::istringstream;
+using std::stringstream;
 using std::ifstream;
 using std::getline;
+using std::ostream;
 
 int main()
 {
@@ -31,6 +32,8 @@ int main()
 		string line;
 
 		vector<TokenAndPosition> tokenVector = readLines(bookStream);
+		stringstream tokenPrintStream;
+		printTokens(cout, tokenVector);
 
 		while (getline(bookStream, line))
 		{
