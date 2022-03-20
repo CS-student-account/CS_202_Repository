@@ -1,5 +1,5 @@
 #ifndef TOKENIZER_H
-#define TOKENIZER_HP
+#define TOKENIZER_H
 
 #include <string>
 #include <vector>
@@ -8,12 +8,7 @@ using std::vector;
 using std::ostream;
 using std::istream;
 
-bool readLine(string &str);
-unsigned stringToTokenWS(const string &input, vector<string> &tokens);
-void analyzeTokens(const vector<string> &tokens);
 bool checkFile(const string& filename);
-string excerpt(const string& filename);
-
 
 struct TokenAndPosition 
 {

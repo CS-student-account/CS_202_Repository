@@ -22,34 +22,67 @@ using std::ifstream;
 using std::getline;
 using std::ostream;
 
-int main()
+int main(int argc, char** argv)
 {
-	string bookName = "book1.txt";
+    if (argc > 1) //check if there's at least the name of the program
+    {
+        if (argc >= 4) //tell the user to only include 2 arguments
+        {
+            cout << "Please don't input more than two arguments at a time." << endl;
+        }
+        else if (argc == 2) //print lines and columns of text file
+        {
+            string bookName(argv[1]);
 
-	if (checkFile(bookName))
-	{
-		ifstream bookStream(bookName);
-		string line;
+            if (checkFile(bookName))
+            {
+                if (!bookName.empty())
+                {
+                    ifstream bookStream(bookName);
+                    vector<TokenAndPosition> tokenVector = readLines(bookStream);
+                    printTokens(cout, tokenVector);
+                }
+                else
+                {
+                    cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
+                }
+            }
+        }
+        else if (argc == 3)
+        {
+            string bookName(argv[1]); //print only lines of text file
+            string lineonlyOption(argv[2]);
 
-		vector<TokenAndPosition> tokenVector = readLines(bookStream);
-		stringstream tokenPrintStream;
-		printTokens(cout, tokenVector);
-
-		while (getline(bookStream, line))
-		{
-			vector<string> lineToken = lineToTokens(line);
-
-
-			for (int i = 0; i < tokenVector.size(); i++)
-			{
-				//cout << tokenVector[i];
-				//istream lineToken(lineToken);
-			}
-		}
-	}
-
-
-	
+            if (checkFile(bookName))
+            {
+                if (!bookName.empty())
+                {
+                    if (!lineonlyOption.empty())
+                    {
+                        if (lineonlyOption == "--lineonly")
+                        {
+                            ifstream bookStream(bookName);
+                            vector<TokenAndPosition> tokenVector = readLines(bookStream);
+                            printTokens(cout, tokenVector);
+                        }
+                        else
+                        {
+                            cout << "Your second argument, 'argv[2]', wasn't understood." << endl;
+                        }
+                    }
+                    else
+                    {
+                        cout << "Your second argument, 'argv[2]', wasn't understood." << endl;
+                    }
+                }
+                else
+                {
+                    cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
+                }
+            }
+        }
+        else cout << "Not enough arguments." << endl;
+    }
 
 	return 0;
 }

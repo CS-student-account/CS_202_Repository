@@ -86,7 +86,7 @@ vector<string> lineToTokens(const string &line)
 		}
 	}
 
-	return tokenVector; 
+	return tokenVector;
 }
 
 vector<TokenAndPosition> readLines(istream& is)
