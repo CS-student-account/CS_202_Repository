@@ -30,12 +30,17 @@ int main()
 		ifstream bookStream(bookName);
 		string line;
 
+		vector<TokenAndPosition> tokenVector = readLines(bookStream);
+
 		while (getline(bookStream, line))
 		{
 			vector<string> lineToken = lineToTokens(line);
-			for (int i = 0; i < lineToken.size(); i++)
+
+
+			for (int i = 0; i < tokenVector.size(); i++)
 			{
-				cout << lineToken[i] << endl;
+				//cout << tokenVector[i];
+				//istream lineToken(lineToken);
 			}
 		}
 	}

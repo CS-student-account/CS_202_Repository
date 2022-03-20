@@ -1,8 +1,8 @@
 /*
 * tokenizer.cpp
 * David Misyura
-* 10 Oct 2020
-* tokenizer.cpp for CS201
+* 19 Mar 2022
+* tokenizer.cpp for CS 202
 */
 
 #include "tokenizer.h"
@@ -170,20 +170,50 @@ string excerpt(const string &filename)
 
 vector<string> lineToTokens(const string &line)
 {
-	vector<string> tokens; //Vector of string to save tokens
+	vector<string> tokenVector; //vector of string to save tokens
 
-	stringstream check1(line); //stringstream class check1
+	stringstream tokenStream(line); //place line of string into stream
 
-	string intermediate;
+	string token; //string for individual tokens
 
-	while (getline(check1, intermediate, ' ')) //Tokenizing w.r.t. space ' '
+	while (getline(tokenStream, token, ' ')) //getline with space as delimiter
 	{
-		tokens.push_back(intermediate);
+		tokenVector.push_back(token);
 	}
-	return tokens; 
 
+	return tokenVector; 
 }
 
-vector<TokenAndPosition> readLines(istream& is);
+vector<TokenAndPosition> readLines(istream& is)
+{
+	vector<TokenAndPosition> tokenPositionVector;
+
+	string tempString;
+
+	int totalLines = 0;
+
+	while (getline(is, tempString))
+	{
+		int totalColumns = 0;
+
+		for (const string tokenString : lineToTokens(tempString))
+		{
+			TokenAndPosition token;
+			token._token = tokenString;
+			token._column = totalColumns;
+			token._line = totalLines;
+
+			tokenPositionVector.push_back(token);
+			totalColumns++;
+		}
+	}
+
+	for (TokenAndPosition i : tokenPositionVector)
+	{
+		cout << i._token;
+	}
+
+	return tokenPositionVector;
+}
 
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens);
