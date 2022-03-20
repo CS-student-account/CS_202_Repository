@@ -12,6 +12,7 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <ranges>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -25,6 +26,7 @@ using std::istream;
 using std::find;
 using std::stringstream;
 using std::quoted;
+using std::views::join;
 
 bool readLine(string &str)
 {
@@ -196,17 +198,24 @@ vector<TokenAndPosition> readLines(istream& is)
 
 	while (getline(is, tempString))
 	{
-		int totalColumns = 1;
+		int totalColumns = 0;
+		vector<string> tokenizedVector = lineToTokens(tempString);
 
-		for (const string tokenString : lineToTokens(tempString))
+		for (const string tokenString : tokenizedVector)
 		{
 			TokenAndPosition token;
 			token._token = tokenString;
-			token._column = totalColumns;
+
+			vector<string>::iterator it;
+			it = find(tokenizedVector.begin(), tokenizedVector.end(), tokenString);
+			int position = (it - tokenizedVector.begin()) + 1;
+			token._column = position + totalColumns;
+			
 			token._line = totalLines;
 
 			tokenPositionVector.push_back(token);
-			totalColumns++;
+
+			totalColumns += tokenString.size();
 		}
 		totalLines++;
 	}
@@ -218,6 +227,6 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens)
 {
 	for (TokenAndPosition i : tokens)
 	{
-		os << "Line " << i._line << ", Column " << i._column << ": " << quoted(i._token) << endl;
+		os << "[Line " << i._line << ", Column " << i._column << "]: " << quoted(i._token) << endl;
 	}
 }
