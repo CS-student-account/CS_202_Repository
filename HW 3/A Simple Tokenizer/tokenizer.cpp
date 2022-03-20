@@ -12,7 +12,9 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-#include <ranges>
+#include <map>
+#include <algorithm>
+#include <cmath>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -26,7 +28,9 @@ using std::istream;
 using std::find;
 using std::stringstream;
 using std::quoted;
-using std::views::join;
+using std::map;
+using std::sort;
+using std::pow;
 
 bool readLine(string &str)
 {
@@ -201,22 +205,46 @@ vector<TokenAndPosition> readLines(istream& is)
 		int totalColumns = 0;
 		vector<string> tokenizedVector = lineToTokens(tempString);
 
-		for (const string tokenString : tokenizedVector)
+		map<string, int> duplicateMap;
+		map<string, int>::iterator mapIt;
+		int mapCounter = 1;
+
+		for (int i = 0; i < tokenizedVector.size(); ++i)
 		{
 			TokenAndPosition token;
-			token._token = tokenString;
+			token._token = tokenizedVector[i];
 
 			vector<string>::iterator it;
-			it = find(tokenizedVector.begin(), tokenizedVector.end(), tokenString);
-			int position = (it - tokenizedVector.begin()) + 1;
-			token._column = position + totalColumns;
+			it = find(tokenizedVector.begin(), tokenizedVector.end(), token._token);
+			
+
+			mapIt = duplicateMap.find(token._token);
+			if (tokenizedVector[0] == token._token)
+			{
+				int position = (it - tokenizedVector.begin()) + 1;
+				duplicateMap[token._token] = 1;
+				token._column = position + totalColumns;
+			}
+			else if (mapIt != duplicateMap.end())
+			{
+				int position = i+1;
+				mapIt->second = mapIt->second + 1;
+				token._column = position + totalColumns;
+			}
+			else
+			{
+				int position = (it - tokenizedVector.begin()) + 1;
+				duplicateMap[token._token] = 1;
+				token._column = position + totalColumns;
+			}
 			
 			token._line = totalLines;
 
 			tokenPositionVector.push_back(token);
 
-			totalColumns += tokenString.size();
+			totalColumns += token._token.size();
 		}
+
 		totalLines++;
 	}
 
