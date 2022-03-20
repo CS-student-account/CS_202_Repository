@@ -34,18 +34,18 @@ int main(int argc, char** argv)
         {
             string bookName(argv[1]);
 
-            if (checkFile(bookName))
+            if (!bookName.empty())
             {
-                if (!bookName.empty())
+                if (checkFile(bookName))
                 {
                     ifstream bookStream(bookName);
                     vector<TokenAndPosition> tokenVector = readLines(bookStream);
                     printTokens(cout, tokenVector);
                 }
-                else
-                {
-                    cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
-                }
+            }
+            else
+            {
+                cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
             }
         }
         else if (argc == 3)
@@ -53,21 +53,20 @@ int main(int argc, char** argv)
             string bookName(argv[1]); //print only lines of text file
             string lineonlyOption(argv[2]);
 
-            if (checkFile(bookName))
+            if (!bookName.empty())
             {
-                if (!bookName.empty())
+                if (!lineonlyOption.empty())
                 {
-                    if (!lineonlyOption.empty())
+                    if (lineonlyOption == "--lineonly")
                     {
-                        if (lineonlyOption == "--lineonly")
+                        if (checkFile(bookName))
                         {
                             ifstream bookStream(bookName);
-                            vector<TokenAndPosition> tokenVector = readLines(bookStream);
-                            printTokens(cout, tokenVector);
-                        }
-                        else
-                        {
-                            cout << "Your second argument, 'argv[2]', wasn't understood." << endl;
+                            vector<TokenAndPosition> tokenVectorLineOnly = readLines(bookStream);
+                            TokenAndPosition lineOnly;
+                            lineOnly._token = "lineOnly";
+                            tokenVectorLineOnly.push_back(lineOnly);
+                            printTokens(cout, tokenVectorLineOnly);
                         }
                     }
                     else
@@ -77,8 +76,12 @@ int main(int argc, char** argv)
                 }
                 else
                 {
-                    cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
+                    cout << "Your second argument, 'argv[2]', wasn't understood." << endl;
                 }
+            }
+            else
+            {
+                cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
             }
         }
         else cout << "Not enough arguments." << endl;

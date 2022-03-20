@@ -150,8 +150,19 @@ vector<TokenAndPosition> readLines(istream& is)
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens)
 {
-	for (TokenAndPosition i : tokens)
+	
+	if (tokens.back()._token != "lineOnly")
 	{
-		os << "[Line " << right << setfill(' ') << setw(4) << i._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << i._column << "]: " << quoted(i._token) << endl;
+		for (auto token : tokens)
+		{
+			os << "[Line " << right << setfill(' ') << setw(4) << token._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << token._column << "]: " << quoted(token._token) << endl;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < tokens.size() - 1; ++i)
+		{
+			os << "[Line " << right << setfill(' ') << setw(4) << tokens[i]._line << "]: " << quoted(tokens[i]._token) << endl;
+		}
 	}
 }
