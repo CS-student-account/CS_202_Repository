@@ -6,6 +6,7 @@
 */
 
 #include "tokenizer.h"
+#include "StopWatch.h"
 #include <iostream>
 #include <string>
 #include <vector>
