@@ -51,22 +51,19 @@ int main(int argc, char** argv)
         else if (argc == 3)
         {
             string bookName(argv[1]); //print only lines of text file
-            string lineonlyOption(argv[2]);
+            string lineOnlyOption(argv[2]);
 
             if (!bookName.empty())
             {
-                if (!lineonlyOption.empty())
+                if (!lineOnlyOption.empty())
                 {
-                    if (lineonlyOption == "--lineonly")
+                    if (lineOnlyOption == "--lineonly")
                     {
                         if (checkFile(bookName))
                         {
                             ifstream bookStream(bookName);
                             vector<TokenAndPosition> tokenVectorLineOnly = readLines(bookStream);
-                            TokenAndPosition lineOnly;
-                            lineOnly._token = "lineOnly";
-                            tokenVectorLineOnly.push_back(lineOnly);
-                            printTokens(cout, tokenVectorLineOnly);
+                            //printTokens(cout, tokenVectorLineOnly);
                         }
                     }
                     else
@@ -86,6 +83,8 @@ int main(int argc, char** argv)
         }
         else cout << "Not enough arguments." << endl;
     }
+
+    cout << "Program finished" << endl;
 
 	return 0;
 }

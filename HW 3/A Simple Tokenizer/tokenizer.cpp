@@ -92,9 +92,7 @@ vector<string> lineToTokens(const string &line)
 vector<TokenAndPosition> readLines(istream& is)
 {
 	vector<TokenAndPosition> tokenPositionVector;
-
 	string tempString;
-
 	int totalLines = 1;
 
 	while (getline(is, tempString))
@@ -113,7 +111,6 @@ vector<TokenAndPosition> readLines(istream& is)
 
 			vector<string>::iterator it;
 			it = find(tokenizedVector.begin(), tokenizedVector.end(), token._token);
-			
 
 			mapIt = duplicateMap.find(token._token);
 			if (tokenizedVector[0] == token._token)
@@ -136,9 +133,7 @@ vector<TokenAndPosition> readLines(istream& is)
 			}
 			
 			token._line = totalLines;
-
 			tokenPositionVector.push_back(token);
-
 			totalColumns += token._token.size();
 		}
 
@@ -150,19 +145,8 @@ vector<TokenAndPosition> readLines(istream& is)
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens)
 {
-	
-	if (tokens.back()._token != "lineOnly")
+	for (auto token : tokens)
 	{
-		for (auto token : tokens)
-		{
-			os << "[Line " << right << setfill(' ') << setw(4) << token._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << token._column << "]: " << quoted(token._token) << endl;
-		}
-	}
-	else
-	{
-		for (int i = 0; i < tokens.size() - 1; ++i)
-		{
-			os << "[Line " << right << setfill(' ') << setw(4) << tokens[i]._line << "]: " << quoted(tokens[i]._token) << endl;
-		}
+		os << "[Line " << right << setfill(' ') << setw(4) << token._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << token._column << "]: " << quoted(token._token) << endl;
 	}
 }
