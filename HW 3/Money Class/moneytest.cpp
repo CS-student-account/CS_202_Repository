@@ -1,9 +1,9 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include <catch2/catch.hpp>
+#include "catch.hpp"
 #include <sstream>      // for std::ostringstream
 
-#include "Money.hpp"
-#include "Money.hpp"   // Double inclusion test
+#include "Money.h"
+#include "Money.h"   // Double inclusion test
 
 TEST_CASE( "Money ctors and operator<<") {
    const Money con0;
