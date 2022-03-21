@@ -9,29 +9,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <sstream>
 #include <fstream>
-#include <filesystem>
-#include <iomanip>
-using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
 using std::vector;
-using std::getline;
-using std::stringstream;
 using std::ifstream;
-using std::getline;
-using std::ostream;
-using namespace std::chrono;
-using std::filesystem::file_size;
-using std::setprecision;
 
 int main(int argc, char** argv)
 {
     if (argc > 1) //check if there's at least the name of the program
     {
-        if (argc >= 4) //tell the user to only include 2 arguments
+        if (argc >= 4) //tell the user to include no more than 2 arguments
         {
             cout << "Please don't input more than two arguments at a time." << endl;
         }
@@ -41,14 +30,14 @@ int main(int argc, char** argv)
 
             if (!fileName.empty())
             {
-                if (checkFile(fileName))
+                if (checkFile(fileName)) //quick file check
                 {
-                    StopWatch printWatch;
+                    StopWatch printWatch; //start timer
                     ifstream fileStream(fileName);
-                    vector<TokenAndPosition> tokenVector = readLines(fileStream);
+                    vector<TokenAndPosition> tokenVector = readLines(fileStream); 
                     printTokens(cout, tokenVector);
-                    printWatch.Stop();
-                    printWatch.Bandwidth(fileName);
+                    printWatch.Stop(); //stop timer and print elapsed time
+                    printWatch.Bandwidth(fileName); //print bandwidth of file operation
                 }
             }
             else
@@ -56,9 +45,9 @@ int main(int argc, char** argv)
                 cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
             }
         }
-        else if (argc == 3)
+        else if (argc == 3) //print only lines of text file
         {
-            string fileName(argv[1]); //print only lines of text file
+            string fileName(argv[1]); 
             string lineOnlyOption(argv[2]);
 
             if (!fileName.empty())
@@ -67,13 +56,13 @@ int main(int argc, char** argv)
                 {
                     if (lineOnlyOption == "--lineonly")
                     {
-                        if (checkFile(fileName))
+                        if (checkFile(fileName)) //quick file check
                         {
-                            StopWatch lineOnlyWatch;
+                            StopWatch lineOnlyWatch; //start timer
                             ifstream fileStream(fileName);
                             vector<TokenAndPosition> tokenVectorLineOnly = readLines(fileStream);
-                            lineOnlyWatch.Stop();
-                            lineOnlyWatch.Bandwidth(fileName);
+                            lineOnlyWatch.Stop(); //stop timer and print elapsed time
+                            lineOnlyWatch.Bandwidth(fileName); //print bandwidth of file operation
                         }
                     }
                     else
@@ -91,6 +80,7 @@ int main(int argc, char** argv)
                 cout << "Your first argument, 'argv[1]', wasn't understood." << endl;
             }
         }
+
         else cout << "Not enough arguments." << endl;
     }
 

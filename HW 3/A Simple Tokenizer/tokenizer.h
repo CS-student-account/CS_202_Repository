@@ -13,30 +13,29 @@ using std::chrono::time_point;
 
 bool checkFile(const string& filename);
 
+
 struct TokenAndPosition 
 {
 	string _token;
 	int _line;
 	unsigned int _column;
 };
-
 vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
+
 class StopWatch
 {
-public:
+private:
 	time_point<high_resolution_clock> startTime;
 	time_point<high_resolution_clock> endTime;
-
+public:
 	StopWatch(); //default constructor
 	StopWatch(const StopWatch& watch); //copy constructor
 	~StopWatch(); //destructor
-
 	void Start();
 	void Stop();
 	void Bandwidth(const string& fileName);
 };
-
 #endif 
