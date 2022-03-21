@@ -39,9 +39,11 @@ int main(int argc, char** argv)
             {
                 if (checkFile(bookName))
                 {
+                    StopWatch printWatch;
                     ifstream bookStream(bookName);
                     vector<TokenAndPosition> tokenVector = readLines(bookStream);
                     printTokens(cout, tokenVector);
+                    printWatch.Stop();
                 }
             }
             else
@@ -62,9 +64,10 @@ int main(int argc, char** argv)
                     {
                         if (checkFile(bookName))
                         {
+                            StopWatch lineOnlyWatch;
                             ifstream bookStream(bookName);
                             vector<TokenAndPosition> tokenVectorLineOnly = readLines(bookStream);
-                            //printTokens(cout, tokenVectorLineOnly);
+                            lineOnlyWatch.Stop();
                         }
                     }
                     else
@@ -84,8 +87,6 @@ int main(int argc, char** argv)
         }
         else cout << "Not enough arguments." << endl;
     }
-
-    cout << "Program finished" << endl;
 
 	return 0;
 }

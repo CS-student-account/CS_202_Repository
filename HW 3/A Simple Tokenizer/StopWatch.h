@@ -22,6 +22,4 @@ public:
 	void Stop();
 };
 
-void timeIt2(string& book);
-
 #endif
