@@ -26,17 +26,17 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 
 class StopWatch
 {
-private:
+public:
 	time_point<high_resolution_clock> startTime;
 	time_point<high_resolution_clock> endTime;
 
-public:
 	StopWatch(); //default constructor
 	StopWatch(const StopWatch& watch); //copy constructor
 	~StopWatch(); //destructor
 
 	void Start();
 	void Stop();
+	void Bandwidth(const string& fileName);
 };
 
 #endif 

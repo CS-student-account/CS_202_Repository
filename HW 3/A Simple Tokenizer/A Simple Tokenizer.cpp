@@ -11,6 +11,8 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <filesystem>
+#include <iomanip>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -21,6 +23,9 @@ using std::stringstream;
 using std::ifstream;
 using std::getline;
 using std::ostream;
+using namespace std::chrono;
+using std::filesystem::file_size;
+using std::setprecision;
 
 int main(int argc, char** argv)
 {
@@ -32,17 +37,18 @@ int main(int argc, char** argv)
         }
         else if (argc == 2) //print lines and columns of text file
         {
-            string bookName(argv[1]);
+            string fileName(argv[1]);
 
-            if (!bookName.empty())
+            if (!fileName.empty())
             {
-                if (checkFile(bookName))
+                if (checkFile(fileName))
                 {
                     StopWatch printWatch;
-                    ifstream bookStream(bookName);
-                    vector<TokenAndPosition> tokenVector = readLines(bookStream);
+                    ifstream fileStream(fileName);
+                    vector<TokenAndPosition> tokenVector = readLines(fileStream);
                     printTokens(cout, tokenVector);
                     printWatch.Stop();
+                    printWatch.Bandwidth(fileName);
                 }
             }
             else
@@ -52,21 +58,22 @@ int main(int argc, char** argv)
         }
         else if (argc == 3)
         {
-            string bookName(argv[1]); //print only lines of text file
+            string fileName(argv[1]); //print only lines of text file
             string lineOnlyOption(argv[2]);
 
-            if (!bookName.empty())
+            if (!fileName.empty())
             {
                 if (!lineOnlyOption.empty())
                 {
                     if (lineOnlyOption == "--lineonly")
                     {
-                        if (checkFile(bookName))
+                        if (checkFile(fileName))
                         {
                             StopWatch lineOnlyWatch;
-                            ifstream bookStream(bookName);
-                            vector<TokenAndPosition> tokenVectorLineOnly = readLines(bookStream);
+                            ifstream fileStream(fileName);
+                            vector<TokenAndPosition> tokenVectorLineOnly = readLines(fileStream);
                             lineOnlyWatch.Stop();
+                            lineOnlyWatch.Bandwidth(fileName);
                         }
                     }
                     else

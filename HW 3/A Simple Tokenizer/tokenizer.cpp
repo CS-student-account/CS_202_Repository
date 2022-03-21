@@ -19,6 +19,7 @@
 #include <random>
 #include <list>
 #include <deque>
+#include <filesystem>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -46,6 +47,8 @@ using std::uniform_int_distribution;
 using std::istream_iterator;
 using std::list;
 using std::deque;
+using std::filesystem::file_size;
+using std::setprecision;
 
 bool checkFile(const string& filename)
 {
@@ -160,8 +163,10 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens)
 	{
 		os << "[Line " << right << setfill(' ') << setw(4) << token._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << token._column << "]: " << quoted(token._token) << endl;
 	}
+	cout << endl;
 }
 
+/* StopWatch Section Beginning */
 StopWatch::StopWatch() //default constructor
 {
 	startTime = high_resolution_clock::now();
@@ -190,6 +195,17 @@ void StopWatch::Stop() //stop timer and print duration
 	double elapsedMilliseconds = (endTime - startTime).count() / 1'000'000;
 
 	//printing out elapsed time in both ms and s
-	cout << endl << "That took " << elapsedMilliseconds << " ms / "
-		<< (elapsedMilliseconds / 1000) << " s" << endl;
+	cout << "That took " << (elapsedMilliseconds / 1000) << " seconds, ";
 }
+
+void StopWatch::Bandwidth(const string &fileName)
+{
+	double fileSize = file_size(fileName);
+	double MB = 1'048'576;
+	double fileSizeMB = fileSize / MB;
+	double elapsedMilliseconds = (endTime - startTime).count() / 1'000'000;
+	double elapsedSeconds = elapsedMilliseconds / 1000;
+	double megabytePerSecond = (fileSizeMB) / elapsedSeconds;
+	cout << "at a bandwidth of " << setprecision(3) << megabytePerSecond << " MB/s." << endl;
+}
+/* StopWatch Section End */
