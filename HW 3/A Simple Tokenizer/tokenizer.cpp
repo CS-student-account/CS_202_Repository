@@ -6,7 +6,6 @@
 */
 
 #include "tokenizer.h"
-#include "StopWatch.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,6 +15,10 @@
 #include <map>
 #include <algorithm>
 #include <cmath>
+#include <chrono>
+#include <random>
+#include <list>
+#include <deque>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -36,6 +39,13 @@ using std::setw;
 using std::left;
 using std::right;
 using std::setfill;
+using namespace std::chrono;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
+using std::istream_iterator;
+using std::list;
+using std::deque;
 
 bool checkFile(const string& filename)
 {
@@ -150,4 +160,36 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens)
 	{
 		os << "[Line " << right << setfill(' ') << setw(4) << token._line << setw(6) << ", Column " << left << setfill(' ') << setw(2) << token._column << "]: " << quoted(token._token) << endl;
 	}
+}
+
+StopWatch::StopWatch() //default constructor
+{
+	startTime = high_resolution_clock::now();
+}
+
+StopWatch::StopWatch(const StopWatch& watch) //copy constructor
+{
+}
+
+StopWatch::~StopWatch() //destructor
+{
+}
+
+void StopWatch::Start() //restart timer
+{
+	startTime = high_resolution_clock::now();
+}
+
+void StopWatch::Stop() //stop timer and print duration
+{
+	endTime = high_resolution_clock::now();
+
+	double time_taken = duration_cast<nanoseconds>(endTime - startTime).count();
+
+	//elapsed time in milliseconds
+	double elapsedMilliseconds = (endTime - startTime).count() / 1'000'000;
+
+	//printing out elapsed time in both ms and s
+	cout << endl << "That took " << elapsedMilliseconds << " ms / "
+		<< (elapsedMilliseconds / 1000) << " s" << endl;
 }

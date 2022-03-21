@@ -3,10 +3,13 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 using std::string;
 using std::vector;
 using std::ostream;
 using std::istream;
+using std::chrono::high_resolution_clock;
+using std::chrono::time_point;
 
 bool checkFile(const string& filename);
 
@@ -20,5 +23,20 @@ struct TokenAndPosition
 vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
+
+class StopWatch
+{
+private:
+	time_point<high_resolution_clock> startTime;
+	time_point<high_resolution_clock> endTime;
+
+public:
+	StopWatch(); //default constructor
+	StopWatch(const StopWatch& watch); //copy constructor
+	~StopWatch(); //destructor
+
+	void Start();
+	void Stop();
+};
 
 #endif 
