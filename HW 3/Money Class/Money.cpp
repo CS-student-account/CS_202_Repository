@@ -146,48 +146,20 @@ Money Money::operator/=(const Money& rhs)
 
 Money operator+(const Money& lhs, const Money& rhs)
 {
-	if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
-	else if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
+	return Money(lhs.money + rhs.money);
 }
 
 Money operator-(const Money& lhs, const Money& rhs)
 {
-	if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
-	else if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
+	return Money(lhs.money - rhs.money);
 }
 
 Money operator*(const Money& lhs, const Money& rhs)
 {
-	if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
-	else if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
+	return Money(lhs.money * rhs.money);
 }
 
 Money operator/(const Money& lhs, const Money& rhs)
 {
-	if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
-	else if (lhs.money > 0)
-	{
-		return Money(lhs.money + rhs.money);
-	}
+	return Money(lhs.money / rhs.money);
 }
