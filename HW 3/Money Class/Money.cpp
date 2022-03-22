@@ -25,24 +25,24 @@ using std::setprecision;
 using std::stoi;
 using std::ostream;
 
-Money::Money() : money(0)
+Money::Money() : money(0.00)
 {
-	return;
+
 }
 
 Money::Money(const int &amount) : money(amount)
 {
-	return;
+
 }
 
 Money::Money(const double &amount) : money(amount)
 {
-	return;
+
 }
 
 Money::~Money()
 {
-	return;
+
 }
 
 ostream& operator<<(ostream& out, const Money& amount)
@@ -58,6 +58,10 @@ ostream& operator<<(ostream& out, const Money& amount)
 	else if (amount.money < 0)
 	{
 		out << "-" << temp/100;
+	}
+	else if (amount.money == 0.00)
+	{
+		out << 0 << '.' << left << setfill('0') << setw(2) << 0;
 	}
 
 	return out;
