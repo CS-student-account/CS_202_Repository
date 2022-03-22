@@ -9,15 +9,30 @@ using std::ostream;
 class Money
 {
 private:
-	float money;
+	double money;
 	
 public:
 	Money();
 	Money(const int &amount);
-	Money(const float &amount);
+	Money(const double &amount);
 	~Money();
 	friend ostream& operator<<(ostream& out, const Money& amount);
+
+	friend bool operator==(const Money& lhs, const Money& rhs);
+	friend bool operator!=(const Money& lhs, const Money& rhs);
+	friend bool operator<(const Money& lhs, const Money& rhs);
+	friend bool operator<=(const Money& lhs, const Money& rhs);
+	friend bool operator>(const Money& lhs, const Money& rhs);
+	friend bool operator>=(const Money& lhs, const Money& rhs);
+
 	Money& operator+=(const Money& rhs);
-	Money operator+(const Money& rhs);
+	Money operator-=(const Money& rhs);
+	Money operator*=(const Money& rhs);
+	Money operator/=(const Money& rhs);
+
+	friend Money operator+(const Money& rhs);
+	friend Money operator-(const Money& rhs);
+	friend Money operator*(const Money& rhs);
+	friend Money operator/(const Money& rhs);
 };
 #endif 

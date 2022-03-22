@@ -27,22 +27,22 @@ using std::ostream;
 
 Money::Money() : money(0)
 {
-
+	return;
 }
 
 Money::Money(const int &amount) : money(amount)
 {
-
+	return;
 }
 
-Money::Money(const float &amount) : money(amount)
+Money::Money(const double &amount) : money(amount)
 {
-
+	return;
 }
 
 Money::~Money()
 {
-
+	return;
 }
 
 ostream& operator<<(ostream& out, const Money& amount)
@@ -51,16 +51,46 @@ ostream& operator<<(ostream& out, const Money& amount)
 
 	out << "$";
 
-	if (amount.money > 0)
+	if (amount.money > 100)
 	{
-		out << amount.money;
+		out << temp/100;
 	}
 	else if (amount.money < 0)
 	{
-		out << amount.money;
+		out << "-" << temp/100;
 	}
 
 	return out;
+}
+
+bool operator==(const Money &lhs, const Money& rhs)
+{
+	return (lhs.money == rhs.money);
+}
+
+bool operator!=(const Money& lhs, const Money& rhs)
+{
+	return (lhs.money != rhs.money);
+}
+
+bool operator<(const Money& lhs, const Money& rhs)
+{
+	return (lhs.money < rhs.money);
+}
+
+bool operator<=(const Money& lhs, const Money& rhs)
+{
+	return (lhs.money <= rhs.money);
+}
+
+bool operator>(const Money& lhs, const Money& rhs)
+{
+	return (lhs.money > rhs.money);
+}
+
+bool operator>=(const Money& lhs, const Money& rhs)
+{
+	return (lhs.money >= rhs.money);
 }
 
 Money& Money::operator+=(const Money& rhs)
@@ -68,6 +98,21 @@ Money& Money::operator+=(const Money& rhs)
 	money += rhs.money;
 
 	return *this;
+}
+
+Money Money::operator-=(const Money& rhs)
+{
+	return;
+}
+
+Money Money::operator*=(const Money& rhs)
+{
+	return;
+}
+
+Money Money::operator/=(const Money& rhs)
+{
+	return;
 }
 
 Money Money::operator+(const Money& rhs)
@@ -85,4 +130,19 @@ Money Money::operator+(const Money& rhs)
 	}
 
 	return out;
+}
+
+Money Money::operator-(const Money& rhs)
+{
+	return;
+}
+
+Money Money::operator*(const Money& rhs)
+{
+	return;
+}
+
+Money Money::operator/(const Money& rhs)
+{
+	return;
 }
