@@ -24,6 +24,7 @@ using std::setfill;
 using std::setprecision;
 using std::stoi;
 using std::ostream;
+using std::abs;
 
 Money::Money() : money(0.00)
 {
@@ -69,7 +70,15 @@ ostream& operator<<(ostream& out, const Money& amount)
 	}
 	else
 	{
-		out << "$" << "-" << temp/100;
+		if (static_cast<int>(amount.money) == amount.money)
+		{
+			out << "$" << 0 << '.' << right << setfill('0') << setw(2) << temp;
+		}
+		else
+		{
+			//'.' << right << setfill('0') << setw(2) << temp
+			out << "-$" << abs(dollars) << '.' << right << setfill('0') << setw(2) << abs(cents);
+		}
 	}
 
 	return out;
