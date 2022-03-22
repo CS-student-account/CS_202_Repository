@@ -105,7 +105,7 @@ bool operator<(const Money& lhs, const Money& rhs)
 
 bool operator<=(const Money& lhs, const Money& rhs)
 {
-	return !(lhs.money == rhs.money);
+	return !(lhs.money < rhs.money);
 }
 
 bool operator>(const Money& lhs, const Money& rhs)
@@ -154,6 +154,11 @@ Money operator+(const Money& lhs, const Money& rhs)
 Money operator-(const Money& lhs, const Money& rhs)
 {
 	return Money(lhs.money - rhs.money);
+}
+
+Money operator*(const double& lhs, const Money& rhs)
+{
+	return Money(lhs * rhs.money);
 }
 
 Money operator*(const Money& lhs, const Money& rhs)
