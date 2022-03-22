@@ -139,6 +139,13 @@ Money Money::operator*=(const Money& rhs)
 	return *this;
 }
 
+Money Money::operator/=(const double& rhs)
+{
+	money /= rhs;
+
+	return *this;
+}
+
 Money Money::operator/=(const Money& rhs)
 {
 	money /= rhs.money;

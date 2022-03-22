@@ -28,6 +28,7 @@ public:
 	Money& operator+=(const Money& rhs);
 	Money operator-=(const Money& rhs);
 	Money operator*=(const Money& rhs);
+	Money operator/=(const double& rhs);
 	Money operator/=(const Money& rhs);
 
 	friend Money operator+(const Money& lhs, const Money& rhs);
