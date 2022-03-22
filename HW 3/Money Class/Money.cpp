@@ -27,6 +27,8 @@ using std::stoi;
 using std::ostream;
 using std::abs;
 using std::round;
+using std::fmod;
+using std::remainder;
 
 Money::Money() : money(0.00)
 {
@@ -51,8 +53,8 @@ Money::~Money()
 ostream& operator<<(ostream& out, const Money& amount)
 {
 	double temp = amount.money;
-	int dollars = temp;
-	int cents = (int)(temp) % 100;
+	int dollars = round(temp);
+	double cents = remainder(temp,100);
 
 	if (amount.money == 0)
 	{
@@ -67,19 +69,19 @@ ostream& operator<<(ostream& out, const Money& amount)
 		else 
 		{
 			//'.' << right << setfill('0') << setw(2) << temp
-			out << "$" << dollars << '.' << right << setfill('0') << setw(2) << cents;
+			out << "$" << right << setfill('0') << setw(4) << setprecision(3) << cents;
 		}
 	}
 	else
 	{
 		if (static_cast<int>(amount.money) == amount.money)
 		{
-			out << "$" << 0 << '.' << right << setfill('0') << setw(2) << temp;
+			out << "-$" << 0 << '.' << right << setfill('0') << setw(2) << temp;
 		}
 		else
 		{
 			//'.' << right << setfill('0') << setw(2) << temp
-			out << "-$" << abs(dollars) << '.' << right << setfill('0') << setw(2) << abs(cents);
+			out << "-$" << right << setfill('0') << setw(4) << setprecision(3) << abs(cents);
 		}
 	}
 
@@ -93,7 +95,7 @@ bool operator==(const Money &lhs, const Money& rhs)
 
 bool operator!=(const Money& lhs, const Money& rhs)
 {
-	return (lhs.money != rhs.money);
+	return !(lhs.money == rhs.money);
 }
 
 bool operator<(const Money& lhs, const Money& rhs)
@@ -103,7 +105,7 @@ bool operator<(const Money& lhs, const Money& rhs)
 
 bool operator<=(const Money& lhs, const Money& rhs)
 {
-	return (lhs.money <= rhs.money);
+	return !(lhs.money == rhs.money);
 }
 
 bool operator>(const Money& lhs, const Money& rhs)
@@ -113,7 +115,7 @@ bool operator>(const Money& lhs, const Money& rhs)
 
 bool operator>=(const Money& lhs, const Money& rhs)
 {
-	return (lhs.money >= rhs.money);
+	return !(lhs.money > rhs.money);
 }
 
 Money& Money::operator+=(const Money& rhs)
