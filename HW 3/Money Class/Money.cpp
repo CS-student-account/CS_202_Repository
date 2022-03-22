@@ -161,6 +161,12 @@ Money operator*(const double& lhs, const Money& rhs)
 	return Money(lhs * rhs.money);
 }
 
+Money operator*(const Money& lhs, const double& rhs)
+{
+	Money lhs;
+	return Money(lhs.money * rhs);
+}
+
 Money operator*(const Money& lhs, const Money& rhs)
 {
 	return Money(lhs.money * rhs.money);
