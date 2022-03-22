@@ -102,47 +102,69 @@ Money& Money::operator+=(const Money& rhs)
 
 Money Money::operator-=(const Money& rhs)
 {
-	return;
+	money += rhs.money;
+
+	return *this;
 }
 
 Money Money::operator*=(const Money& rhs)
 {
-	return;
+	money += rhs.money;
+
+	return *this;
 }
 
 Money Money::operator/=(const Money& rhs)
 {
-	return;
+	money += rhs.money;
+
+	return *this;
 }
 
-Money Money::operator+(const Money& rhs)
+Money operator+(const Money& lhs, const Money& rhs)
 {
-	Money out = *this;
-
-	if (out.money > 0)
+	if (lhs.money > 0)
 	{
-		out.money += rhs.money;
+		return Money(lhs.money + rhs.money);
 	}
-
-	if (out.money > 0)
+	else if (lhs.money > 0)
 	{
-		out.money += rhs.money;
+		return Money(lhs.money + rhs.money);
 	}
-
-	return out;
 }
 
-Money Money::operator-(const Money& rhs)
+Money operator-(const Money& lhs, const Money& rhs)
 {
-	return;
+	if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
+	else if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
 }
 
-Money Money::operator*(const Money& rhs)
+Money operator*(const Money& lhs, const Money& rhs)
 {
-	return;
+	if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
+	else if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
 }
 
-Money Money::operator/(const Money& rhs)
+Money operator/(const Money& lhs, const Money& rhs)
 {
-	return;
+	if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
+	else if (lhs.money > 0)
+	{
+		return Money(lhs.money + rhs.money);
+	}
 }
