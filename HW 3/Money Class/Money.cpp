@@ -12,6 +12,7 @@
 #include <sstream>
 #include <iomanip>
 #include <typeinfo>
+#include <cmath>
 using std::cout;
 using std::endl;
 using std::string;
@@ -25,6 +26,7 @@ using std::setprecision;
 using std::stoi;
 using std::ostream;
 using std::abs;
+using std::round;
 
 Money::Money() : money(0.00)
 {
@@ -123,21 +125,21 @@ Money& Money::operator+=(const Money& rhs)
 
 Money Money::operator-=(const Money& rhs)
 {
-	money += rhs.money;
+	money -= rhs.money;
 
 	return *this;
 }
 
 Money Money::operator*=(const Money& rhs)
 {
-	money += rhs.money;
+	money *= rhs.money;
 
 	return *this;
 }
 
 Money Money::operator/=(const Money& rhs)
 {
-	money += rhs.money;
+	money /= rhs.money;
 
 	return *this;
 }
