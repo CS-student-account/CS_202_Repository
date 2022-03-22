@@ -35,6 +35,7 @@ public:
 	friend Money operator*(const double& lhs, const Money& rhs);
 	friend Money operator*(const Money& lhs, const double& rhs);
 	friend Money operator*(const Money& lhs, const Money& rhs);
+	friend Money operator/(const Money& lhs, const double& rhs);
 	friend Money operator/(const Money& lhs, const Money& rhs);
 };
 #endif 
