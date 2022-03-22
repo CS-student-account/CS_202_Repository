@@ -48,31 +48,28 @@ Money::~Money()
 ostream& operator<<(ostream& out, const Money& amount)
 {
 	double temp = amount.money;
-	int temp2 = amount.money;
+	int dollars = temp;
+	int cents = (int)(temp) % 100;
 
-	out << "$";
-
-	if (amount.money > 0)
+	if (amount.money == 0)
 	{
-		if (amount.money > 100)
+		out << "$" << 0 << '.' << left << setfill('0') << setw(2) << 0;
+	}
+	else if (amount.money > 0)
+	{
+		if (static_cast<int>(amount.money) == amount.money) 
 		{
-			int dollars = temp;
-			int cents = (temp2 % 100);
-
-			out << dollars;
+			out << "$" << 0 << '.' << right << setfill('0') << setw(2) << temp;
 		}
-		else
+		else 
 		{
-			out << 0 << '.' << right << setfill('0') << setw(2) << temp;
+			//'.' << right << setfill('0') << setw(2) << temp
+			out << "$" << dollars << '.' << right << setfill('0') << setw(2) << cents;
 		}
 	}
-	else if (amount.money < 0)
+	else
 	{
-		out << "-" << temp/100;
-	}
-	else if (amount.money == 0)
-	{
-		out << 0 << '.' << left << setfill('0') << setw(2) << 0;
+		out << "$" << "-" << temp/100;
 	}
 
 	return out;
