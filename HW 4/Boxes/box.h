@@ -15,7 +15,7 @@ using std::ostream;
 
 class Box
 {
-private:
+protected:
 	int _width;
 	int _height;
 	string _type;
@@ -27,8 +27,8 @@ public:
 
 	int getWidth() const;
 	int getHeight() const;
-	int setWidth(int width);
-	int setHeight(int height);
+	void setWidth(int width);
+	void setHeight(int height);
 	virtual void print(ostream& os) = 0;
 	virtual string type() = 0;
 };
@@ -45,7 +45,6 @@ protected:
 public:
 	FilledBox(); //default constructor
 	FilledBox(int width, int height); //parametricized constructor
-	FilledBox(const FilledBox& box); //copy constructor
 	~FilledBox(); //destructor
 
 	int getWidth() const;
@@ -62,7 +61,6 @@ protected:
 public:
 	HollowBox(); //default constructor
 	HollowBox(int width, int height); //parametricized constructor
-	HollowBox(const HollowBox& box); //copy constructor
 	~HollowBox(); //destructor
 };
 
@@ -73,7 +71,6 @@ protected:
 public:
 	CheckeredBox(); //default constructor
 	CheckeredBox(int width, int height); //parametricized constructor
-	CheckeredBox(const CheckeredBox& box); //copy constructor
 	~CheckeredBox(); //destructor
 };
 

@@ -31,51 +31,33 @@ Box::~Box()
 	//cout << "Base Tea destructor!" << endl;
 }
 
-
-FilledBox::FilledBox() : _width(1), _height(1)
-{
-	//cout << "Base default Tea constructor!" << endl;
-}
-
-FilledBox::FilledBox(int width, int height) : _width(width), _height(height)
-{
-	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
-}
-
-
-FilledBox::FilledBox(const FilledBox& box)
-{
-	//cout << "Base Tea copy constructor!" << endl << endl;
-	//_blend = cup._blend;
-	//_quantity = cup._quantity;
-}
-
-FilledBox::~FilledBox()
-{
-	//cout << "Base Tea destructor!" << endl;
-}
-
-int FilledBox::getWidth() const
+int Box::getWidth() const
 {
 
 }
 
-int FilledBox::getHeight() const
+int Box::getHeight() const
 {
 
 }
 
-int FilledBox::setWidth(int width)
+void Box::setWidth(int width)
 {
 
 }
 
-int FilledBox::setHeight(int height)
+void Box::setHeight(int height)
 {
 
 }
 
-string FilledBox::type() const
+string Box::type() const
 {
 
+}
+
+ostream operator<<(ostream& os, const Box& b)
+{
+	//b.print(os);
+	//return os;
 }
