@@ -10,14 +10,9 @@
 #include <string>
 #include <memory>
 using std::cout;
-using std::cin;
-using std::endl;
 using std::string;
-using std::getline;
-using std::stoi;
 using std::ostream;
 using std::unique_ptr;
-using std::make_unique;
 
 Box::Box() : _width(1), _height(1){}
 
@@ -95,17 +90,34 @@ string FilledBox::type() const
 
 HollowBox::HollowBox(){}
 
-HollowBox::HollowBox(int width, int height) : Box(width, height) {}
+HollowBox::HollowBox(int width, int height) : Box(width, height){}
 
 HollowBox::~HollowBox(){}
 
 void HollowBox::print(ostream& os) const
 {
-	for (int j = 0; j < _height; j++)
+	for (int j = 1; j <= _height; j++)
 	{
-		for (int i = 0; i < _width; i++)
+		if (j == 1 || j == _height)
 		{
-			os << 'x';
+			for (int i = 1; i <= _width; i++)
+			{
+				os << 'x';
+			}
+		}
+		else
+		{
+			for (int i = 1; i <= _width; i++)
+			{
+				if (i == 1 || i == _width)
+				{
+					os << 'x';
+				}
+				else
+				{
+					os << ' ';
+				}
+			}
 		}
 		os << '\n';
 	}
@@ -120,7 +132,7 @@ string HollowBox::type() const
 
 CheckeredBox::CheckeredBox(){}
 
-CheckeredBox::CheckeredBox(int width, int height) : Box(width, height) {}
+CheckeredBox::CheckeredBox(int width, int height) : Box(width, height){}
 
 CheckeredBox::~CheckeredBox(){}
 
