@@ -32,7 +32,7 @@ public:
 	void setWidth(int width);
 	void setHeight(int height);
 	virtual void print(ostream& os) const = 0;
-	virtual string type() = 0;
+	virtual string type() const = 0;
 };
 
 ostream &operator<<(ostream& os, const Box& b);
@@ -48,7 +48,7 @@ public:
 	~FilledBox(); //destructor
 
 	void print(ostream& os) const;
-	string type();
+	string type() const;
 };
 
 
@@ -60,7 +60,7 @@ public:
 	~HollowBox(); //destructor
 
 	void print(ostream& os) const;
-	string type();
+	string type() const;
 };
 
 
@@ -72,7 +72,7 @@ public:
 	~CheckeredBox(); //destructor
 
 	void print(ostream& os) const;
-	string type();
+	string type() const;
 };
 
 #endif

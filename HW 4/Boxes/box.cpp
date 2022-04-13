@@ -86,7 +86,7 @@ void FilledBox::print(ostream& os) const
 	}
 }
 
-string FilledBox::type()
+string FilledBox::type() const
 {
 	return "Filled";
 }
@@ -111,7 +111,7 @@ void HollowBox::print(ostream& os) const
 	}
 }
 
-string HollowBox::type()
+string HollowBox::type() const
 {
 	return "Hollow";
 }
@@ -136,7 +136,7 @@ void CheckeredBox::print(ostream& os) const
 	}
 }
 
-string CheckeredBox::type()
+string CheckeredBox::type() const
 {
 	return "Checkered";
 }
