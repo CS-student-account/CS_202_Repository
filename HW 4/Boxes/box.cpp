@@ -8,6 +8,7 @@
 #include "box.h"
 #include <iostream>
 #include <string>
+#include <memory>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -15,21 +16,14 @@ using std::string;
 using std::getline;
 using std::stoi;
 using std::ostream;
+using std::unique_ptr;
+using std::make_unique;
 
-Box::Box() : _width(1), _height(1)
-{
-	//cout << "Base default Tea constructor!" << endl;
-}
+Box::Box() : _width(1), _height(1){}
 
-Box::Box(int width, int height) : _width(width), _height(height)
-{
-	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
-}
+Box::Box(int width, int height) : _width(width), _height(height){}
 
-Box::~Box()
-{
-	//cout << "Base Tea destructor!" << endl;
-}
+Box::~Box(){}
 
 int Box::getWidth() const
 {
@@ -51,28 +45,34 @@ void Box::setHeight(int height)
 	_height = height;
 }
 
-ostream operator<<(ostream& os, const Box& b)
+ostream &operator<<(ostream& os, const Box& b)
 {
 	//b.print(os);
 	//return os;
 }
 
+unique_ptr<Box> boxFactory(char c, int w, int h)
+{
+	switch (c)
+	{
+	case 'f':
+		return unique_ptr<Box>(new FilledBox(w, h));
+
+	case 'h':
+		return unique_ptr<Box>(new HollowBox(w, h));
+
+	case 'c':
+		return unique_ptr<Box>(new CheckeredBox(w, h));
+	}
+}
+
 /*--------------------------------------------------------------------*/
 
-FilledBox::FilledBox()
-{
-	//cout << "Base default Tea constructor!" << endl;
-}
+FilledBox::FilledBox(){}
 
-FilledBox::FilledBox(int width, int height)
-{
-	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
-}
+FilledBox::FilledBox(int width, int height){}
 
-FilledBox::~FilledBox()
-{
-	//cout << "Base Tea destructor!" << endl;
-}
+FilledBox::~FilledBox(){}
 
 void FilledBox::print(ostream& os)
 {
@@ -93,20 +93,11 @@ string FilledBox::type()
 
 /*--------------------------------------------------------------------*/
 
-HollowBox::HollowBox()
-{
-	//cout << "Base default Tea constructor!" << endl;
-}
+HollowBox::HollowBox(){}
 
-HollowBox::HollowBox(int width, int height)
-{
-	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
-}
+HollowBox::HollowBox(int width, int height){}
 
-HollowBox::~HollowBox()
-{
-	//cout << "Base Tea destructor!" << endl;
-}
+HollowBox::~HollowBox(){}
 
 void HollowBox::print(ostream& os)
 {
@@ -127,20 +118,11 @@ string HollowBox::type()
 
 /*--------------------------------------------------------------------*/
 
-CheckeredBox::CheckeredBox()
-{
-	//cout << "Base default Tea constructor!" << endl;
-}
+CheckeredBox::CheckeredBox(){}
 
-CheckeredBox::CheckeredBox(int width, int height)
-{
-	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
-}
+CheckeredBox::CheckeredBox(int width, int height){}
 
-CheckeredBox::~CheckeredBox()
-{
-	//cout << "Base Tea destructor!" << endl;
-}
+CheckeredBox::~CheckeredBox(){}
 
 void CheckeredBox::print(ostream& os)
 {

@@ -10,8 +10,10 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 using std::string;
 using std::ostream;
+using std::unique_ptr;
 
 class Box
 {
@@ -33,7 +35,9 @@ public:
 	virtual string type() = 0;
 };
 
-ostream operator<<(ostream& os, const Box& b);
+ostream &operator<<(ostream& os, const Box& b);
+unique_ptr<Box> boxFactory(char c, int w, int h);
+
 
 
 class FilledBox : public Box
