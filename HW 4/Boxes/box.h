@@ -31,7 +31,7 @@ public:
 	int getHeight() const;
 	void setWidth(int width);
 	void setHeight(int height);
-	virtual void print(ostream& os) = 0;
+	virtual void print(ostream& os) const = 0;
 	virtual string type() = 0;
 };
 
@@ -47,7 +47,7 @@ public:
 	FilledBox(int width, int height); //parametricized constructor
 	~FilledBox(); //destructor
 
-	void print(ostream& os);
+	void print(ostream& os) const;
 	string type();
 };
 
@@ -59,7 +59,7 @@ public:
 	HollowBox(int width, int height); //parametricized constructor
 	~HollowBox(); //destructor
 
-	void print(ostream& os);
+	void print(ostream& os) const;
 	string type();
 };
 
@@ -71,7 +71,7 @@ public:
 	CheckeredBox(int width, int height); //parametricized constructor
 	~CheckeredBox(); //destructor
 
-	void print(ostream& os);
+	void print(ostream& os) const;
 	string type();
 };
 

@@ -47,8 +47,8 @@ void Box::setHeight(int height)
 
 ostream &operator<<(ostream& os, const Box& b)
 {
-	//b.print(os);
-	//return os;
+	b.print(os);
+	return os;
 }
 
 unique_ptr<Box> boxFactory(char c, int w, int h)
@@ -74,7 +74,7 @@ FilledBox::FilledBox(int width, int height){}
 
 FilledBox::~FilledBox(){}
 
-void FilledBox::print(ostream& os)
+void FilledBox::print(ostream& os) const
 {
 	for (int j = 0; j < _height; j++)
 	{
@@ -99,7 +99,7 @@ HollowBox::HollowBox(int width, int height){}
 
 HollowBox::~HollowBox(){}
 
-void HollowBox::print(ostream& os)
+void HollowBox::print(ostream& os) const
 {
 	for (int j = 0; j < _height; j++)
 	{
@@ -124,7 +124,7 @@ CheckeredBox::CheckeredBox(int width, int height){}
 
 CheckeredBox::~CheckeredBox(){}
 
-void CheckeredBox::print(ostream& os)
+void CheckeredBox::print(ostream& os) const
 {
 	for (int j = 0; j < _height; j++)
 	{
