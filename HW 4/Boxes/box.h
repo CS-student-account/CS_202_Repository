@@ -20,12 +20,11 @@ class Box
 protected:
 	int _width;
 	int _height;
-	string _type;
 
 public:
 	Box(); //default constructor
 	Box(int width, int height); //parametricized constructor
-	~Box(); //destructor
+	virtual ~Box() = 0; //destructor
 
 	int getWidth() const;
 	int getHeight() const;
