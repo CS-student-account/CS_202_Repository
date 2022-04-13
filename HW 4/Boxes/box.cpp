@@ -90,3 +90,71 @@ string FilledBox::type()
 {
 	return "Filled";
 }
+
+/*--------------------------------------------------------------------*/
+
+HollowBox::HollowBox()
+{
+	//cout << "Base default Tea constructor!" << endl;
+}
+
+HollowBox::HollowBox(int width, int height)
+{
+	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
+}
+
+HollowBox::~HollowBox()
+{
+	//cout << "Base Tea destructor!" << endl;
+}
+
+void HollowBox::print(ostream& os)
+{
+	for (int j = 0; j < _height; j++)
+	{
+		for (int i = 0; i < _width; i++)
+		{
+			os << 'x';
+		}
+		os << '\n';
+	}
+}
+
+string HollowBox::type()
+{
+	return "Hollow";
+}
+
+/*--------------------------------------------------------------------*/
+
+CheckeredBox::CheckeredBox()
+{
+	//cout << "Base default Tea constructor!" << endl;
+}
+
+CheckeredBox::CheckeredBox(int width, int height)
+{
+	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
+}
+
+CheckeredBox::~CheckeredBox()
+{
+	//cout << "Base Tea destructor!" << endl;
+}
+
+void CheckeredBox::print(ostream& os)
+{
+	for (int j = 0; j < _height; j++)
+	{
+		for (int i = 0; i < _width; i++)
+		{
+			os << 'x';
+		}
+		os << '\n';
+	}
+}
+
+string CheckeredBox::type()
+{
+	return "Checkered";
+}
