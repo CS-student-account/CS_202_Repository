@@ -35,43 +35,40 @@ public:
 
 ostream operator<<(ostream& os, const Box& b);
 
+
 class FilledBox : public Box
 {
-protected:
-	int _width;
-	int _height;
-	string _type;
-
 public:
 	FilledBox(); //default constructor
 	FilledBox(int width, int height); //parametricized constructor
 	~FilledBox(); //destructor
 
-	int getWidth() const;
-	int getHeight() const;
-	int setWidth(int width);
-	int setHeight(int height);
-	string type() const;
+	void print(ostream& os);
+	string type();
 };
+
 
 class HollowBox : public Box
 {
-protected:
-
 public:
 	HollowBox(); //default constructor
 	HollowBox(int width, int height); //parametricized constructor
 	~HollowBox(); //destructor
+
+	void print(ostream& os);
+	string type();
 };
+
 
 class CheckeredBox : public Box
 {
-protected:
-
 public:
 	CheckeredBox(); //default constructor
 	CheckeredBox(int width, int height); //parametricized constructor
 	~CheckeredBox(); //destructor
+
+	void print(ostream& os);
+	string type();
 };
 
 #endif
