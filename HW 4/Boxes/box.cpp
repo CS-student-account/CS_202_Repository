@@ -70,7 +70,7 @@ unique_ptr<Box> boxFactory(char c, int w, int h)
 
 FilledBox::FilledBox(){}
 
-FilledBox::FilledBox(int width, int height){}
+FilledBox::FilledBox(int width, int height) : Box(width, height){}
 
 FilledBox::~FilledBox(){}
 
@@ -95,7 +95,7 @@ string FilledBox::type() const
 
 HollowBox::HollowBox(){}
 
-HollowBox::HollowBox(int width, int height){}
+HollowBox::HollowBox(int width, int height) : Box(width, height) {}
 
 HollowBox::~HollowBox(){}
 
@@ -120,7 +120,7 @@ string HollowBox::type() const
 
 CheckeredBox::CheckeredBox(){}
 
-CheckeredBox::CheckeredBox(int width, int height){}
+CheckeredBox::CheckeredBox(int width, int height) : Box(width, height) {}
 
 CheckeredBox::~CheckeredBox(){}
 
