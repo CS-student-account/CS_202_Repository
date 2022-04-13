@@ -140,9 +140,33 @@ void CheckeredBox::print(ostream& os) const
 {
 	for (int j = 0; j < _height; j++)
 	{
-		for (int i = 0; i < _width; i++)
+		if (j % 2 == 0)
 		{
-			os << 'x';
+			for (int i = 0; i < _width; i++)
+			{
+				if (i % 2 == 0)
+				{
+					os << 'x';
+				}
+				else
+				{
+					os << ' ';
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < _width; i++)
+			{
+				if (i % 2 == 0)
+				{
+					os << ' ';
+				}
+				else
+				{
+					os << 'x';
+				}
+			}
 		}
 		os << '\n';
 	}
