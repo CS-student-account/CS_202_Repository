@@ -33,31 +33,31 @@ Box::~Box()
 
 int Box::getWidth() const
 {
-
+	return _width;
 }
 
 int Box::getHeight() const
 {
-
+	return _height;
 }
 
 void Box::setWidth(int width)
 {
-
+	_width = width;
 }
 
 void Box::setHeight(int height)
 {
-
-}
-
-string Box::type() const
-{
-
+	_height = height;
 }
 
 ostream operator<<(ostream& os, const Box& b)
 {
 	//b.print(os);
 	//return os;
+}
+
+string FilledBox::type()
+{
+
 }
