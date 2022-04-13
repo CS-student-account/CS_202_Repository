@@ -57,7 +57,36 @@ ostream operator<<(ostream& os, const Box& b)
 	//return os;
 }
 
+/*--------------------------------------------------------------------*/
+
+FilledBox::FilledBox()
+{
+	//cout << "Base default Tea constructor!" << endl;
+}
+
+FilledBox::FilledBox(int width, int height)
+{
+	//cout << "Base parametricized Tea constructor of " << blend << " blend and " << quantity << " cups!" << endl;
+}
+
+FilledBox::~FilledBox()
+{
+	//cout << "Base Tea destructor!" << endl;
+}
+
+void FilledBox::print(ostream& os)
+{
+	for (int j = 0; j < _height; j++)
+	{
+		for (int i = 0; i < _width; i++)
+		{
+			os << 'x';
+		}
+		os << '\n';
+	}
+}
+
 string FilledBox::type()
 {
-
+	return "Filled";
 }
