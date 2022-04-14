@@ -9,15 +9,14 @@
 #include <iostream>
 #include <string>
 #include <memory>
-using std::cout;
 using std::string;
 using std::ostream;
 using std::unique_ptr;
 
+/*-----------------------------------------------------------------*/
+
 Box::Box() : _width(1), _height(1){}
-
 Box::Box(int width, int height) : _width(width), _height(height){}
-
 Box::~Box(){}
 
 int Box::getWidth() const
@@ -40,12 +39,15 @@ void Box::setHeight(int height)
 	_height = height;
 }
 
-ostream &operator<<(ostream& os, const Box& b)
+/*-----------------------------------------------------------------*/
+
+ostream &operator<<(ostream& os, const Box& b) //global ostream << operator
 {
 	b.print(os);
 	return os;
 }
 
+//global factory function returning unique pointer of appropriate type of box
 unique_ptr<Box> boxFactory(char c, int w, int h)
 {
 	switch (c)
@@ -61,118 +63,112 @@ unique_ptr<Box> boxFactory(char c, int w, int h)
 	}
 }
 
-/*--------------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
 
 FilledBox::FilledBox(){}
-
 FilledBox::FilledBox(int width, int height) : Box(width, height){}
-
 FilledBox::~FilledBox(){}
 
-void FilledBox::print(ostream& os) const
+void FilledBox::print(ostream& os) const //print filled box
 {
-	for (int j = 0; j < _height; j++)
+	for (int j = 0; j < _height; j++) //iterate through rows
 	{
-		for (int i = 0; i < _width; i++)
+		for (int i = 0; i < _width; i++) //iterate through columns
 		{
-			os << 'x';
+			os << 'x'; //character visualizing box
 		}
-		os << '\n';
+		os << '\n'; //new line after a row is processed
 	}
 }
 
-string FilledBox::type() const
+string FilledBox::type() const //get type of box function
 {
 	return "Filled";
 }
 
-/*--------------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
 
 HollowBox::HollowBox(){}
-
 HollowBox::HollowBox(int width, int height) : Box(width, height){}
-
 HollowBox::~HollowBox(){}
 
-void HollowBox::print(ostream& os) const
+void HollowBox::print(ostream& os) const //print hollow box
 {
-	for (int j = 1; j <= _height; j++)
+	for (int j = 1; j <= _height; j++) //iterate through rows
 	{
-		if (j == 1 || j == _height)
+		if (j == 1 || j == _height) //top or bottom of box
 		{
-			for (int i = 1; i <= _width; i++)
+			for (int i = 1; i <= _width; i++) //iterate through columns
 			{
-				os << 'x';
+				os << 'x'; //character visualizing box
 			}
 		}
 		else
 		{
-			for (int i = 1; i <= _width; i++)
+			for (int i = 1; i <= _width; i++) //iterate through columns
 			{
-				if (i == 1 || i == _width)
+				if (i == 1 || i == _width) //left or right edge of box
 				{
-					os << 'x';
+					os << 'x'; //character visualizing box
 				}
 				else
 				{
-					os << ' ';
+					os << ' '; //empty space inside box
 				}
 			}
 		}
-		os << '\n';
+		os << '\n'; //new line after a row is processed
 	}
 }
 
-string HollowBox::type() const
+string HollowBox::type() const //get type of box function
 {
 	return "Hollow";
 }
 
-/*--------------------------------------------------------------------*/
+/*-----------------------------------------------------------------*/
 
 CheckeredBox::CheckeredBox(){}
-
 CheckeredBox::CheckeredBox(int width, int height) : Box(width, height){}
-
 CheckeredBox::~CheckeredBox(){}
 
-void CheckeredBox::print(ostream& os) const
+void CheckeredBox::print(ostream& os) const //print checkered box
 {
-	for (int j = 0; j < _height; j++)
+	for (int j = 0; j < _height; j++) //iterate through rows
 	{
-		if (j % 2 == 0)
+		if (j % 2 == 0) //even row
 		{
-			for (int i = 0; i < _width; i++)
+			for (int i = 0; i < _width; i++) //iterate through columns
 			{
-				if (i % 2 == 0)
+				if (i % 2 == 0) //even column
 				{
-					os << 'x';
+					os << 'x'; //character visualizing box
 				}
-				else
+				else //odd column
 				{
-					os << ' ';
+					os << ' '; //empty space inside box
 				}
 			}
 		}
-		else
+		else //odd row
 		{
-			for (int i = 0; i < _width; i++)
+			for (int i = 0; i < _width; i++) //iterate through columns
 			{
-				if (i % 2 == 0)
+				if (i % 2 == 0) //even column
 				{
-					os << ' ';
+					os << ' '; //empty space inside box
 				}
-				else
+				else //odd column
 				{
-					os << 'x';
+					os << 'x'; //character visualizing box
 				}
 			}
 		}
-		os << '\n';
+		os << '\n'; //new line after a row is processed
 	}
 }
 
-string CheckeredBox::type() const
+string CheckeredBox::type() const //get type of box function
 {
 	return "Checkered";
 }
