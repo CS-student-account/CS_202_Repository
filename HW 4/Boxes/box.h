@@ -26,7 +26,7 @@ protected:
 public:
 	Box(); //default constructor
 	Box(int width, int height); //parametricized constructor
-	virtual ~Box() = 0; //pure virtual destructor
+	virtual ~Box(); //virtual destructor
 
 	int getWidth() const;
 	int getHeight() const;
