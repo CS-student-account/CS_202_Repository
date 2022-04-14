@@ -111,7 +111,7 @@ void HollowBox::print(ostream& os) const //print hollow box
 				{
 					os << 'x'; //character visualizing box
 				}
-				else
+				else //inside of box
 				{
 					os << ' '; //empty space inside box
 				}
