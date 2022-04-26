@@ -8,22 +8,18 @@
 #ifndef MYREADWRITE_H
 #define MYREADWRITE_H
 
-#include <iostream>
 #include <fstream>
-#include <string>
-using std::string;
-using std::ostream;
 using std::ofstream;
 using std::ifstream;
 
 template<typename T>
-void myRead(ifstream& ifs, T &temp)
+void myRead(ifstream& ifs, T &temp) //read in file
 {
 	ifs.read(reinterpret_cast<char*>(&temp), sizeof(temp));
 }
 
-template<typename Y>
-void myWrite(ofstream& ofs, const Y &temp)
+template<typename T>
+void myWrite(ofstream& ofs, const T &temp) //write to file
 {
 	ofs.write(reinterpret_cast<const char*>(&temp), sizeof(temp));
 }
