@@ -25,7 +25,7 @@ void myRead(ifstream& ifs, const T &temp)
 template<typename Y>
 void myWrite(ofstream& ofs, const Y &temp)
 {
-
+	ofs.write(reinterpret_cast<const char*>(&temp), sizeof(temp));
 }
 
 #endif
