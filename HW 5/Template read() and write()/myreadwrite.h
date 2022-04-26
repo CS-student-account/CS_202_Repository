@@ -9,17 +9,23 @@
 #define MYREADWRITE_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 using std::string;
 using std::ostream;
+using std::ofstream;
+using std::ifstream;
 
-class Box
+template<typename T>
+void myRead(ifstream& ifs, const T &temp)
 {
-private:
 
+}
 
-public:
-	
-};
+template<typename Y>
+void myWrite(ofstream& ofs, const Y &temp)
+{
+
+}
 
 #endif

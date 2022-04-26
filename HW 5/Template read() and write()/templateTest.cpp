@@ -9,8 +9,6 @@
 // Includes for code to be tested
 #include "myreadwrite.h"   // For function templates myRead and myWrite
 #include "myreadwrite.h"   // Double inclusion test
-#include "Rational.h"      // For Rational class template and opertaors
-#include "Rational.h"      // Double inclusion test
 
 // Includes for testing package & code common to all test programs
 #include <iostream>     // for std::cout, std::endl, std::cin
@@ -478,45 +476,6 @@ void test_myReadWrite(Tester & t)
     t.test(z.a==readz.a, "An uncopyable class is written and read correctly");
 }
 
-// test_RAIIPtr
-// Test suite for function template printVector
-// Pre: None.
-// Post:
-//     Pass/fail status of tests have been registered with t.
-//     Appropriate messages have been printed to cout.
-// Does not throw (No-Throw Guarantee)
-void test_Rational(Tester & t)
-{
-    std::cout << "Test Suite: class template Rational" << std::endl;
-    Rational<short> zero;
-    t.test(true,"Default constructor exists.");
-    std::ostringstream oss;
-    oss << zero;
-    t.test(true,"ostream << operator exists.");
-    t.test(oss.str() == "0","Default constructor yeilds 0");
-#define TEST(x) t.test(x,#x)
-    TEST(Rational<int>(1,2) + Rational<int>(1,3) == Rational<int>(5,6));
-    TEST(Rational<int>(1,2) - Rational<int>(1,3) == Rational<int>(1,6));
-    TEST(Rational<int>(1,2) * Rational<int>(1,3) == Rational<int>(1,6));
-    TEST(Rational<int>(1,2) / Rational<int>(1,3) == Rational<int>(3,2));
-    TEST(Rational<long long>(1,2) <  Rational<long long>(5,8));
-    TEST(Rational<long long>(3,2) >  Rational<long long>(5,8));
-    TEST(Rational<long long>(1,2) <= Rational<long long>(1,2));
-    TEST(Rational<long long>(1,2) >= Rational<long long>(1,2));
-    TEST(Rational<int>(7,8) != Rational<int>(9,10));
-    TEST(Rational<int>(-1,1) == -Rational<int>(1));
-    Rational<int> r(1,2);
-    using RI = Rational<int>;
-    r -= RI(1,3);
-    t.test(r==RI(1,6),"After 1/2 -= 1/3 you get 1/6");
-    r += RI(1,6);
-    t.test(r==RI(1,3),"After that += 1/6 you get 1/3");
-    r /= RI(2,3);
-    t.test(r==RI(1,2),"After that /= 2/3 you get 1/2");
-    r *= RI(8);
-    t.test(r==RI(4),"After that *= 8 you get 4");
-    
-}
 
 // test_templates
 // Test suite for template homework
@@ -531,7 +490,6 @@ void test_templates(Tester & t)
     // Do all the test suites
     std::cout << "TEST SUITES FOR Templates homework" << std::endl;
     test_myReadWrite(t);
-    test_Rational(t);
 }
 
 
