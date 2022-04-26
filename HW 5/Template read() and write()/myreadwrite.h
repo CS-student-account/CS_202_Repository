@@ -17,9 +17,9 @@ using std::ofstream;
 using std::ifstream;
 
 template<typename T>
-void myRead(ifstream& ifs, const T &temp)
+void myRead(ifstream& ifs, T &temp)
 {
-
+	ifs.read(reinterpret_cast<char*>(&temp), sizeof(temp));
 }
 
 template<typename Y>
