@@ -21,10 +21,7 @@ private:
 	void reduce();
 
 public:
-	Rational(T num, T den) : _num(num), _den(den) //parametricized constructor
-	{
-		reduce();
-	}
+	Rational(T = 0, T = 1); //parametricized constructor
 	~Rational() {} //destructor
 
 	template <typename Y>
@@ -61,6 +58,12 @@ public:
 	template <typename Y>
 	friend Rational operator/(const Rational<Y>& lhs, const Rational<Y>& rhs);
 };
+
+template<typename T>
+Rational<T>::Rational(T num, T den) : _num(num), _den(den) //parametricized constructor
+{
+	reduce();
+}
 
 template<typename T>
 void Rational<T>::reduce() 
@@ -162,10 +165,7 @@ Rational<T>& Rational<T>::operator*=(const Rational<T>& rhs)
 template <typename T>
 Rational<T>& Rational<T>::operator/=(const Rational<T>& rhs)
 {
-	_num = (_num * rhs._den) / (rhs._num * _den);
-	_den *= rhs._den;
-	reduce();
-	return *this;
+	return (*this *= {rhs._denominator, rhs._numerator});
 }
 
 
@@ -180,25 +180,19 @@ Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs)
 template <typename Y>
 Rational<Y> operator-(const Rational<Y>& lhs, const Rational<Y>& rhs)
 {
-	auto temp{ lhs };
-	temp -= rhs;
-	return temp;
+	return (lhs + -rhs);
 }
 
 template <typename Y>
 Rational<Y> operator*(const Rational<Y>& lhs, const Rational<Y>& rhs)
 {
-	auto temp{ lhs };
-	temp *= rhs;
-	return temp;
+	return (lhs *= rhs);
 }
 
 template <typename Y>
-Rational<Y> operator/(const Rational<Y>& lhs, const Rational<Y>& rhs)
+Rational<Y> operator/( Rational<Y>& lhs, const Rational<Y>& rhs)
 {
-	auto temp{ lhs };
-	temp /= rhs;
-	return temp;
+	return (lhs /= rhs);
 }
 
 #endif
