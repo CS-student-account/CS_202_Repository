@@ -25,10 +25,10 @@ public:
 	~Rational() {} //destructor
 
 	template <typename Y>
-	friend ostream& operator<<(ostream& os, const Rational<Y>& object);
+	friend ostream& operator<<(ostream& os, const Rational<Y>& rhs);
 
 	template <typename Y>
-	friend Rational operator-(const Rational<Y>& rhs);
+	friend Rational<Y> operator-(const Rational<Y>& lhs);
 
 	template <typename Y>
 	friend bool operator==(const Rational<Y>& lhs, const Rational<Y>& rhs);
@@ -44,19 +44,19 @@ public:
 	friend bool operator>=(const Rational<Y>& lhs, const Rational<Y>& rhs);
 
 
-	Rational& operator+=(const Rational<T>& rhs);
-	Rational& operator-=(const Rational<T>& rhs);
-	Rational& operator*=(const Rational<T>& rhs);
-	Rational& operator/=(const Rational<T>& rhs);
+	Rational& operator+=(const Rational& rhs);
+	Rational& operator-=(const Rational& rhs);
+	Rational& operator*=(const Rational& rhs);
+	Rational& operator/=(const Rational& rhs);
 
 	template <typename Y>
-	friend Rational operator+(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	friend Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs);
 	template <typename Y>
-	friend Rational operator-(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	friend Rational<Y> operator-(const Rational<Y>& lhs, const Rational<Y>& rhs);
 	template <typename Y>
-	friend Rational operator*(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	friend Rational<Y> operator*(Rational<Y> lhs, const Rational<Y>& rhs);
 	template <typename Y>
-	friend Rational operator/(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	friend Rational<Y> operator/(Rational<Y> lhs, const Rational<Y>& rhs);
 };
 
 template<typename T>
@@ -68,9 +68,9 @@ Rational<T>::Rational(T num, T den) : _num(num), _den(den) //parametricized cons
 template<typename T>
 void Rational<T>::reduce() 
 {
-	auto gcd = gcd(_num, _den);
-	_num /= gcd;
-	_den /= gcd;
+	auto GCD = gcd(_num, _den);
+	_num /= GCD;
+	_den /= GCD;
 
 	if (_den < 0) 
 	{
@@ -93,15 +93,15 @@ ostream& operator<<(ostream& os, const Rational<Y>& rhs)
 }
 
 template <typename Y>
-Rational<Y> operator-(const Rational<Y>& rhs)
+Rational<Y> operator-(const Rational<Y>& lhs)
 {
-	return {-rhs._num, rhs._den};
+	return {-lhs._num, lhs._den};
 }
 
 template <typename Y>
 bool operator==(const Rational<Y>& lhs, const Rational<Y>& rhs) 
 {
-	return (lhs._numerator == rhs._numerator && lhs._denominator == rhs._denominator);
+	return (lhs._num == rhs._num && lhs._den == rhs._den);
 }
 
 template <typename Y>
@@ -113,7 +113,7 @@ bool operator!=(const Rational<Y>& lhs, const Rational<Y>& rhs)
 template <typename Y>
 bool operator<(const Rational<Y>& lhs, const Rational<Y>& rhs)
 {
-	return (lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator);
+	return (lhs._num * rhs._den < rhs._num * lhs._den);
 }
 
 template <typename Y>
@@ -175,7 +175,7 @@ Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs)
 }
 
 template <typename Y>
-Rational<Y> operator-(Rational<Y> &lhs, const Rational<Y>& rhs)
+Rational<Y> operator-(const Rational<Y> &lhs, const Rational<Y>& rhs)
 {
 	return (lhs + -rhs);
 }
