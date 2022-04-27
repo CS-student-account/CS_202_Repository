@@ -12,43 +12,39 @@
 using std::ostream;
 using std::cout;
 
-int fib(int n)
+int fib(int n) //recursive fibonacci
 {
-	if (n <= 1) 
+	if (n == 0 || n == 1)
 	{
 		return n;
 	}
-	else 
+	else if (n > 1)
 	{
 		return(fib(n-1) + fib(n-2));
 	}
 }
 
-void fib_loop(int n)
+int fib_loop(int n) //looping fibonacci
 {
 	int term1 = 0, term2 = 1, termNext;
 
-    for (int i = 0; i < n - 1; i++) 
+    if (n == 0 || n == 1)
     {
-        if (i == 0) 
+        return n;
+    }
+    else if (n > 1)
+    {
+        for (int i = 0; i < n - 1; i++)
         {
-            cout << 0 << ' ';
+            termNext = term1 + term2;
+            term1 = term2;
+            term2 = termNext;
         }
-
-        if (i == 1) 
-        {
-            cout << 1 << ' ';
-        }
-
-        termNext = term1 + term2;
-        term1 = term2;
-        term2 = termNext;
-
-        cout << termNext << ' ';
+        return termNext;
     }
 }
 
-int ack(int m, int n)
+int ack(int m, int n) //recursive Ackermann's number
 {
     if (m == 0) 
     {
