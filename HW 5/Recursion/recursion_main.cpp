@@ -6,11 +6,11 @@
 */
 
 #include "recursion.h"
+#include "StopWatch.h"
 #include <iostream>
 #include <string>
 using std::cout;
 using std::string;
-using std::endl;
 
 int main()
 {
@@ -22,8 +22,8 @@ int main()
     fib_loop(6);
     cout << "\n\n";
 
-    cout << "Ackermann's number: ack(5,5)" << '\n';
-    cout << ack(2, 2011) << '\n';
+    cout << "Ackermann's number: ack(2,2010)" << '\n';
+    cout << ack(2, 2010) << '\n';
 
     return 0;
 }

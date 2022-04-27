@@ -18,12 +18,15 @@
     <ClInclude Include="recursion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StopWatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="recursion.cpp">
+    <ClCompile Include="recursion_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="recursion_main.cpp">
+    <ClCompile Include="StopWatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
