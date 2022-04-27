@@ -14,18 +14,19 @@ using std::string;
 
 int main()
 {
-    cout << "Recursive fibonacci: fib(0) to fib(6)" << '\n';
-    cout << fib(0) << " " << fib(1) << ' ' << fib(2) << ' ' << fib(3) 
-        << ' ' << fib(4) << ' ' << fib(5) << ' ' << fib(6)
-        << ' ' << fib(7) << ' ' << fib(8) << ' ' << fib(9) << "\n\n";
+    cout << "Recursive fibonacci: fib(0) to fib(20)" << '\n';
+    for (int i = 0; i < 21; i++)
+    {
+        cout << fib(i) << ' ';
+    }
 
-    cout << "Looping fibonacci: fib_loop(0) to fib_loop(6)" << '\n';
-    cout << fib_loop(0) << " " << fib_loop(1) << ' ' << fib_loop(2) << ' ' 
-        << fib_loop(3) << ' ' << fib_loop(4) << ' ' << fib_loop(5) << ' ' 
-        << fib_loop(6) << ' ' << fib_loop(7) << ' ' << fib_loop(8) << ' ' 
-        << fib_loop(9) << "\n\n";
+    cout << "\n\n" << "Looping fibonacci: fib_loop(0) to fib_loop(20)" << '\n';
+    for (int i = 0; i < 21; i++)
+    {
+        cout << fib_loop(i) << ' ';
+    }
 
-    cout << "Ackermann's number: ack(2,2000)" << '\n';
+    cout << "\n\n" << "Ackermann's number: ack(2,2000)" << '\n';
     cout << ack(2, 2000) << '\n';
 
 #if 0
