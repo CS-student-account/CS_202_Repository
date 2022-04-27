@@ -9,41 +9,196 @@
 #define RATIONAL_H
 
 #include <iostream>
-#include <fstream>
+#include <numeric>
 using std::ostream;
-using std::ofstream;
-using std::ifstream;
+using std::gcd;
 
 template <typename T>
 class Rational
 {
 private:
-	T _first, _second;
+	T _num, _den;
+	void reduce();
 
 public:
-	Rational() : _first(nullptr), _second(nullptr) {}//default constructor
-	Rational(T first, T second) : _first(first), _second(second) {} //parametricized constructor
+	Rational(T num, T den) : _num(num), _den(den) //parametricized constructor
+	{
+		reduce();
+	}
 	~Rational() {} //destructor
 
 	template <typename Y>
 	friend ostream& operator<<(ostream& os, const Rational<Y>& object);
 
-	friend bool operator==(const Rational& lhs, const Rational& rhs);
-	friend bool operator!=(const Rational& lhs, const Rational& rhs);
-	friend bool operator<(const Rational& lhs, const Rational& rhs);
-	friend bool operator<=(const Rational& lhs, const Rational& rhs);
-	friend bool operator>(const Rational& lhs, const Rational& rhs);
-	friend bool operator>=(const Rational& lhs, const Rational& rhs);
+	template <typename Y>
+	friend Rational operator-(const Rational<Y>& rhs);
 
-	Rational& operator+=(const Rational& rhs);
-	Rational& operator-=(const Rational& rhs);
-	Rational& operator*=(const Rational& rhs);
-	Rational& operator/=(const Rational& rhs);
+	template <typename Y>
+	friend bool operator==(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend bool operator!=(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend bool operator<(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend bool operator<=(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend bool operator>(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend bool operator>=(const Rational<Y>& lhs, const Rational<Y>& rhs);
 
-	friend Rational operator+(const Rational& lhs, const Rational& rhs);
-	friend Rational operator-(const Rational& lhs, const Rational& rhs);
-	friend Rational operator*(const Rational& lhs, const Rational& rhs);
-	friend Rational operator/(const Rational& lhs, const Rational& rhs);
+
+	Rational& operator+=(const Rational<T>& rhs);
+	Rational& operator-=(const Rational<T>& rhs);
+	Rational& operator*=(const Rational<T>& rhs);
+	Rational& operator/=(const Rational<T>& rhs);
+
+	template <typename Y>
+	friend Rational operator+(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend Rational operator-(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend Rational operator*(const Rational<Y>& lhs, const Rational<Y>& rhs);
+	template <typename Y>
+	friend Rational operator/(const Rational<Y>& lhs, const Rational<Y>& rhs);
 };
+
+template<typename T>
+void Rational<T>::reduce() 
+{
+	auto gcd = gcd(_num, _den);
+	_num /= gcd;
+	_den /= gcd;
+
+	if (_den < 0) 
+	{
+		_num *= -1;
+		_den *= -1;
+	}
+}
+
+template <typename Y>
+ostream& operator<<(ostream& os, const Rational<Y>& rhs)
+{
+	os << rhs._num;
+	
+	if (rhs._den != 1)
+	{
+		os << "/" << rhs._den;
+	}
+
+	return os;
+}
+
+template <typename Y>
+Rational<Y> operator-(const Rational<Y>& rhs)
+{
+	return {-rhs._num, rhs._den};
+}
+
+template <typename Y>
+bool operator==(const Rational<Y>& lhs, const Rational<Y>& rhs) 
+{
+	return (lhs._numerator == rhs._numerator && lhs._denominator == rhs._denominator);
+}
+
+template <typename Y>
+bool operator!=(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	return !(rhs == lhs);
+}
+
+template <typename Y>
+bool operator<(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	return (lhs._numerator * rhs._denominator < rhs._numerator* lhs._denominator);
+}
+
+template <typename Y>
+bool operator<=(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	return !(rhs > lhs);
+}
+
+template <typename Y>
+bool operator>(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	return (rhs < lhs);
+}
+
+template <typename Y>
+bool operator>=(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	return !(rhs < lhs);
+}
+
+
+template <typename T>
+Rational<T>& Rational<T>::operator+=(const Rational<T>& rhs)
+{
+	_num = (_num * rhs._den) + (rhs._num * _den);
+	_den *= rhs._den;
+	reduce();
+	return *this;
+}
+
+template <typename T>
+Rational<T>& Rational<T>::operator-=(const Rational<T>& rhs)
+{
+	_num = (_num * rhs._den) - (rhs._num * _den);
+	_den *= rhs._den;
+	reduce();
+	return *this;
+}
+
+template <typename T>
+Rational<T>& Rational<T>::operator*=(const Rational<T>& rhs)
+{
+	_num = (_num * rhs._den) * (rhs._num * _den);
+	_den *= rhs._den;
+	reduce();
+	return *this;
+}
+
+template <typename T>
+Rational<T>& Rational<T>::operator/=(const Rational<T>& rhs)
+{
+	_num = (_num * rhs._den) / (rhs._num * _den);
+	_den *= rhs._den;
+	reduce();
+	return *this;
+}
+
+
+template <typename Y>
+Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	auto temp{ lhs };
+	temp += rhs;
+	return temp;
+}
+
+template <typename Y>
+Rational<Y> operator-(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	auto temp{ lhs };
+	temp -= rhs;
+	return temp;
+}
+
+template <typename Y>
+Rational<Y> operator*(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	auto temp{ lhs };
+	temp *= rhs;
+	return temp;
+}
+
+template <typename Y>
+Rational<Y> operator/(const Rational<Y>& lhs, const Rational<Y>& rhs)
+{
+	auto temp{ lhs };
+	temp /= rhs;
+	return temp;
+}
 
 #endif
