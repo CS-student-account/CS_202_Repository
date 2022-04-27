@@ -13,8 +13,10 @@ using std::string;
 
 int main()
 {
-    cout << "Recursive fibonacci: fib(n)" << '\n';
+    cout << "Recursive fibonacci: fib(6)" << '\n';
     cout << fib(0) << " " << fib(1) << ' ' << fib(2) << ' ' << fib(3) 
         << ' ' << fib(4) << ' ' << fib(5) << ' ' << fib(6) << '\n';
+
+    fib_loop(6);
     return 0;
 }
