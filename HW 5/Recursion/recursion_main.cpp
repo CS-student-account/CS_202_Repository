@@ -10,13 +10,20 @@
 #include <string>
 using std::cout;
 using std::string;
+using std::endl;
 
 int main()
 {
     cout << "Recursive fibonacci: fib(6)" << '\n';
     cout << fib(0) << " " << fib(1) << ' ' << fib(2) << ' ' << fib(3) 
-        << ' ' << fib(4) << ' ' << fib(5) << ' ' << fib(6) << '\n';
+        << ' ' << fib(4) << ' ' << fib(5) << ' ' << fib(6) << "\n\n";
 
+    cout << "Looping fibonacci: fib_loop(6)" << '\n';
     fib_loop(6);
+    cout << "\n\n";
+
+    cout << "Ackermann's number: ack(5,5)" << '\n';
+    cout << ack(2, 2011) << '\n';
+
     return 0;
 }

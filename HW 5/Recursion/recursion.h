@@ -26,12 +26,10 @@ int fib(int n)
 
 void fib_loop(int n)
 {
-    cout << '\n' << "Looping fibonacci: fib_loop(" << n << ')' << '\n';
 	int term1 = 0, term2 = 1, termNext;
 
     for (int i = 0; i < n - 1; i++) 
     {
-
         if (i == 0) 
         {
             cout << 0 << ' ';
@@ -50,9 +48,20 @@ void fib_loop(int n)
     }
 }
 
-int ack(int n)
+int ack(int m, int n)
 {
-	return 0;
+    if (m == 0) 
+    {
+        return (n+1);
+    }
+    else if ((m > 0) && (n == 0))
+    {
+        return ack(m - 1, 1);
+    }
+    else if ((m > 0) && (n > 0))
+    {
+        return ack(m-1, ack(m, n-1));
+    }
 }
 
 #endif
