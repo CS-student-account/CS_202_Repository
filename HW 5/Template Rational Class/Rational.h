@@ -178,19 +178,19 @@ Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs)
 }
 
 template <typename Y>
-Rational<Y> operator-(const Rational<Y>& lhs, const Rational<Y>& rhs)
+Rational<Y> operator-(Rational<Y> lhs, const Rational<Y>& rhs)
 {
 	return (lhs + -rhs);
 }
 
 template <typename Y>
-Rational<Y> operator*(const Rational<Y>& lhs, const Rational<Y>& rhs)
+Rational<Y> operator*(Rational<Y> lhs, const Rational<Y>& rhs)
 {
 	return (lhs *= rhs);
 }
 
 template <typename Y>
-Rational<Y> operator/( Rational<Y>& lhs, const Rational<Y>& rhs)
+Rational<Y> operator/(Rational<Y> lhs, const Rational<Y>& rhs)
 {
 	return (lhs /= rhs);
 }
