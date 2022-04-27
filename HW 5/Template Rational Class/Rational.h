@@ -156,13 +156,16 @@ Rational<T>& Rational<T>::operator*=(const Rational<T>& rhs)
 {
 	_num *= rhs._num;
 	_den *= rhs._den;
+	reduce();
 	return *this;
 }
 
 template <typename T>
 Rational<T>& Rational<T>::operator/=(const Rational<T>& rhs)
 {
-	return (*this *= {rhs._den, rhs._num});
+	*this *= {rhs._den, rhs._num};
+	reduce();
+	return *this;
 }
 
 
