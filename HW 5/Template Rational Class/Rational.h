@@ -147,25 +147,22 @@ Rational<T>& Rational<T>::operator+=(const Rational<T>& rhs)
 template <typename T>
 Rational<T>& Rational<T>::operator-=(const Rational<T>& rhs)
 {
-	_num = (_num * rhs._den) - (rhs._num * _den);
-	_den *= rhs._den;
-	reduce();
+	*this = *this - rhs; //uses Rational::operator- to define operator-=
 	return *this;
 }
 
 template <typename T>
 Rational<T>& Rational<T>::operator*=(const Rational<T>& rhs)
 {
-	_num = (_num * rhs._den) * (rhs._num * _den);
+	_num *= rhs._num;
 	_den *= rhs._den;
-	reduce();
 	return *this;
 }
 
 template <typename T>
 Rational<T>& Rational<T>::operator/=(const Rational<T>& rhs)
 {
-	return (*this *= {rhs._denominator, rhs._numerator});
+	return (*this *= {rhs._den, rhs._num});
 }
 
 
@@ -178,7 +175,7 @@ Rational<Y> operator+(const Rational<Y>& lhs, const Rational<Y>& rhs)
 }
 
 template <typename Y>
-Rational<Y> operator-(Rational<Y> lhs, const Rational<Y>& rhs)
+Rational<Y> operator-(Rational<Y> &lhs, const Rational<Y>& rhs)
 {
 	return (lhs + -rhs);
 }
