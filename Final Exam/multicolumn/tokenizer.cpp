@@ -65,7 +65,7 @@ vector<string> lineToTokens(const string &line)
 	while (getline(tokenStream, token, ' ')) //getline with space as delimiter
 	{
 		//remove whitespaces from each token
-		token.erase(remove_if(token.begin(), token.end(), ::isspace), token.end());
+		token.erase(remove_if(token.begin(), token.end(), isspace), token.end());
 
 		if (!token.empty()) //ignore the large whitespaces that are somehow left behind
 		{
