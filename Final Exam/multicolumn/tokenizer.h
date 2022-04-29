@@ -1,3 +1,10 @@
+/*
+* tokenizer.h
+* David Misyura
+* 28 April 2022
+* CS 202
+*/
+
 #ifndef TOKENIZER_H
 #define TOKENIZER_H
 

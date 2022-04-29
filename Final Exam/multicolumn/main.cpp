@@ -1,8 +1,8 @@
 /*
 * main.cpp
 * David Misyura
-* 28 Mar 2022
-* Midterm Exam for CS 202
+* 28 April 2022
+* CS 202
 */
 
 #include "tokenizer.h"

@@ -1,8 +1,8 @@
 /*
 * tokenizer.cpp
 * David Misyura
-* 28 Mar 2022
-* tokenizer.cpp for CS 202
+* 28 April 2022
+* CS 202
 */
 
 #include "tokenizer.h"
@@ -12,6 +12,7 @@
 #include <sstream>
 #include <fstream>
 #include <cctype>
+#include <algorithm>
 using std::cout;
 using std::string;
 using std::vector;
@@ -19,6 +20,7 @@ using std::getline;
 using std::ifstream;
 using std::ostream;
 using std::stringstream;
+using std::remove_if;
 
 bool checkFile(const string &filename) //simple file check
 {
@@ -62,10 +64,10 @@ vector<string> lineToTokens(const string &line)
 
 	while (getline(tokenStream, token, ' ')) //getline with space as delimiter
 	{
-		//simple bool to check for spaces and similar things
-		bool hasspace = find_if(token.begin(), token.end(), ::isspace) != token.end();
+		//remove whitespaces from each token
+		token.erase(remove_if(token.begin(), token.end(), ::isspace), token.end());
 
-		if (!hasspace) 
+		if (!token.empty()) //ignore the large whitespaces that are somehow left behind
 		{
 			tokenVector.push_back(token + ' '); //push tokens into vector until none remain
 		}
