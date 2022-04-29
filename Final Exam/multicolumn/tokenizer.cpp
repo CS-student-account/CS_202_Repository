@@ -13,6 +13,7 @@
 #include <fstream>
 #include <cctype>
 #include <algorithm>
+#include <iomanip>
 using std::cout;
 using std::string;
 using std::vector;
@@ -21,6 +22,7 @@ using std::ifstream;
 using std::ostream;
 using std::stringstream;
 using std::remove_if;
+using std::setw;
 
 bool checkFile(const string &filename) //simple file check
 {
@@ -100,7 +102,7 @@ vector<string> readLines(const string &fileName)
 }
 
 //wrap vector of tokens
-void textWrap(ostream &os, const vector<string> &inputTokens, const int &wordWrap)
+void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPerPage, const int &charPerLine, const int &colPerPage, const int &spaceBetweenCol)
 {
 	vector<string> tokenVector = {""}; //empty vector to allow appending to
 	int skippedLines = 0;
@@ -108,7 +110,7 @@ void textWrap(ostream &os, const vector<string> &inputTokens, const int &wordWra
 	for (auto &token : inputTokens) //iterate through vector of tokens
 	{
 		//add token if under wrap size
-		if ((tokenVector[skippedLines].size() + token.size()) <= wordWrap)
+		if ((tokenVector[skippedLines].size() + token.size()) <= charPerLine)
 		{
 			tokenVector[skippedLines].append(token); //add a token to the line
 		}
@@ -120,8 +122,8 @@ void textWrap(ostream &os, const vector<string> &inputTokens, const int &wordWra
 		}
 	}
 
-	for (auto &line : tokenVector) //iterate through word-wrapped vector of strings
+	for (int i = 0; i < tokenVector.size(); i++) //iterate through word-wrapped vector of strings
 	{
-		os << line;
+		os << tokenVector[i] << setw(spaceBetweenCol) << '5' << tokenVector[i];
 	}
 }

@@ -19,54 +19,51 @@ int main(int argc, char** argv)
 {
     setlocale(LC_ALL, "en_US.utf8"); //cross-platform UTF-8 encoding support
 
-    if (argc > 1) //check if there's at least the name of the program
+    if (argc > 6) //tell the user to include no more than 2 arguments
     {
-        if (argc > 6) //tell the user to include no more than 2 arguments
-        {
-            cout << "Please don't input more than 2 arguments at a time." << '\n';
-        }
-        else if (argc == 6) //print only lines of text file
-        {
-            const string fileName(argv[1]); 
-            const string linesPerPageString(argv[2]);
-            const int linesPerPage = stoi(linesPerPageString);
-            const string charPerLineString(argv[3]);
-            const int charPerLine = stoi(charPerLineString);
-            const string colPerPageString(argv[4]);
-            const int colPerPage = stoi(colPerPageString);
-            const string spaceBetweenColString(argv[5]);
-            const int spaceBetweenCol = stoi(spaceBetweenColString);
-
-            if (!fileName.empty())
-            {
-                if (!linesPerPageString.empty())
-                {
-                    if (!charPerLineString.empty())
-                    {
-                        if (!colPerPageString.empty())
-                        {
-                            if (!spaceBetweenColString.empty())
-                            {
-                                if (checkFile(fileName)) //quick file check
-                                {
-                                    textWrap(cout, readLines(fileName), charPerLine);
-
-                                    cout << "\n\n" << "prettyprinted " << fileName
-                                        << " with word wrap size of " << charPerLine << " characters";
-                                }
-                            }
-                            else cout << "Your fifth argument, 'argv[5]', wasn't understood." << '\n';
-                        }
-                        else cout << "Your fourth argument, 'argv[4]', wasn't understood." << '\n';
-                    }
-                    else cout << "Your third argument, 'argv[3]', wasn't understood." << '\n';
-                }
-                else cout << "Your second argument, 'argv[2]', wasn't understood." << '\n';
-            }
-            else cout << "Your first argument, 'argv[1]', wasn't understood." << '\n';
-        }
-        else cout << "Not enough arguments." << '\n';
+        cout << "Please don't input more than 2 arguments at a time." << '\n';
     }
+    else if (argc == 6) //print only lines of text file
+    {
+        const string fileName(argv[1]);
+        const string linesPerPageString(argv[2]);
+        const int linesPerPage = stoi(linesPerPageString);
+        const string charPerLineString(argv[3]);
+        const int charPerLine = stoi(charPerLineString);
+        const string colPerPageString(argv[4]);
+        const int colPerPage = stoi(colPerPageString);
+        const string spaceBetweenColString(argv[5]);
+        const int spaceBetweenCol = stoi(spaceBetweenColString);
+
+        if (!fileName.empty())
+        {
+            if (!linesPerPageString.empty())
+            {
+                if (!charPerLineString.empty())
+                {
+                    if (!colPerPageString.empty())
+                    {
+                        if (!spaceBetweenColString.empty())
+                        {
+                            if (checkFile(fileName)) //quick file check
+                            {
+                                textWrap(cout, readLines(fileName), linesPerPage, charPerLine, colPerPage, spaceBetweenCol);
+
+                                cout << "\n\n" << "prettyprinted " << fileName
+                                    << " with word wrap size of " << charPerLine << " characters";
+                            }
+                        }
+                        else cout << "Your fifth argument, space between columns, wasn't understood." << '\n';
+                    }
+                    else cout << "Your fourth argument, columns per page, wasn't understood." << '\n';
+                }
+                else cout << "Your third argument, characters per line', wasn't understood." << '\n';
+            }
+            else cout << "Your second argument, lines per page, wasn't understood." << '\n';
+        }
+        else cout << "Your first argument, file name, wasn't understood." << '\n';
+    }
+    else cout << "Not enough arguments." << '\n';
 
     return 0;
 }
