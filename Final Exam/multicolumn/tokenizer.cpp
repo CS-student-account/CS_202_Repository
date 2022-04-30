@@ -127,11 +127,11 @@ void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPe
 
 	for (int i = 0; i < tokenVector.size(); i++) //iterate through word-wrapped vector of strings
 	{
-		os << tokenVector[i];
-
-		if ((i%linesPerPage) == 0)
+		if (((i % linesPerPage) == 0) && (i!=0))
 		{
-			os << '\n' << setfill('-') << setw(pageSeparator);
+			os << '\n' << setfill('-') << setw(pageSeparator) << '-';
 		}
+
+		os << tokenVector[i];
 	}
 }

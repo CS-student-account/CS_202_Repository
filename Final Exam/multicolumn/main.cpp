@@ -43,14 +43,17 @@ int main(int argc, char** argv)
                 {
                     if (!colPerPageString.empty() && colPerPage != 0)
                     {
-                        if (!spaceBetweenColString.empty() && spaceBetweenCol != 0)
+                        if (!spaceBetweenColString.empty())
                         {
                             if (checkFile(fileName)) //quick file check
                             {
                                 textWrap(cout, readLines(fileName), linesPerPage, charPerLine, colPerPage, spaceBetweenCol);
 
-                                cout << "\n\n" << "prettyprinted " << fileName
-                                    << " with word wrap size of " << charPerLine << " characters";
+                                cout << "\n\n" << "Printed " << fileName
+                                    << " with " << linesPerPage << " lines per page, "
+                                    << charPerLine << " characters per line, "
+                                    << colPerPage << " columns per page, and "
+                                    << spaceBetweenCol << " space between columns.";
                             }
                         }
                         else cout << "Your fifth argument for space between columns, " << spaceBetweenColString << ", wasn't understood." << '\n';
