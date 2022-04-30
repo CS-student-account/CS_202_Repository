@@ -37,13 +37,13 @@ int main(int argc, char** argv)
 
         if (!fileName.empty())
         {
-            if (!linesPerPageString.empty())
+            if (!linesPerPageString.empty() && linesPerPage != 0)
             {
-                if (!charPerLineString.empty())
+                if (!charPerLineString.empty() && charPerLine != 0)
                 {
-                    if (!colPerPageString.empty())
+                    if (!colPerPageString.empty() && colPerPage != 0)
                     {
-                        if (!spaceBetweenColString.empty())
+                        if (!spaceBetweenColString.empty() && spaceBetweenCol != 0)
                         {
                             if (checkFile(fileName)) //quick file check
                             {
@@ -53,15 +53,15 @@ int main(int argc, char** argv)
                                     << " with word wrap size of " << charPerLine << " characters";
                             }
                         }
-                        else cout << "Your fifth argument, space between columns, wasn't understood." << '\n';
+                        else cout << "Your fifth argument for space between columns, " << spaceBetweenColString << ", wasn't understood." << '\n';
                     }
-                    else cout << "Your fourth argument, columns per page, wasn't understood." << '\n';
+                    else cout << "Your fourth argument for columns per page, " << colPerPageString << ", wasn't understood." << '\n';
                 }
-                else cout << "Your third argument, characters per line', wasn't understood." << '\n';
+                else cout << "Your third argument for characters per line, " << charPerLineString << ", wasn't understood." << '\n';
             }
-            else cout << "Your second argument, lines per page, wasn't understood." << '\n';
+            else cout << "Your second argument for lines per page, " << linesPerPageString << ", wasn't understood." << '\n';
         }
-        else cout << "Your first argument, file name, wasn't understood." << '\n';
+        else cout << "Your first argument for file name, wasn't understood." << '\n';
     }
     else cout << "Not enough arguments." << '\n';
 

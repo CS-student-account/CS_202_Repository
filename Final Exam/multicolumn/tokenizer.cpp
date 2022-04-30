@@ -23,6 +23,7 @@ using std::ostream;
 using std::stringstream;
 using std::remove_if;
 using std::setw;
+using std::setfill;
 
 bool checkFile(const string &filename) //simple file check
 {
@@ -98,12 +99,14 @@ vector<string> readLines(const string &fileName)
 			outputTokenVector.push_back(token);
 		}
 	}
+
 	return outputTokenVector;
 }
 
 //wrap vector of tokens
 void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPerPage, const int &charPerLine, const int &colPerPage, const int &spaceBetweenCol)
 {
+	int pageSeparator = ((charPerLine*colPerPage) + (colPerPage*spaceBetweenCol));
 	vector<string> tokenVector = {""}; //empty vector to allow appending to
 	int skippedLines = 0;
 
@@ -124,6 +127,11 @@ void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPe
 
 	for (int i = 0; i < tokenVector.size(); i++) //iterate through word-wrapped vector of strings
 	{
-		os << tokenVector[i] << setw(spaceBetweenCol) << '5' << tokenVector[i];
+		os << tokenVector[i];
+
+		if ((i%linesPerPage) == 0)
+		{
+			os << '\n' << setfill('-') << setw(pageSeparator);
+		}
 	}
 }
