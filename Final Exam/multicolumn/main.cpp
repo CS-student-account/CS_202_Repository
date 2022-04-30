@@ -53,16 +53,21 @@ int main(int argc, char** argv)
                                     << colPerPage << " columns per page, and "
                                     << spaceBetweenCol << " spaces between columns." << "\n\n";
 
-                                textWrap(cout, readLines(fileName), linesPerPage, charPerLine, colPerPage, spaceBetweenCol);
+                                textWrap(cout, readLines(fileName), linesPerPage, charPerLine, 
+                                    colPerPage, spaceBetweenCol);
                             }
                         }
-                        else cout << "Your fifth argument for space between columns, " << spaceBetweenColString << ", wasn't understood." << '\n';
+                        else cout << "Your fifth argument for space between columns, " 
+                            << spaceBetweenColString << ", wasn't understood." << '\n';
                     }
-                    else cout << "Your fourth argument for columns per page, " << colPerPageString << ", wasn't understood." << '\n';
+                    else cout << "Your fourth argument for columns per page, " 
+                        << colPerPageString << ", wasn't understood." << '\n';
                 }
-                else cout << "Your third argument for characters per line, " << charPerLineString << ", wasn't understood." << '\n';
+                else cout << "Your third argument for characters per line, " 
+                    << charPerLineString << ", wasn't understood." << '\n';
             }
-            else cout << "Your second argument for lines per page, " << linesPerPageString << ", wasn't understood." << '\n';
+            else cout << "Your second argument for lines per page, " << linesPerPageString 
+                << ", wasn't understood." << '\n';
         }
         else cout << "Your first argument for file name, wasn't understood." << '\n';
     }

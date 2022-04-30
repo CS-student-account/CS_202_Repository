@@ -107,7 +107,8 @@ vector<string> readLines(const string &fileName)
 }
 
 //wrap vector of tokens
-void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPerPage, const int &charPerLine, const int &colPerPage, const int &spaceBetweenCol)
+void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPerPage, 
+	const int &charPerLine, const int &colPerPage, const int &spaceBetweenCol)
 {
 	int charPerCol = floor((charPerLine-(spaceBetweenCol*(colPerPage-1)))/colPerPage);
 	int pageSeparatorLength = ((charPerCol*colPerPage) + (colPerPage*spaceBetweenCol));
