@@ -14,6 +14,7 @@
 #include <cctype>
 #include <algorithm>
 #include <iomanip>
+#include <cmath>
 using std::cout;
 using std::string;
 using std::vector;
@@ -24,6 +25,8 @@ using std::stringstream;
 using std::remove_if;
 using std::setw;
 using std::setfill;
+using std::floor;
+using std::left;
 
 bool checkFile(const string &filename) //simple file check
 {
@@ -106,32 +109,35 @@ vector<string> readLines(const string &fileName)
 //wrap vector of tokens
 void textWrap(ostream &os, const vector<string> &inputTokens, const int &linesPerPage, const int &charPerLine, const int &colPerPage, const int &spaceBetweenCol)
 {
-	int pageSeparator = ((charPerLine*colPerPage) + (colPerPage*spaceBetweenCol));
+	int charPerCol = floor((charPerLine-(spaceBetweenCol*(colPerPage-1)))/colPerPage);
+	int pageSeparatorLength = ((charPerCol*colPerPage) + (colPerPage*spaceBetweenCol));
 	vector<string> tokenVector = {""}; //empty vector to allow appending to
 	int skippedLines = 0;
 
-	for (auto &token : inputTokens) //iterate through vector of tokens
+	for (int i = 0; i < inputTokens.size(); i++) //iterate through vector of tokens
 	{
 		//add token if under wrap size
-		if ((tokenVector[skippedLines].size() + token.size()) <= charPerLine)
+		if ((tokenVector[skippedLines].size() + inputTokens[i].size()) <= charPerCol)
 		{
-			tokenVector[skippedLines].append(token); //add a token to the line
+			tokenVector[skippedLines].append(inputTokens[i]); //add a token to the line
+			
 		}
-		else 
+		else
 		{
 			skippedLines++; //iterate total lines skipped
-			tokenVector.emplace_back("\n"); //move to next line to continue printing
-			tokenVector[skippedLines].append(token); //print leftover tokens to new line
+			tokenVector.push_back("\n"); //move to next line to continue printing
+			tokenVector[skippedLines].append(inputTokens[i]); //print leftover tokens to new line
 		}
+
 	}
 
 	for (int i = 0; i < tokenVector.size(); i++) //iterate through word-wrapped vector of strings
 	{
 		if (((i % linesPerPage) == 0) && (i!=0))
 		{
-			os << '\n' << setfill('-') << setw(pageSeparator) << '-';
+			os << '\n' << setfill('-') << setw(pageSeparatorLength) << '-';
 		}
 
-		os << tokenVector[i];
+		os << setfill(' ') << setw(charPerCol) << left << tokenVector[i] << '|';
 	}
 }
